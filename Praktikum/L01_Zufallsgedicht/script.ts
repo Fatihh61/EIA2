@@ -12,15 +12,19 @@ for (let i: number = 5; i >= 1; i--) {
 
 function getVerse(_subjekte: string[], _prädikate: string[], _objekte: string[]): void {
 
-    let vers: string [] = [];
-    let zufallszahl01: string = (subjekte[Math.floor (Math.random() * subjekte.length)]);
-    let zufallszahl02: string = (prädikate[Math.floor (Math.random() * objekte.length)]);
-    let zufallszahl03: string = (objekte[Math.floor( Math.random() * prädikate.length)]);
+   
+    let vers: string = "";
+    
+    let ergebnisSubjekte: number = Math.floor(Math.random() * subjekte.length);
+    let ergebnisPrädikate: number = Math.floor (Math.random() * objekte.length);
+    let ergebnisObjekte: number = Math.floor( Math.random() * prädikate.length);
 
-    vers.push(zufallszahl01);
-    vers.push(zufallszahl02);
-    vers.push(zufallszahl03);
 
+    vers += _subjekte.splice(ergebnisSubjekte, 1) + " ";
+    vers += _prädikate.splice(ergebnisPrädikate, 1) + " ";
+    vers += _objekte.splice(ergebnisObjekte, 1) + " ";
+
+    
     console.log(vers);
 }
 }

@@ -7,13 +7,13 @@ var Aufgabe01;
         console.log(getVerse(subjekte, prädikate, objekte));
     }
     function getVerse(_subjekte, _prädikate, _objekte) {
-        var vers = [];
-        var zufallszahl01 = (subjekte[Math.floor(Math.random() * subjekte.length)]);
-        var zufallszahl02 = (prädikate[Math.floor(Math.random() * objekte.length)]);
-        var zufallszahl03 = (objekte[Math.floor(Math.random() * prädikate.length)]);
-        vers.push(zufallszahl01);
-        vers.push(zufallszahl02);
-        vers.push(zufallszahl03);
+        var vers = "";
+        var ergebnisSubjekte = Math.floor(Math.random() * subjekte.length);
+        var ergebnisPrädikate = Math.floor(Math.random() * objekte.length);
+        var ergebnisObjekte = Math.floor(Math.random() * prädikate.length);
+        vers += _subjekte.splice(ergebnisSubjekte, 1) + " ";
+        vers += _prädikate.splice(ergebnisPrädikate, 1) + " ";
+        vers += _objekte.splice(ergebnisObjekte, 1) + " ";
         console.log(vers);
     }
 })(Aufgabe01 || (Aufgabe01 = {}));
