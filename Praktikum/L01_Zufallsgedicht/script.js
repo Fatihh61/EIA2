@@ -14,7 +14,7 @@ var Aufgabe01;
         vers += _subjekte.splice(ergebnisSubjekte, 1) + " ";
         vers += _prädikate.splice(ergebnisPrädikate, 1) + " ";
         vers += _objekte.splice(ergebnisObjekte, 1) + " ";
-        console.log(vers);
+        return vers;
     }
 })(Aufgabe01 || (Aufgabe01 = {}));
 //# sourceMappingURL=script.js.map
