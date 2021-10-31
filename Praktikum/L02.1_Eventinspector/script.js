@@ -16,12 +16,12 @@ var l02_Eventinspector;
         var x = _event.clientX;
         var y = _event.clientY;
         var span = document.getElementById("span");
-        span.innerHTML = _event.clientX + "," + _event.clientY + _event;
+        span.innerHTML = _event.clientX + "," + _event.clientY + _event.target;
         span.style.top = _event.clientY + 10 + "px";
         span.style.left = _event.clientX + 10 + "px";
     }
     function logInfo(_event) {
-        console.log("Event-Phase = " + _event.eventPhase + " | CurrentTarget = " + _event.currentTarget + " | EventType = " + _event.type + "| EventObject = " + _event + " | Target = " + _event.target);
+        console.log("Event-Phase = ", _event.eventPhase, " | CurrentTarget = ", _event.currentTarget, " | EventType = ", _event.type, "| EventObject = ", _event, " | Target = ", _event.target);
     }
 })(l02_Eventinspector || (l02_Eventinspector = {}));
 //# sourceMappingURL=script.js.map

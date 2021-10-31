@@ -27,7 +27,7 @@ namespace l02_Eventinspector {
         let span: HTMLElement = document.getElementById("span");
 
         
-        span.innerHTML = _event.clientX + "," + _event.clientY + _event;
+        span.innerHTML = _event.clientX + "," + _event.clientY + _event.target;
 
         span.style.top = _event.clientY + 10 + "px";
         span.style.left = _event.clientX + 10 + "px";
@@ -36,27 +36,9 @@ namespace l02_Eventinspector {
     function logInfo(_event: Event): void {
 
        
-        console.log("Event-Phase = " + _event.eventPhase + " | CurrentTarget = " + _event.currentTarget + " | EventType = " + _event.type + "| EventObject = " + _event + " | Target = " + _event.target );
-        
-        
-        
-        
+        console.log("Event-Phase = ", _event.eventPhase, " | CurrentTarget = ", _event.currentTarget, " | EventType = ", _event.type, "| EventObject = ", _event, " | Target = ", _event.target );
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
