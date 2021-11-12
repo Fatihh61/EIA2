@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequenzmemory-Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+
+    <h1>Sequencememory-Settings</h1>
+
+    <p>Please choose your settings for the sequence memory game</p>
+
+    <form>
+        <div id="container">
+            <div id="form">
+                <h2 id="auswahl">Auswähle bitte</h2>
+
+                <fieldset>
+                    <legend>Cardsize</legend>
+                    <span id="slider">
+                        <span>
+                            70 px
+                            <input type="range" name="cardsize" id="cardsize" min="70" max="100" step="10"
+                                value="100">
+                            100 px
+                        </span>
+                        <progress id="progressbar" max="5.0" value="1.0"></progress>
+                    </span>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Colorpicker</legend>
+                    <label for="background">Background:</label>
+                    <input type="color" name="background" placeholder="red" id="background" value="#ff0000">
+                    <label for="back_of_card">Back of card:</label>
+                    <input type="color" name="back_of_card" placeholder="red" id="back_of_card" value="#ff0000">
+                    <label for="fontColor">Fontcolor:</label>
+                    <input type="color" name="fontColor" placeholder="red" id="fontColor" value="#ff0000">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Font</legend>
+                    <label for="font">Choose a font:</label>
+                    <select name="font" id="font">
+                        <option value="Arial">Arial</option>
+                        <option value="Calibri">Calibri</option>
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Schwierigkeitsgrad</legend>
+                    <label for="schwierigkeitsgrad">Choose your time:</label>
+                    <select name="schwierigkeitsgrad" id="schwierigkeitsgrad">
+                        <option value="60">01:00</option>
+                        <option value="90">01:30</option>
+                        <option value="120">02:00</option>
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Sequence</legend>
+                    <input type="text" name="Text" id="input" value="" placeholder="type sequence here" required />
+                </fieldset>
+
+                <br>
+
+                <button type="button" id="start">Start</button>
+
+            </div>
+        </div>
+    </form>
+
+    <h3 id="countdown" class="isHidden">Remaining Time:</h3>
+
+    <div id="container_for_span" class="isHidden">
+
+    </div>
+
+
+
+</body>
+
+</html>
