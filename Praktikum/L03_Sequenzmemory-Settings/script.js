@@ -25,9 +25,6 @@ var L03_Sequenzmemory_Neu;
     let span;
     //Eingegebene Sequenz in Buchstaben
     let buchstabe;
-    let überprüfZahl;
-    let event;
-    let information;
     let allInputElements;
     let allSelectElements;
     let backOfCard2;

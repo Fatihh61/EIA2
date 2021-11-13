@@ -37,12 +37,6 @@ namespace L03_Sequenzmemory_Neu {
     //Eingegebene Sequenz in Buchstaben
     let buchstabe: HTMLElement;
 
-    let überprüfZahl: number;
-
-    let event: HTMLElement;
-
-    let information: string;
-
     let allInputElements: NodeListOf<HTMLInputElement>;
 
     let allSelectElements: NodeListOf<HTMLSelectElement>;
