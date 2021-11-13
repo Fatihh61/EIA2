@@ -3,6 +3,7 @@ var L03_Sequenzmemory_Neu;
 (function (L03_Sequenzmemory_Neu) {
     //Formular für die Karteneinstellungen
     let form;
+    //Spielfeld wird deklariert
     let gamefield;
     //Start Button um das Spiel zu starten
     let startButton;
@@ -121,19 +122,6 @@ var L03_Sequenzmemory_Neu;
         console.log(textContent);
         array.push(textContent);
         buchstabe.classList.remove("isHidden");
-        /*for (let i: number = 0; i > 10; i++) {
-
-            if (sequenceArrayOriginal[i] == array[i]) {
-
-                console.log("Well done");
-
-
-            } else {
-                alert("Game Over");
-
-            }
-
-        }*/
         if (sequenceArrayOriginal[0] == array[0]) {
             console.log("Richtige Reihenfolge, mach weiter!");
         }

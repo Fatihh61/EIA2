@@ -4,6 +4,7 @@ namespace L03_Sequenzmemory_Neu {
     //Formular für die Karteneinstellungen
     let form: HTMLFormElement;
 
+    //Spielfeld wird deklariert
     let gamefield: HTMLDivElement;
 
     //Start Button um das Spiel zu starten
@@ -205,19 +206,7 @@ namespace L03_Sequenzmemory_Neu {
 
         buchstabe.classList.remove("isHidden");
 
-        /*for (let i: number = 0; i > 10; i++) {
-
-            if (sequenceArrayOriginal[i] == array[i]) {
-
-                console.log("Well done");
-
-
-            } else {
-                alert("Game Over");
-
-            }
-
-        }*/
+    
 
         if (sequenceArrayOriginal[0] == array[0]) {
             console.log("Richtige Reihenfolge, mach weiter!");
