@@ -1,5 +1,7 @@
 namespace L08_CanvasAufgabe {
 
+    //!!!!!!! In HandleLoad befinden sich mehrere Funktionen, die zufällige Objekte kreieren!!!!!!!!!!!!!!!!!!!!!!!!//
+
 
     let crc2: CanvasRenderingContext2D;
 

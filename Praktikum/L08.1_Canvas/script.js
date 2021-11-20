@@ -1,6 +1,7 @@
 "use strict";
 var L08_CanvasAufgabe;
 (function (L08_CanvasAufgabe) {
+    //!!!!!!! In HandleLoad befinden sich mehrere Funktionen, die zufällige Objekte kreieren!!!!!!!!!!!!!!!!!!!!!!!!//
     let crc2;
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
