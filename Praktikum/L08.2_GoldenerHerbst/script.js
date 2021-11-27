@@ -12,12 +12,11 @@ var L08_GoldenerHerbst;
         let horizone = crc2.canvas.height * golden;
         //Startposition für den ersten Berg
         let startPointofFirstMountainX = Math.random() * (-50) - 80;
-        let randomFirstTreeX = Math.random() * 100;
         drawBackGround();
         drawCloud();
         drawMountains(startPointofFirstMountainX, horizone);
         //drawTree(0, horizone - 50);
-        drawTree2(randomFirstTreeX, horizone + 50);
+        drawTree2(horizone + 50);
         //drawField(0, horizone + 150);
     }
     function drawBackGround() {
@@ -106,10 +105,9 @@ var L08_GoldenerHerbst;
         crc2.fillRect(_startPositionX, _startPositionY, 800, 78);
         crc2.restore();
     }
-    function drawTree2(_startPositionX, _startPositionY) {
+    function drawTree2(_startPositionY) {
         let treeTrunkX = 25;
         let treeTrunkY = 50;
-        let treeBushX = 12.5;
         let treeBushX2 = 25;
         let treeBushX3 = 37.5;
         let treeBushX4 = 50;
@@ -117,54 +115,35 @@ var L08_GoldenerHerbst;
         let treeBushY2 = 75;
         let xAdd = 0;
         let drawRandomTreeOnX;
+        let _treeDistanceFromEachOther = 0;
+        let distanceAdd;
         crc2.save;
-        /*
-        crc2.beginPath();
-        crc2.moveTo(_startPositionX, _startPositionY);
-        console.log(_startPositionX, _startPositionY);
-        crc2.lineTo(_startPositionX + treeTrunkX, _startPositionY);
-        crc2.lineTo(_startPositionX + treeTrunkX, _startPositionY - treeTrunkY);
-        crc2.lineTo(_startPositionX, _startPositionY - treeTrunkY);
-        crc2.lineTo(_startPositionX, _startPositionY);
-        crc2.stroke();
-        crc2.fillStyle = "brown";
-        crc2.fill();
-        crc2.closePath();
-
-
-
-        crc2.beginPath();
-        crc2.moveTo(_startPositionX, _startPositionY - treeTrunkY);
-        crc2.lineTo(_startPositionX - treeBushX2, _startPositionY - treeBushY);
-        crc2.lineTo(_startPositionX - treeBushX2 + treeBushX3, _startPositionY - treeBushY - treeBushY2);
-        crc2.lineTo(_startPositionX + treeBushX4, _startPositionY - treeBushY);
-        crc2.lineTo(_startPositionX + treeBushX4 - treeBushX4, _startPositionY - treeBushY);
-        crc2.fillStyle = "darkgreen";
-        crc2.fill();
-        crc2.stroke();
-        */
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 15; i++) {
             drawRandomTreeOnX = Math.random() * 50 + 70;
             xAdd += drawRandomTreeOnX;
+            distanceAdd = Math.random() * 20 + 30;
+            _treeDistanceFromEachOther += distanceAdd;
+            console.log(distanceAdd);
+            console.log(_treeDistanceFromEachOther);
             console.log(drawRandomTreeOnX);
             console.log(xAdd);
             crc2.beginPath();
-            crc2.moveTo(_startPositionX, _startPositionY);
-            console.log(_startPositionX, _startPositionY);
-            crc2.lineTo(_startPositionX + treeTrunkX, _startPositionY);
-            crc2.lineTo(_startPositionX + treeTrunkX, _startPositionY - treeTrunkY);
-            crc2.lineTo(_startPositionX, _startPositionY - treeTrunkY);
-            crc2.lineTo(_startPositionX, _startPositionY);
+            crc2.moveTo(xAdd - _treeDistanceFromEachOther, _startPositionY);
+            console.log(xAdd - _treeDistanceFromEachOther, _startPositionY);
+            crc2.lineTo(xAdd - _treeDistanceFromEachOther + treeTrunkX, _startPositionY);
+            crc2.lineTo(xAdd - _treeDistanceFromEachOther + treeTrunkX, _startPositionY - treeTrunkY);
+            crc2.lineTo(xAdd - _treeDistanceFromEachOther, _startPositionY - treeTrunkY);
+            crc2.lineTo(xAdd - _treeDistanceFromEachOther, _startPositionY);
             crc2.stroke();
             crc2.fillStyle = "brown";
             crc2.fill();
             crc2.closePath();
             crc2.beginPath();
-            crc2.moveTo(_startPositionX, _startPositionY - treeTrunkY);
-            crc2.lineTo(_startPositionX - treeBushX2, _startPositionY - treeBushY);
-            crc2.lineTo(_startPositionX - treeBushX2 + treeBushX3, _startPositionY - treeBushY - treeBushY2);
-            crc2.lineTo(_startPositionX + treeBushX4, _startPositionY - treeBushY);
-            crc2.lineTo(_startPositionX + treeBushX4 - treeBushX4, _startPositionY - treeBushY);
+            crc2.moveTo(xAdd - _treeDistanceFromEachOther, _startPositionY - treeTrunkY);
+            crc2.lineTo(xAdd - _treeDistanceFromEachOther - treeBushX2, _startPositionY - treeBushY);
+            crc2.lineTo(xAdd - _treeDistanceFromEachOther - treeBushX2 + treeBushX3, _startPositionY - treeBushY - treeBushY2);
+            crc2.lineTo(xAdd - _treeDistanceFromEachOther + treeBushX4, _startPositionY - treeBushY);
+            crc2.lineTo(xAdd - _treeDistanceFromEachOther + treeBushX4 - treeBushX4, _startPositionY - treeBushY);
             crc2.fillStyle = "darkgreen";
             crc2.fill();
             crc2.stroke();
