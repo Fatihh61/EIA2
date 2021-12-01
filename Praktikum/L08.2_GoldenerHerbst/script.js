@@ -24,15 +24,18 @@ var L08_GoldenerHerbst;
         drawCloud();
         drawMountains(startPointofFirstMountainX, horizone);
         drawTree(horizone + 50);
+        drawSquirrel();
         // Funktioniert noch nicht ganz - Muss es noch kleiner machen, dann habe ich die Blätter drawLeaf(crc2.canvas.width, crc2.canvas.height);
         drawLeaf2();
+        drawLeaf3();
     }
     function drawBackGround() {
         //Gradient für den gesamten Hintergrund
         let gradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "#87CEFF");
-        gradient.addColorStop(.5, "white");
-        gradient.addColorStop(1, "#e69e19");
+        gradient.addColorStop(.5, "#87CEFF");
+        gradient.addColorStop(.7, "green");
+        gradient.addColorStop(1, "hsla(38, 100%, 37%, 0.76)");
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
@@ -41,8 +44,8 @@ var L08_GoldenerHerbst;
         let clouds = new Path2D();
         //Gradient für die Wolkenpartikel
         let gradient = crc2.createRadialGradient(0, 0, 0, 0, 0, 50);
-        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 0.5)");
-        gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0.07)");
+        gradient.addColorStop(0, "hsla(243, 0%, 100%, 1)");
+        gradient.addColorStop(1, "hsla(243, 0%, 100%, 0.1)");
         crc2.save();
         for (let i = 30; i > 0; i--) {
             let numbX = Math.random() * 100 + 650;
@@ -101,12 +104,14 @@ var L08_GoldenerHerbst;
         let drawRandomTreeOnX;
         let _treeDistanceFromEachOther = 0;
         let distanceAdd;
+        let randomColor;
         crc2.save();
         for (let i = 0; i < 15; i++) {
             drawRandomTreeOnX = Math.random() * 50 + 70;
             xAdd += drawRandomTreeOnX;
             distanceAdd = Math.random() * 20 + 30;
             _treeDistanceFromEachOther += distanceAdd;
+            randomColor = Math.random() * 70 + 30;
             crc2.beginPath();
             crc2.moveTo(xAdd - _treeDistanceFromEachOther, _startPositionY);
             console.log(xAdd - _treeDistanceFromEachOther, _startPositionY);
@@ -115,7 +120,7 @@ var L08_GoldenerHerbst;
             crc2.lineTo(xAdd - _treeDistanceFromEachOther, _startPositionY - treeTrunkY);
             crc2.lineTo(xAdd - _treeDistanceFromEachOther, _startPositionY);
             crc2.stroke();
-            crc2.fillStyle = "#8B4513";
+            crc2.fillStyle = "hsla(21, 100%, 23%, 1)";
             crc2.fill();
             crc2.closePath();
             crc2.beginPath();
@@ -124,11 +129,78 @@ var L08_GoldenerHerbst;
             crc2.lineTo(xAdd - _treeDistanceFromEachOther - treeBushX2 + treeBushX3, _startPositionY - treeBushY - treeBushY2);
             crc2.lineTo(xAdd - _treeDistanceFromEachOther + treeBushX4, _startPositionY - treeBushY);
             crc2.lineTo(xAdd - _treeDistanceFromEachOther + treeBushX4 - treeBushX4, _startPositionY - treeBushY);
-            crc2.fillStyle = "#006400";
+            crc2.fillStyle = "hsla(123," + randomColor + "100%, 18%, 1)";
             crc2.fill();
             crc2.stroke();
         }
         crc2.restore();
+    }
+    function drawSquirrel() {
+        let positionXSquirrel;
+        let positionYSquirrel;
+        for (let i = 0; i < 3; i++) {
+            crc2.save();
+            positionXSquirrel = Math.random() * 800;
+            positionYSquirrel = Math.random() * 100 + 450;
+            //Schwanz
+            crc2.beginPath();
+            crc2.ellipse(positionXSquirrel - 20, positionYSquirrel + 30, 24, 5, Math.PI / 3, 0, 2 * Math.PI);
+            //crc2.arc(positionXSquirrel - 30, positionYSquirrel + 12, 5, 0, 2 * Math.PI);
+            crc2.fillStyle = "hsla(17, 72%, 36%, 1)";
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            //Arm2
+            crc2.beginPath();
+            crc2.ellipse(positionXSquirrel + 20, positionYSquirrel + 30, 10, 4, Math.PI / 5, 0, 2 * Math.PI);
+            crc2.fillStyle = "hsla(17, 72%, 36%, 1)";
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            //Bein2
+            crc2.beginPath();
+            crc2.ellipse(positionXSquirrel + 14, positionYSquirrel + 48, 14, 5, Math.PI / 3, 0, 2 * Math.PI);
+            crc2.fillStyle = "hsla(17, 72%, 36%, 1)";
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            //Körper
+            crc2.beginPath();
+            crc2.ellipse(positionXSquirrel, positionYSquirrel + 30, 25, 19, Math.PI / 2.2, 0, 2 * Math.PI);
+            crc2.fillStyle = "hsla(17, 72%, 36%, 1)";
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            //Kopf
+            crc2.beginPath();
+            crc2.arc(positionXSquirrel, positionYSquirrel, 12, 0, 2 * Math.PI);
+            crc2.fillStyle = "hsla(17, 72%, 36%, 1)";
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            crc2.beginPath();
+            crc2.arc(positionXSquirrel + 4, positionYSquirrel - 3, 2, 0, 2 * Math.PI);
+            crc2.fillStyle = "black";
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            //Arm1
+            crc2.beginPath();
+            crc2.ellipse(positionXSquirrel + 20, positionYSquirrel + 35, 10, 4, Math.PI / 5, 0, 2 * Math.PI);
+            crc2.fillStyle = "hsla(17, 72%, 36%, 1)";
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            //Bein1
+            crc2.beginPath();
+            crc2.ellipse(positionXSquirrel + 10, positionYSquirrel + 50, 14, 5, Math.PI / 3, 0, 2 * Math.PI);
+            //crc2.ellipse(positionXSquirrel + 12, positionYSquirrel + 50, 10, 4, Math.PI / -10, 0, 2 * Math.PI);
+            crc2.fillStyle = "hsla(17, 72%, 36%, 1)";
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            crc2.restore();
+        }
     }
     function drawLeaf(_leafXPosition, _leafYPosition) {
         let randomX = Math.random() * 600;
@@ -143,21 +215,50 @@ var L08_GoldenerHerbst;
         crc2.restore();
     }
     function drawLeaf2() {
-        crc2.save();
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 70; i++) {
+            crc2.save();
             let positionXOfLeaf = Math.random() * crc2.canvas.width;
             let positionYOfLeaf = Math.random() * crc2.canvas.height;
+            let randomRotate = Math.random() * 180;
             console.log(positionXOfLeaf);
             console.log(positionYOfLeaf);
             crc2.beginPath();
             crc2.fillStyle = "#e38e00";
-            crc2.rotate(10);
+            crc2.rotate(randomRotate * Math.PI / 180);
             crc2.ellipse(positionXOfLeaf, positionYOfLeaf, 8, 20, 10, 10, 20);
             crc2.fill();
             crc2.stroke();
             crc2.closePath();
+            crc2.restore();
         }
-        crc2.restore();
+    }
+    function drawLeaf3() {
+        for (let i = 0; i < 50; i++) {
+            let positionXOfLeaf = Math.random() * crc2.canvas.width;
+            let positionYOfLeaf = Math.random() * crc2.canvas.height;
+            let randomRotate = Math.random() * 180;
+            crc2.save();
+            crc2.beginPath();
+            crc2.rotate(randomRotate * Math.PI / 180);
+            crc2.moveTo(positionXOfLeaf, positionYOfLeaf);
+            crc2.lineTo(positionXOfLeaf, positionYOfLeaf - 20);
+            crc2.lineTo(positionXOfLeaf - 30, positionYOfLeaf - 20);
+            crc2.lineTo(positionXOfLeaf - 10, positionYOfLeaf - 30);
+            crc2.lineTo(positionXOfLeaf - 20, positionYOfLeaf - 40);
+            crc2.lineTo(positionXOfLeaf - 30, positionYOfLeaf - 50);
+            crc2.lineTo(positionXOfLeaf - 5, positionYOfLeaf - 40);
+            crc2.lineTo(positionXOfLeaf + 5, positionYOfLeaf - 60);
+            crc2.lineTo(positionXOfLeaf + 15, positionYOfLeaf - 40);
+            crc2.lineTo(positionXOfLeaf + 40, positionYOfLeaf - 50);
+            crc2.lineTo(positionXOfLeaf + 20, positionYOfLeaf - 30);
+            crc2.lineTo(positionXOfLeaf + 30, positionYOfLeaf - 20);
+            crc2.lineTo(positionXOfLeaf, positionYOfLeaf - 20);
+            crc2.fillStyle = "hsla(31, 74%, 54%, 1)";
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            crc2.restore();
+        }
     }
 })(L08_GoldenerHerbst || (L08_GoldenerHerbst = {}));
 //# sourceMappingURL=script.js.map
