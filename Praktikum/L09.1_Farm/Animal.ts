@@ -8,16 +8,21 @@ namespace L09_Farm {
         eatenAmount: number;
         foodRatio: number;
         animalSound: string;
+        lesserRatio: number;
 
 
-        constructor (_name: string, _animalType: string, _food: string, _eatenAmount: number, _foodRatio: number, _animalSound: string) {
+
+        constructor (_name: string, _animalType: string, _food: string, _eatenAmount: number, _foodRatio: number, _animalSound: string, _lesserRatio: number) {
 
             this.name = _name;
             this.animalType = _animalType;
             this.food = _food;
             this.eatenAmount = _eatenAmount;
-            this.animalSound = _animalSound;
             this.foodRatio = _foodRatio;
+            this.animalSound = _animalSound;
+            //this.foodRatio -= _lesserRatio;
+            
+            
         }
 
         eat() {
@@ -33,8 +38,18 @@ namespace L09_Farm {
             let lyrics: string = `Ich heiße ${this.name} und bin ${this.animalType}. Ich esse gerne ${this.eatenAmount} kg ${this.food} und mache dabei ${this.animalSound}.  `;
 
             return(lyrics);
+
+          
         }
 
+        lessRatio() {
+
+            let lessRatio: number = this.foodRatio - this.lesserRatio;
+
+            return(lessRatio);
+
+
+        }
 
 
 
