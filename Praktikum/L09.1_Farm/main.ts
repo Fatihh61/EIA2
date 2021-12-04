@@ -1,3 +1,12 @@
+/*
+Aufgabe: <Aufgabe 09.1_OldMacDonaldsFarm>
+Name: <Fatih Temiz>
+Matrikel-Nummer: <26825>
+Datum: <04.12.2021>
+Quellen: W3Schools, Herbert Gerasimov - Vorallem den Inhalt der beiden Methoden mit return, diverse Youtube Videos
+über die Basics von Classes, Objekten und Methoden
+*/
+
 namespace L09_Farm {
 
 
@@ -9,116 +18,104 @@ namespace L09_Farm {
     let horse: Animal = new Animal("Pony", "ein Pferd", "Heu", 20, 300, "yahüüüüüüüüüüüüüüü", 20);
     let cow: Animal = new Animal("Milka", "eine Kuh", "Graß", 20, 300, "muuuuuuuuuuh", 20);
     let lion: Animal = new Animal("Memphis", "ein Löwe", "Vegan", 1, 100, "wrooooooaaaaaaaaaah", 1);
+    
+    //Indexzähler für die Wiederholung des Lyrics (alles an einem Tag)
+    let num: number = 2;
 
-
-    let num: number = 1;
-
-    //Array der Objekte wird deklariert
+    //Array für die Objekte wird deklariert
     let animalsArray: Animal[] = [dog, cat, horse, cow, lion];
 
     //handleLoad wird aufgerufen
     function handleLoad(): void {
 
-        let displayFoodStock: HTMLDivElement = <HTMLDivElement>document.getElementById("displayFoodStock");
-
-        /*for (let i: number = 0; i < animalsArray.length; i++) {
-
-            pElementForFoodStock = document.createElement("p");
-            displayFoodStock.appendChild(pElementForFoodStock);
-            pElementForFoodStock.innerHTML = animalsArray[i].eat();
-
-        }
-        */
-
-
-
-
         setTimeout(dogSing, 3000);
         //setTimeout(singTheLyrics, 3000);
-
-
-
     }
 
+    //dogSing wird aufgerufen
     function dogSing(): void {
 
         num--;
 
+        //Deklarierung der beiden div Elemente
         let displayFoodStock: HTMLDivElement = <HTMLDivElement>document.getElementById("displayFoodStock");
         let displayLyrics: HTMLDivElement = <HTMLDivElement>document.getElementById("displayLyrics");
 
+        //<p> Element wird erstellt//Methode sing() wird für dog aufgerufen
         let pElementForLyrics: HTMLParagraphElement = document.createElement("p");
         displayLyrics.appendChild(pElementForLyrics);
         pElementForLyrics.innerHTML = animalsArray[0].sing();
 
+        //Gegessene Menge wird von der Futterration abgezogen
         dog.foodRatio -= dog.eatenAmount;
         
-
+        //Aktuelle Futterration wird neu ausgegeben
         let pElementForFoodStock: HTMLParagraphElement = document.createElement("p");
         displayFoodStock.appendChild(pElementForFoodStock);
         pElementForFoodStock.innerHTML = animalsArray[0].eat();
-
-        
-        
-
-
 
         setTimeout(catSing, 3000);
     }
 
     function catSing(): void {
 
+        //Deklarierung der beiden div Elemente
         let displayFoodStock: HTMLDivElement = <HTMLDivElement>document.getElementById("displayFoodStock");
         let displayLyrics: HTMLDivElement = <HTMLDivElement>document.getElementById("displayLyrics");
 
+        //<p> Element wird erstellt//Methode sing() wird für dog aufgerufen
         let pElementForLyrics: HTMLParagraphElement = document.createElement("p");
         displayLyrics.appendChild(pElementForLyrics);
         pElementForLyrics.innerHTML = animalsArray[1].sing();
 
+        //Gegessene Menge wird von der Futterration abgezogen
         cat.foodRatio -= cat.eatenAmount;
 
+        //Aktuelle Futterration wird neu ausgegeben
         let pElementForFoodStock: HTMLParagraphElement = document.createElement("p");
         displayFoodStock.appendChild(pElementForFoodStock);
         pElementForFoodStock.innerHTML = animalsArray[1].eat();
-
-
-
-        
 
         setTimeout(horseSing, 3000);
     }
 
     function horseSing(): void {
 
+        //Deklarierung der beiden div Elemente
         let displayFoodStock: HTMLDivElement = <HTMLDivElement>document.getElementById("displayFoodStock");
         let displayLyrics: HTMLDivElement = <HTMLDivElement>document.getElementById("displayLyrics");
 
+        //<p> Element wird erstellt//Methode sing() wird für dog aufgerufen
         let pElementForLyrics: HTMLParagraphElement = document.createElement("p");
         displayLyrics.appendChild(pElementForLyrics);
         pElementForLyrics.innerHTML = animalsArray[2].sing();
 
+        //Gegessene Menge wird von der Futterration abgezogen
         horse.foodRatio -= horse.eatenAmount;
 
+        //Aktuelle Futterration wird neu ausgegeben
         let pElementForFoodStock: HTMLParagraphElement = document.createElement("p");
         displayFoodStock.appendChild(pElementForFoodStock);
         pElementForFoodStock.innerHTML = animalsArray[2].eat();
-
-      
 
         setTimeout(cowSing, 3000);
     }
 
     function cowSing(): void {
 
+        //Deklarierung der beiden div Elemente
         let displayFoodStock: HTMLDivElement = <HTMLDivElement>document.getElementById("displayFoodStock");
         let displayLyrics: HTMLDivElement = <HTMLDivElement>document.getElementById("displayLyrics");
 
+        //<p> Element wird erstellt//Methode sing() wird für dog aufgerufen
         let pElementForLyrics: HTMLParagraphElement = document.createElement("p");
         displayLyrics.appendChild(pElementForLyrics);
         pElementForLyrics.innerHTML = animalsArray[3].sing();
 
+        //Gegessene Menge wird von der Futterration abgezogen
         cow.foodRatio -= cow.eatenAmount;
 
+        //Aktuelle Futterration wird neu ausgegeben
         let pElementForFoodStock: HTMLParagraphElement = document.createElement("p");
         displayFoodStock.appendChild(pElementForFoodStock);
         pElementForFoodStock.innerHTML = animalsArray[3].eat();
@@ -128,20 +125,24 @@ namespace L09_Farm {
 
     function lionSing(): void {
 
+        //Deklarierung der beiden div Elemente
         let displayFoodStock: HTMLDivElement = <HTMLDivElement>document.getElementById("displayFoodStock");
         let displayLyrics: HTMLDivElement = <HTMLDivElement>document.getElementById("displayLyrics");
         
-
+        //<p> Element wird erstellt//Methode sing() wird für dog aufgerufen
         let pElementForLyrics: HTMLParagraphElement = document.createElement("p");
         displayLyrics.appendChild(pElementForLyrics);
         pElementForLyrics.innerHTML = animalsArray[4].sing();
 
+        //Gegessene Menge wird von der Futterration abgezogen
         lion.foodRatio -= lion.eatenAmount;
 
+        //Aktuelle Futterration wird neu ausgegeben
         let pElementForFoodStock: HTMLParagraphElement = document.createElement("p");
         displayFoodStock.appendChild(pElementForFoodStock);
         pElementForFoodStock.innerHTML = animalsArray[4].eat();
         
+        //Button soll erscheinen, um Tag neu zu starten
         if (num == 0) {
 
             let createButton: HTMLButtonElement = document.createElement("button");
@@ -149,27 +150,25 @@ namespace L09_Farm {
             createButton.innerHTML = "Start new Day";
             divButton.appendChild(createButton);
 
+            //Der Button erscheint aktuell immer wieder, die vorherigen Button werde ich noch ausblenden
             createButton.addEventListener("click", handleLoad);
 
+            //Num wird wieder auf 1 gesetzt, damit der Tag erneut abgespielt werden kann, bis num wieder 0 erreicht
             num = 1;
             
-
-            
+            //Ende Gelände - Tag endet
             return;
         }
-
+        //Ist num nicht 0, wird mit dogSing das ganze noch einmal abgespielt
         setTimeout(dogSing, 3000);
-
-        
     }
-
-
-
 
     //setTimeout(singTheLyrics, 3000);
 
+    //Ich hab es leider nicht hinbekommen, dass es durch den Array durch iteriert. Das hätte mir die einzelnen fünf
+    //Funktionen erspart.
 
-    function singTheLyrics(): void {
+    /*function singTheLyrics(): void {
 
 
 
@@ -191,21 +190,7 @@ namespace L09_Farm {
             pElementForFoodStock.innerHTML = animalsArray[i].eat();
 
             //},         3000);
-
-
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
+    */
 }

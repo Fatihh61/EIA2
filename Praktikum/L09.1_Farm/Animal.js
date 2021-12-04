@@ -16,7 +16,6 @@ var L09_Farm;
             this.eatenAmount = _eatenAmount;
             this.foodRatio = _foodRatio;
             this.animalSound = _animalSound;
-            //this.foodRatio -= _lesserRatio;
         }
         eat() {
             let eating = `${this.food}: ${this.foodRatio} kg`;
@@ -25,10 +24,6 @@ var L09_Farm;
         sing() {
             let lyrics = `Ich heiße ${this.name} und bin ${this.animalType}. Ich esse gerne ${this.eatenAmount} kg ${this.food} und mache dabei ${this.animalSound}.  `;
             return (lyrics);
-        }
-        lessRatio() {
-            let lessRatio = this.foodRatio - this.lesserRatio;
-            return (lessRatio);
         }
     }
     L09_Farm.Animal = Animal;
