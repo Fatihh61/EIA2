@@ -16,6 +16,13 @@ namespace L09_Herbstwiese {
 
     let golden: number = 0.62;
 
+    let leafs: Leaf[] = [];
+
+    let imgDataBackground: ImageData;
+    let imgDataMountains: ImageData;
+    let imgDataTree: ImageData;
+
+
 
     function handleLoad(_event: Event): void {
 
@@ -31,8 +38,10 @@ namespace L09_Herbstwiese {
         drawBackground();
         drawMountains(startPointofFirstMountainX, horizone);
         drawTree(horizone + 50);
-        let leaf: Leaf = new Leaf();
-        leaf.draw();
+        //createLeaf();
+        createLeaf2();
+
+        window.setInterval(update, 20);
     }
 
     function drawBackground(): void {
@@ -47,6 +56,7 @@ namespace L09_Herbstwiese {
 
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+        imgDataBackground = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
     function drawMountains(_startPointFirstMountainX: number, _horizoneY: number): void {
@@ -73,11 +83,6 @@ namespace L09_Herbstwiese {
 
             x += drawLineRandomX;
 
-
-
-            console.log(drawLineRandomX);
-            console.log(drawLineRandomY);
-
             crc2.beginPath();
             crc2.moveTo(_startPointFirstMountainX, _horizoneY);
             crc2.strokeStyle = "grey";
@@ -91,6 +96,7 @@ namespace L09_Herbstwiese {
         }
         crc2.closePath();
         crc2.restore();
+        imgDataMountains = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
     function drawTree(_startPositionY: number): void {
@@ -128,7 +134,6 @@ namespace L09_Herbstwiese {
 
             crc2.beginPath();
             crc2.moveTo(xAdd - _treeDistanceFromEachOther, _startPositionY);
-            console.log(xAdd - _treeDistanceFromEachOther, _startPositionY);
             crc2.lineTo(xAdd - _treeDistanceFromEachOther + treeTrunkX, _startPositionY);
             crc2.lineTo(xAdd - _treeDistanceFromEachOther + treeTrunkX, _startPositionY - treeTrunkY);
             crc2.lineTo(xAdd - _treeDistanceFromEachOther, _startPositionY - treeTrunkY);
@@ -149,5 +154,90 @@ namespace L09_Herbstwiese {
             crc2.stroke();
         }
         crc2.restore();
+        imgDataTree = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
+
+    /*function createLeaf(): void {
+
+        for (let i: number = 0; i < 10; i++) {
+
+            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
+            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
+            let randomRotate: number = Math.random() * 180;
+            let colors: string [] = ["brown", "orange"];
+            let randomNumberForColor: number = Math.floor(Math.random() * 2);
+
+            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
+            console.log(leaf);
+            
+            //let leaf: Leaf = new Leaf(randomRotate);
+            //leaf.positionXOfLeafAsVector.draw();
+            leaf.draw();
+
+        }
+
+    }*/
+
+    function createLeaf2(): void {
+
+        for (let i: number = 0; i < 10; i++) {
+
+            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
+            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
+            let randomRotate: number = Math.random() * 180;
+            let colors: string[] = ["brown", "orange"];
+            let randomNumberForColor: number = Math.floor(Math.random() * 2);
+
+            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
+            leafs.push(leaf);
+            console.log(leafs);
+            leaf.draw();
+        }
+    }
+
+    function update(): void {
+
+        crc2.putImageData(imgDataBackground, 0, 0);
+        crc2.putImageData(imgDataMountains, 0, 0);
+        crc2.putImageData(imgDataTree, 0, 0);
+
+        /*
+        for (let i: number = 0; i < 10; i++) {
+
+            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
+            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
+            let randomRotate: number = Math.random() * 180;
+            let colors: string[] = ["brown", "orange"];
+            let randomNumberForColor: number = Math.floor(Math.random() * 2);
+
+            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
+            leafs.push(leaf);
+            console.log(leafs);
+        }
+
+        for (let i: number = 0; i < leafs.length; i++) {
+
+            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
+            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
+            let randomRotate: number = Math.random() * 180;
+            let colors: string[] = ["brown", "orange"];
+            let randomNumberForColor: number = Math.floor(Math.random() * 2);
+
+            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
+            
+            leaf.move(1 / 50);
+            leaf.draw();
+        }
+        */
+
+        
+        for (let leaf of leafs) {
+
+            leaf.move(1 / 50);
+            leaf.draw();
+        }
+
+
+    }
+
 }

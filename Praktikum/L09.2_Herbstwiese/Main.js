@@ -11,6 +11,10 @@ var L09_Herbstwiese;
 (function (L09_Herbstwiese) {
     window.addEventListener("load", handleLoad);
     let golden = 0.62;
+    let leafs = [];
+    let imgDataBackground;
+    let imgDataMountains;
+    let imgDataTree;
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
         L09_Herbstwiese.crc2 = canvas.getContext("2d");
@@ -21,8 +25,9 @@ var L09_Herbstwiese;
         drawBackground();
         drawMountains(startPointofFirstMountainX, horizone);
         drawTree(horizone + 50);
-        let leaf = new L09_Herbstwiese.Leaf();
-        leaf.draw();
+        //createLeaf();
+        createLeaf2();
+        window.setInterval(update, 20);
     }
     function drawBackground() {
         //Gradient für den gesamten Hintergrund
@@ -33,6 +38,7 @@ var L09_Herbstwiese;
         gradient.addColorStop(1, "hsla(38, 100%, 37%, 0.76)");
         L09_Herbstwiese.crc2.fillStyle = gradient;
         L09_Herbstwiese.crc2.fillRect(0, 0, L09_Herbstwiese.crc2.canvas.width, L09_Herbstwiese.crc2.canvas.height);
+        imgDataBackground = L09_Herbstwiese.crc2.getImageData(0, 0, L09_Herbstwiese.crc2.canvas.width, L09_Herbstwiese.crc2.canvas.height);
     }
     function drawMountains(_startPointFirstMountainX, _horizoneY) {
         //Gradient für die Berge
@@ -48,8 +54,6 @@ var L09_Herbstwiese;
             drawLineRandomX = Math.random() * 50 + 100;
             let drawLineRandomY = Math.random() * 80 + 50;
             x += drawLineRandomX;
-            console.log(drawLineRandomX);
-            console.log(drawLineRandomY);
             L09_Herbstwiese.crc2.beginPath();
             L09_Herbstwiese.crc2.moveTo(_startPointFirstMountainX, _horizoneY);
             L09_Herbstwiese.crc2.strokeStyle = "grey";
@@ -61,6 +65,7 @@ var L09_Herbstwiese;
         }
         L09_Herbstwiese.crc2.closePath();
         L09_Herbstwiese.crc2.restore();
+        imgDataMountains = L09_Herbstwiese.crc2.getImageData(0, 0, L09_Herbstwiese.crc2.canvas.width, L09_Herbstwiese.crc2.canvas.height);
     }
     function drawTree(_startPositionY) {
         let treeTrunkX = 25;
@@ -84,7 +89,6 @@ var L09_Herbstwiese;
             randomColor = Math.random() * 70 + 30;
             L09_Herbstwiese.crc2.beginPath();
             L09_Herbstwiese.crc2.moveTo(xAdd - _treeDistanceFromEachOther, _startPositionY);
-            console.log(xAdd - _treeDistanceFromEachOther, _startPositionY);
             L09_Herbstwiese.crc2.lineTo(xAdd - _treeDistanceFromEachOther + treeTrunkX, _startPositionY);
             L09_Herbstwiese.crc2.lineTo(xAdd - _treeDistanceFromEachOther + treeTrunkX, _startPositionY - treeTrunkY);
             L09_Herbstwiese.crc2.lineTo(xAdd - _treeDistanceFromEachOther, _startPositionY - treeTrunkY);
@@ -104,6 +108,77 @@ var L09_Herbstwiese;
             L09_Herbstwiese.crc2.stroke();
         }
         L09_Herbstwiese.crc2.restore();
+        imgDataTree = L09_Herbstwiese.crc2.getImageData(0, 0, L09_Herbstwiese.crc2.canvas.width, L09_Herbstwiese.crc2.canvas.height);
+    }
+    /*function createLeaf(): void {
+
+        for (let i: number = 0; i < 10; i++) {
+
+            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
+            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
+            let randomRotate: number = Math.random() * 180;
+            let colors: string [] = ["brown", "orange"];
+            let randomNumberForColor: number = Math.floor(Math.random() * 2);
+
+            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
+            console.log(leaf);
+            
+            //let leaf: Leaf = new Leaf(randomRotate);
+            //leaf.positionXOfLeafAsVector.draw();
+            leaf.draw();
+
+        }
+
+    }*/
+    function createLeaf2() {
+        for (let i = 0; i < 10; i++) {
+            let positionXOfLeaf = Math.random() * L09_Herbstwiese.crc2.canvas.width;
+            let positionYOfLeaf = Math.random() * L09_Herbstwiese.crc2.canvas.height;
+            let randomRotate = Math.random() * 180;
+            let colors = ["brown", "orange"];
+            let randomNumberForColor = Math.floor(Math.random() * 2);
+            let leaf = new L09_Herbstwiese.Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
+            leafs.push(leaf);
+            console.log(leafs);
+            leaf.draw();
+        }
+    }
+    function update() {
+        L09_Herbstwiese.crc2.putImageData(imgDataBackground, 0, 0);
+        L09_Herbstwiese.crc2.putImageData(imgDataMountains, 0, 0);
+        L09_Herbstwiese.crc2.putImageData(imgDataTree, 0, 0);
+        /*
+        for (let i: number = 0; i < 10; i++) {
+
+            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
+            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
+            let randomRotate: number = Math.random() * 180;
+            let colors: string[] = ["brown", "orange"];
+            let randomNumberForColor: number = Math.floor(Math.random() * 2);
+
+            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
+            leafs.push(leaf);
+            console.log(leafs);
+        }
+
+        for (let i: number = 0; i < leafs.length; i++) {
+
+            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
+            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
+            let randomRotate: number = Math.random() * 180;
+            let colors: string[] = ["brown", "orange"];
+            let randomNumberForColor: number = Math.floor(Math.random() * 2);
+
+            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
+            
+            leaf.move(1 / 50);
+            leaf.draw();
+        }
+        */
+        for (let leaf of leafs) {
+            leaf.move(1 / 50);
+            leaf.draw();
+        }
     }
 })(L09_Herbstwiese || (L09_Herbstwiese = {}));
 //# sourceMappingURL=Main.js.map
