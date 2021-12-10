@@ -3,24 +3,15 @@ var L09_Herbstwiese;
 (function (L09_Herbstwiese) {
     class Leaf {
         position;
-        positionXOfLeaf;
-        positionYOfLeaf;
-        positionXOfLeafAsVector;
-        rotateLeaf;
         velocity;
         type;
         sizeOfLeaf;
         color;
-        constructor(_positionXOfLeaf, _positionYOfLeaf, /*_positionXOfLeafAsVector: Vector,*/ _rotateLeaf, _color) {
-            this.position = new L09_Herbstwiese.Vector(0, 0);
+        constructor(_color) {
+            this.position = new L09_Herbstwiese.Vector(/*Math.random() * crc2.canvas.width, Math.random() * crc2.canvas.height*/ Math.random() * L09_Herbstwiese.crc2.canvas.width, 0);
             this.velocity = new L09_Herbstwiese.Vector(0, 0);
             this.velocity.random(100, 200);
-            this.positionXOfLeaf = _positionXOfLeaf;
-            this.positionYOfLeaf = _positionYOfLeaf;
-            this.rotateLeaf = _rotateLeaf;
             this.color = _color;
-            //this.positionXOfLeafAsVector = _positionXOfLeafAsVector;
-            //this.positionXOfLeafAsVector = new Vector (Math.random() * crc2.canvas.width, Math.random() * crc2.canvas.height);
         }
         move(_timeslice) {
             console.log("MoveMethode");
@@ -46,8 +37,7 @@ var L09_Herbstwiese;
             L09_Herbstwiese.crc2.save();
             L09_Herbstwiese.crc2.beginPath();
             L09_Herbstwiese.crc2.fillStyle = this.color;
-            L09_Herbstwiese.crc2.rotate(this.rotateLeaf * Math.PI / 180);
-            L09_Herbstwiese.crc2.ellipse(this.positionXOfLeaf, this.positionYOfLeaf, 8, 20, 10, 10, 20);
+            L09_Herbstwiese.crc2.ellipse(this.position.x, this.position.y, 8, 20, 10, 10, 20);
             L09_Herbstwiese.crc2.fill();
             L09_Herbstwiese.crc2.stroke();
             L09_Herbstwiese.crc2.closePath();

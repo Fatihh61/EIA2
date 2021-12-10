@@ -18,11 +18,11 @@ namespace L09_Herbstwiese {
 
     let leafs: Leaf[] = [];
 
+    let cloud: Cloud;
+
     let imgDataBackground: ImageData;
     let imgDataMountains: ImageData;
     let imgDataTree: ImageData;
-
-
 
     function handleLoad(_event: Event): void {
 
@@ -36,12 +36,13 @@ namespace L09_Herbstwiese {
         let startPointofFirstMountainX: number = Math.random() * (-50) - 80;
 
         drawBackground();
+        createCloud();
         drawMountains(startPointofFirstMountainX, horizone);
         drawTree(horizone + 50);
-        //createLeaf();
-        createLeaf2();
+        createLeaf();
 
         window.setInterval(update, 20);
+        //window.setInterval(update2, 20);
     }
 
     function drawBackground(): void {
@@ -157,42 +158,28 @@ namespace L09_Herbstwiese {
         imgDataTree = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
-    /*function createLeaf(): void {
+    function createLeaf(): void {
 
-        for (let i: number = 0; i < 10; i++) {
+        for (let i: number = 0; i < 2; i++) {
 
-            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
-            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
-            let randomRotate: number = Math.random() * 180;
-            let colors: string [] = ["brown", "orange"];
-            let randomNumberForColor: number = Math.floor(Math.random() * 2);
+            //let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
+            //let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
+            //let randomRotate: number = Math.random() * 180;
 
-            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
-            console.log(leaf);
-            
-            //let leaf: Leaf = new Leaf(randomRotate);
-            //leaf.positionXOfLeafAsVector.draw();
-            leaf.draw();
-
-        }
-
-    }*/
-
-    function createLeaf2(): void {
-
-        for (let i: number = 0; i < 10; i++) {
-
-            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
-            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
-            let randomRotate: number = Math.random() * 180;
             let colors: string[] = ["brown", "orange"];
             let randomNumberForColor: number = Math.floor(Math.random() * 2);
 
-            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
+            let leaf: Leaf = new Leaf(/*positionXOfLeaf, positionYOfLeaf, randomRotate, */colors[randomNumberForColor]);
             leafs.push(leaf);
             console.log(leafs);
             leaf.draw();
         }
+    }
+
+    function createCloud(): void {
+
+
+            cloud.draw();
     }
 
     function update(): void {
@@ -201,43 +188,16 @@ namespace L09_Herbstwiese {
         crc2.putImageData(imgDataMountains, 0, 0);
         crc2.putImageData(imgDataTree, 0, 0);
 
-        /*
-        for (let i: number = 0; i < 10; i++) {
-
-            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
-            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
-            let randomRotate: number = Math.random() * 180;
-            let colors: string[] = ["brown", "orange"];
-            let randomNumberForColor: number = Math.floor(Math.random() * 2);
-
-            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
-            leafs.push(leaf);
-            console.log(leafs);
-        }
-
-        for (let i: number = 0; i < leafs.length; i++) {
-
-            let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
-            let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
-            let randomRotate: number = Math.random() * 180;
-            let colors: string[] = ["brown", "orange"];
-            let randomNumberForColor: number = Math.floor(Math.random() * 2);
-
-            let leaf: Leaf = new Leaf(positionXOfLeaf, positionYOfLeaf, randomRotate, colors[randomNumberForColor]);
-            
-            leaf.move(1 / 50);
-            leaf.draw();
-        }
-        */
-
-        
         for (let leaf of leafs) {
 
-            leaf.move(1 / 50);
+            leaf.move(1 / 70);
             leaf.draw();
         }
+        cloud.draw();
+        cloud.move(1 / 50);
 
 
     }
-
+   
+    
 }
