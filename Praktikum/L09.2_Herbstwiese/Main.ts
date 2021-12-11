@@ -19,6 +19,7 @@ namespace L09_Herbstwiese {
     let leafs: Leaf[] = [];
 
     let cloud: Cloud;
+    let squirrel: Squirrel;
 
     let imgDataBackground: ImageData;
     let imgDataMountains: ImageData;
@@ -39,7 +40,9 @@ namespace L09_Herbstwiese {
         createCloud();
         drawMountains(startPointofFirstMountainX, horizone);
         drawTree(horizone + 50);
+        createSquirrel();
         createLeaf();
+
 
         window.setInterval(update, 20);
     }
@@ -174,22 +177,31 @@ namespace L09_Herbstwiese {
         cloud = new Cloud();
     }
 
+    function createSquirrel(): void {
+
+        squirrel = new Squirrel();
+
+    }
+
     function update(): void {
 
         crc2.putImageData(imgDataBackground, 0, 0);
         crc2.putImageData(imgDataMountains, 0, 0);
         crc2.putImageData(imgDataTree, 0, 0);
 
-        //Slet randomSpeed: number = Math.floor(Math.random() * 30 + 85);
-
-       
+        cloud.draw();
+        cloud.move(1 / 100);
 
         for (let leaf of leafs) {
             leaf.move(1 / 100);
             leaf.drawLeaf1();
         }
-        cloud.draw();
-        cloud.move(1 / 100);
+
+        squirrel.draw();
+        squirrel.move(1 / 180);
+        
+
+
         
         
 

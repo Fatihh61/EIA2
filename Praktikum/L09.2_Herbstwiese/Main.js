@@ -13,6 +13,7 @@ var L09_Herbstwiese;
     let golden = 0.62;
     let leafs = [];
     let cloud;
+    let squirrel;
     let imgDataBackground;
     let imgDataMountains;
     let imgDataTree;
@@ -27,6 +28,7 @@ var L09_Herbstwiese;
         createCloud();
         drawMountains(startPointofFirstMountainX, horizone);
         drawTree(horizone + 50);
+        createSquirrel();
         createLeaf();
         window.setInterval(update, 20);
     }
@@ -125,17 +127,21 @@ var L09_Herbstwiese;
     function createCloud() {
         cloud = new L09_Herbstwiese.Cloud();
     }
+    function createSquirrel() {
+        squirrel = new L09_Herbstwiese.Squirrel();
+    }
     function update() {
         L09_Herbstwiese.crc2.putImageData(imgDataBackground, 0, 0);
         L09_Herbstwiese.crc2.putImageData(imgDataMountains, 0, 0);
         L09_Herbstwiese.crc2.putImageData(imgDataTree, 0, 0);
-        //Slet randomSpeed: number = Math.floor(Math.random() * 30 + 85);
+        cloud.draw();
+        cloud.move(1 / 100);
         for (let leaf of leafs) {
             leaf.move(1 / 100);
             leaf.drawLeaf1();
         }
-        cloud.draw();
-        cloud.move(1 / 100);
+        squirrel.draw();
+        squirrel.move(1 / 180);
     }
 })(L09_Herbstwiese || (L09_Herbstwiese = {}));
 //# sourceMappingURL=Main.js.map

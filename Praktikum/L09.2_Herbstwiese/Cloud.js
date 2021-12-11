@@ -9,7 +9,7 @@ var L09_Herbstwiese;
         velocity;
         gradient;
         path;
-        constructor( /*_startingPositionX: number, _startingPositionY: number, _translateX: number, _translateY: number, _gradient: CanvasGradient, _path: Path2D*/) {
+        constructor() {
             this.startingPosition = new L09_Herbstwiese.Vector(550, 100);
             this.size = new L09_Herbstwiese.Vector(200, 75);
             this.velocity = new L09_Herbstwiese.Vector(0, 0);

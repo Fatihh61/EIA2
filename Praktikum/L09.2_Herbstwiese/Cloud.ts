@@ -10,7 +10,7 @@ namespace L09_Herbstwiese {
         gradient: CanvasGradient;
         path: Path2D;
 
-        constructor(/*_startingPositionX: number, _startingPositionY: number, _translateX: number, _translateY: number, _gradient: CanvasGradient, _path: Path2D*/) {
+        constructor() {
 
             this.startingPosition = new Vector(550, 100);
             this.size = new Vector (200, 75);
