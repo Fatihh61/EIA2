@@ -29,6 +29,14 @@ var L09_Herbstwiese;
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
         }
+        randomLeaf(_minLength, _maxLength) {
+            let length = _minLength + Math.random() * (_maxLength - _minLength);
+            let direction = Math.random() * 2 * Math.PI;
+            console.log(direction);
+            console.log(length);
+            this.set(Math.cos(1), Math.sin(1));
+            this.scale(length);
+        }
     }
     L09_Herbstwiese.Vector = Vector;
 })(L09_Herbstwiese || (L09_Herbstwiese = {}));

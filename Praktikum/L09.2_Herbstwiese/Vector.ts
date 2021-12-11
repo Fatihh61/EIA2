@@ -41,6 +41,17 @@ namespace L09_Herbstwiese {
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
         }
+
+        randomLeaf(_minLength: number, _maxLength: number): void {
+            let length: number = _minLength + Math.random() * (_maxLength - _minLength);
+            let direction: number = Math.random() * 2 * Math.PI;
+
+            console.log(direction);
+            console.log(length);
+            
+            this.set(Math.cos(1), Math.sin(1));
+            this.scale(length);
+        }
     }
 
 

@@ -42,7 +42,6 @@ namespace L09_Herbstwiese {
         createLeaf();
 
         window.setInterval(update, 20);
-        //window.setInterval(update2, 20);
     }
 
     function drawBackground(): void {
@@ -71,9 +70,6 @@ namespace L09_Herbstwiese {
         let drawLineRandomX: number = 0;
 
         crc2.save();
-
-        //Beginn der Zeichnung für die Berge
-
 
         for (let i: number = 8; i > 0; i--) {
 
@@ -118,7 +114,6 @@ namespace L09_Herbstwiese {
 
         let randomColor: number;
 
-
         crc2.save();
 
         for (let i: number = 0; i < 15; i++) {
@@ -131,7 +126,6 @@ namespace L09_Herbstwiese {
             _treeDistanceFromEachOther += distanceAdd;
 
             randomColor = Math.random() * 70 + 30;
-
 
             crc2.beginPath();
             crc2.moveTo(xAdd - _treeDistanceFromEachOther, _startPositionY);
@@ -160,16 +154,12 @@ namespace L09_Herbstwiese {
 
     function createLeaf(): void {
 
-        for (let i: number = 0; i < 2; i++) {
-
-            //let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
-            //let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
-            //let randomRotate: number = Math.random() * 180;
+        for (let i: number = 0; i < 20; i++) {
 
             let colors: string[] = ["brown", "orange"];
             let randomNumberForColor: number = Math.floor(Math.random() * 2);
 
-            let leaf: Leaf = new Leaf(/*positionXOfLeaf, positionYOfLeaf, randomRotate, */colors[randomNumberForColor]);
+            let leaf: Leaf = new Leaf(colors[randomNumberForColor]);
             leafs.push(leaf);
             console.log(leafs);
             leaf.draw();
@@ -177,9 +167,7 @@ namespace L09_Herbstwiese {
     }
 
     function createCloud(): void {
-
-
-            cloud.draw();
+        cloud = new Cloud();
     }
 
     function update(): void {
@@ -188,9 +176,10 @@ namespace L09_Herbstwiese {
         crc2.putImageData(imgDataMountains, 0, 0);
         crc2.putImageData(imgDataTree, 0, 0);
 
-        for (let leaf of leafs) {
+       
 
-            leaf.move(1 / 70);
+        for (let leaf of leafs) {
+            leaf.move(1 / 100);
             leaf.draw();
         }
         cloud.draw();
@@ -198,6 +187,6 @@ namespace L09_Herbstwiese {
 
 
     }
-   
-    
+
+
 }

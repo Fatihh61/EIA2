@@ -12,7 +12,7 @@ namespace L09_Herbstwiese {
 
             this.position = new Vector(/*Math.random() * crc2.canvas.width, Math.random() * crc2.canvas.height*/Math.random() * crc2.canvas.width, 0);
             this.velocity = new Vector(0, 0);
-            this.velocity.random(100, 200);
+            this.velocity.randomLeaf(100, 200);
 
             this.color = _color;
         }
@@ -49,9 +49,7 @@ namespace L09_Herbstwiese {
         }
 
         draw(): void {
-
-            //console.log("Hallo");
-
+            
             crc2.save();
 
             crc2.beginPath();
@@ -62,11 +60,6 @@ namespace L09_Herbstwiese {
             crc2.closePath();
 
             crc2.restore();
-        }
-
-        changeDirection(_timeslice: number): void {
-
-            console.log("Hallo");
         }
     }
 

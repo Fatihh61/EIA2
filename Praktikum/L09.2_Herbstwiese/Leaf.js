@@ -10,7 +10,7 @@ var L09_Herbstwiese;
         constructor(_color) {
             this.position = new L09_Herbstwiese.Vector(/*Math.random() * crc2.canvas.width, Math.random() * crc2.canvas.height*/ Math.random() * L09_Herbstwiese.crc2.canvas.width, 0);
             this.velocity = new L09_Herbstwiese.Vector(0, 0);
-            this.velocity.random(100, 200);
+            this.velocity.randomLeaf(100, 200);
             this.color = _color;
         }
         move(_timeslice) {
@@ -33,7 +33,6 @@ var L09_Herbstwiese;
             }
         }
         draw() {
-            //console.log("Hallo");
             L09_Herbstwiese.crc2.save();
             L09_Herbstwiese.crc2.beginPath();
             L09_Herbstwiese.crc2.fillStyle = this.color;
@@ -42,9 +41,6 @@ var L09_Herbstwiese;
             L09_Herbstwiese.crc2.stroke();
             L09_Herbstwiese.crc2.closePath();
             L09_Herbstwiese.crc2.restore();
-        }
-        changeDirection(_timeslice) {
-            console.log("Hallo");
         }
     }
     L09_Herbstwiese.Leaf = Leaf;

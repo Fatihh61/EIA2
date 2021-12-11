@@ -29,7 +29,6 @@ var L09_Herbstwiese;
         drawTree(horizone + 50);
         createLeaf();
         window.setInterval(update, 20);
-        //window.setInterval(update2, 20);
     }
     function drawBackground() {
         //Gradient für den gesamten Hintergrund
@@ -50,7 +49,6 @@ var L09_Herbstwiese;
         let x = 0;
         let drawLineRandomX = 0;
         L09_Herbstwiese.crc2.save();
-        //Beginn der Zeichnung für die Berge
         for (let i = 8; i > 0; i--) {
             //Zufällige Zahl für Zeichnung in X und Y Richtung
             drawLineRandomX = Math.random() * 50 + 100;
@@ -113,27 +111,24 @@ var L09_Herbstwiese;
         imgDataTree = L09_Herbstwiese.crc2.getImageData(0, 0, L09_Herbstwiese.crc2.canvas.width, L09_Herbstwiese.crc2.canvas.height);
     }
     function createLeaf() {
-        for (let i = 0; i < 2; i++) {
-            //let positionXOfLeaf: number = Math.random() * crc2.canvas.width;
-            //let positionYOfLeaf: number = Math.random() * crc2.canvas.height;
-            //let randomRotate: number = Math.random() * 180;
+        for (let i = 0; i < 20; i++) {
             let colors = ["brown", "orange"];
             let randomNumberForColor = Math.floor(Math.random() * 2);
-            let leaf = new L09_Herbstwiese.Leaf(/*positionXOfLeaf, positionYOfLeaf, randomRotate, */ colors[randomNumberForColor]);
+            let leaf = new L09_Herbstwiese.Leaf(colors[randomNumberForColor]);
             leafs.push(leaf);
             console.log(leafs);
             leaf.draw();
         }
     }
     function createCloud() {
-        cloud.draw();
+        cloud = new L09_Herbstwiese.Cloud();
     }
     function update() {
         L09_Herbstwiese.crc2.putImageData(imgDataBackground, 0, 0);
         L09_Herbstwiese.crc2.putImageData(imgDataMountains, 0, 0);
         L09_Herbstwiese.crc2.putImageData(imgDataTree, 0, 0);
         for (let leaf of leafs) {
-            leaf.move(1 / 70);
+            leaf.move(1 / 100);
             leaf.draw();
         }
         cloud.draw();
