@@ -158,11 +158,15 @@ namespace L09_Herbstwiese {
 
             let colors: string[] = ["brown", "orange"];
             let randomNumberForColor: number = Math.floor(Math.random() * 2);
+            let randomLeafType: number = Math.floor(Math.random() * 2);
 
-            let leaf: Leaf = new Leaf(colors[randomNumberForColor]);
+            console.log(randomLeafType);
+            
+
+            let leaf: Leaf = new Leaf(colors[randomNumberForColor], randomLeafType);
             leafs.push(leaf);
-            console.log(leafs);
-            leaf.draw();
+            //leafs.push(leaf2);
+            leaf.drawLeaf1();
         }
     }
 
@@ -176,14 +180,18 @@ namespace L09_Herbstwiese {
         crc2.putImageData(imgDataMountains, 0, 0);
         crc2.putImageData(imgDataTree, 0, 0);
 
+        //Slet randomSpeed: number = Math.floor(Math.random() * 30 + 85);
+
        
 
         for (let leaf of leafs) {
             leaf.move(1 / 100);
-            leaf.draw();
+            leaf.drawLeaf1();
         }
         cloud.draw();
-        cloud.move(1 / 50);
+        cloud.move(1 / 100);
+        
+        
 
 
     }

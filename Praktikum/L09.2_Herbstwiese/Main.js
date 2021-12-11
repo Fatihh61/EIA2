@@ -114,10 +114,12 @@ var L09_Herbstwiese;
         for (let i = 0; i < 20; i++) {
             let colors = ["brown", "orange"];
             let randomNumberForColor = Math.floor(Math.random() * 2);
-            let leaf = new L09_Herbstwiese.Leaf(colors[randomNumberForColor]);
+            let randomLeafType = Math.floor(Math.random() * 2);
+            console.log(randomLeafType);
+            let leaf = new L09_Herbstwiese.Leaf(colors[randomNumberForColor], randomLeafType);
             leafs.push(leaf);
-            console.log(leafs);
-            leaf.draw();
+            //leafs.push(leaf2);
+            leaf.drawLeaf1();
         }
     }
     function createCloud() {
@@ -127,12 +129,13 @@ var L09_Herbstwiese;
         L09_Herbstwiese.crc2.putImageData(imgDataBackground, 0, 0);
         L09_Herbstwiese.crc2.putImageData(imgDataMountains, 0, 0);
         L09_Herbstwiese.crc2.putImageData(imgDataTree, 0, 0);
+        //Slet randomSpeed: number = Math.floor(Math.random() * 30 + 85);
         for (let leaf of leafs) {
             leaf.move(1 / 100);
-            leaf.draw();
+            leaf.drawLeaf1();
         }
         cloud.draw();
-        cloud.move(1 / 50);
+        cloud.move(1 / 100);
     }
 })(L09_Herbstwiese || (L09_Herbstwiese = {}));
 //# sourceMappingURL=Main.js.map
