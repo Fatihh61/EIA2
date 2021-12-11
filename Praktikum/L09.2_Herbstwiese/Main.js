@@ -121,7 +121,7 @@ var L09_Herbstwiese;
             let leaf = new L09_Herbstwiese.Leaf(colors[randomNumberForColor], randomLeafType);
             leafs.push(leaf);
             //leafs.push(leaf2);
-            leaf.drawLeaf1();
+            leaf.drawLeaf();
         }
     }
     function createCloud() {
@@ -138,7 +138,7 @@ var L09_Herbstwiese;
         cloud.move(1 / 100);
         for (let leaf of leafs) {
             leaf.move(1 / 100);
-            leaf.drawLeaf1();
+            leaf.drawLeaf();
         }
         squirrel.draw();
         squirrel.move(1 / 180);

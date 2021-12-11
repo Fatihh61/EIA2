@@ -169,7 +169,7 @@ namespace L09_Herbstwiese {
             let leaf: Leaf = new Leaf(colors[randomNumberForColor], randomLeafType);
             leafs.push(leaf);
             //leafs.push(leaf2);
-            leaf.drawLeaf1();
+            leaf.drawLeaf();
         }
     }
 
@@ -194,7 +194,7 @@ namespace L09_Herbstwiese {
 
         for (let leaf of leafs) {
             leaf.move(1 / 100);
-            leaf.drawLeaf1();
+            leaf.drawLeaf();
         }
 
         squirrel.draw();
@@ -207,6 +207,4 @@ namespace L09_Herbstwiese {
 
 
     }
-
-
 }

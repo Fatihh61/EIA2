@@ -5,7 +5,6 @@ namespace L09_Herbstwiese {
         position: Vector;
         velocity: Vector;
         type: number;
-        sizeOfLeaf: number;
         color: string;
 
         constructor(_color: string, _type: number) {
@@ -47,7 +46,7 @@ namespace L09_Herbstwiese {
             }
         }
 
-        drawLeaf1(): void {
+        drawLeaf(): void {
             this.typeOfLeaf(this.type, this.color, this.position.x, this.position.y);
         }
 

@@ -4,11 +4,7 @@ namespace L09_Herbstwiese {
 
         startingPosition: Vector;
         size: Vector;
-        translateX: number;
-        translateY: number;
         velocity: Vector;
-        gradient: CanvasGradient;
-        path: Path2D;
 
         constructor() {
 

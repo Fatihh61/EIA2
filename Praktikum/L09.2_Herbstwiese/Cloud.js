@@ -4,11 +4,7 @@ var L09_Herbstwiese;
     class Cloud {
         startingPosition;
         size;
-        translateX;
-        translateY;
         velocity;
-        gradient;
-        path;
         constructor() {
             this.startingPosition = new L09_Herbstwiese.Vector(550, 100);
             this.size = new L09_Herbstwiese.Vector(200, 75);

@@ -4,9 +4,6 @@ namespace L09_Herbstwiese {
 
         position: Vector;
         velocity: Vector;
-        type: number;
-        sizeOfLeaf: number;
-        color: string;
 
         constructor() {
             this.position = new Vector(Math.random() * crc2.canvas.width, Math.random() * 100 + 450);

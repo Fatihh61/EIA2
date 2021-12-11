@@ -5,7 +5,6 @@ var L09_Herbstwiese;
         position;
         velocity;
         type;
-        sizeOfLeaf;
         color;
         constructor(_color, _type) {
             this.position = new L09_Herbstwiese.Vector(Math.random() * L09_Herbstwiese.crc2.canvas.width, 0);
@@ -32,7 +31,7 @@ var L09_Herbstwiese;
                 this.position.y -= L09_Herbstwiese.crc2.canvas.height;
             }
         }
-        drawLeaf1() {
+        drawLeaf() {
             this.typeOfLeaf(this.type, this.color, this.position.x, this.position.y);
         }
         typeOfLeaf(_typeOfLeaf, _colorOfLeaf, _positionX, _positionY) {

@@ -4,9 +4,6 @@ var L09_Herbstwiese;
     class Squirrel {
         position;
         velocity;
-        type;
-        sizeOfLeaf;
-        color;
         constructor() {
             this.position = new L09_Herbstwiese.Vector(Math.random() * L09_Herbstwiese.crc2.canvas.width, Math.random() * 100 + 450);
             this.velocity = new L09_Herbstwiese.Vector(0, 0);
