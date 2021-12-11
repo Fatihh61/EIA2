@@ -1,12 +1,10 @@
 /*
-Aufgabe: <Aufgabe 08.2_GoldenerHerbst>
+Aufgabe: <Aufgabe 09.2_GoldenerHerbstClasses>
 Name: <Fatih Temiz>
 Matrikel-Nummer: <26825>
 Datum: <27.11.2021>
-Quellen: W3Schools, Reinbold Deborah (Blätter)
+Quellen: W3Schools, Amelie(switch Case für die Leaf Typen) und zusammen gearbeitet mit Eyüp Öcal
 */
-
-//Noch nicht ganz fertig - Eichhörnchen fehlt noch und ich werde noch Anpassungen machen, sowie mit den Farben rumspielen
 
 namespace L09_Herbstwiese {
 
