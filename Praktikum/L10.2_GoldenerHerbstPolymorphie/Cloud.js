@@ -7,11 +7,10 @@ var L10_HerbstwiesePolymorphie;
             super(550, 100);
             this.size = new L10_HerbstwiesePolymorphie.Vector(200, 75);
         }
-        moveCloud() {
-            super.move(1 / 50, 0);
-        }
+        // moveCloud(): void {
+        //     super.move(1 / 50, 0);
+        // }
         draw() {
-            //console.log("wolke zeichnen");
             let nParticles = 30;
             let radiusParticle = 50;
             let particle = new Path2D();

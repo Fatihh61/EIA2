@@ -9,12 +9,12 @@ namespace L10_HerbstwiesePolymorphie {
             this.velocity.randomForSquirrel(100, 200);
         }
 
-        moveSquirrel(): void {
+        // moveSquirrel(): void {
             
-            super.move(1 / 180, 0);
-        }
+        //     super.move(1 / 180, 0);
+        // }
 
-        draw(): void {
+        public draw(): void {
 
             crc2.save();
 
@@ -80,6 +80,12 @@ namespace L10_HerbstwiesePolymorphie {
             crc2.closePath();
 
             crc2.restore();
+        }
+
+        changePosition(_x: number, _y: number): void {
+
+            this.position.x = _x;
+            this.position.y = _y;
         }
 
 

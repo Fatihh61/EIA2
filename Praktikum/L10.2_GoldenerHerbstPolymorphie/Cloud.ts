@@ -2,24 +2,21 @@ namespace L10_HerbstwiesePolymorphie {
 
     export class Cloud extends Moveable {
 
-        size: Vector;
+        public size: Vector;
 
         constructor() {
 
             super(550, 100);
             this.size = new Vector (200, 75);
-
         }
 
-        moveCloud(): void {
+        // moveCloud(): void {
 
-            super.move(1 / 50, 0);
-        }
+        //     super.move(1 / 50, 0);
+        // }
         
 
-        draw(): void {
-
-            //console.log("wolke zeichnen");
+        public draw(): void {
 
             let nParticles: number = 30;
             let radiusParticle: number = 50;

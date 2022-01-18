@@ -1,9 +1,9 @@
 namespace L10_HerbstwiesePolymorphie {
 
-    export class Moveable {
+    export abstract class Moveable {
 
-        velocity: Vector;
-        position: Vector;
+        public velocity: Vector;
+        public position: Vector;
 
         constructor(_x: number, _y: number) {
 
@@ -12,9 +12,8 @@ namespace L10_HerbstwiesePolymorphie {
             this.velocity.random(100, 200);
         }
 
-        move(_timeslice: number, _y: number): void {
+        public move(_timeslice: number, _y: number): void {
 
-            console.log("MoveMethode");
             let offset: Vector = new Vector(this.velocity.x, _y);
             offset.scale(_timeslice);
             this.position.add(offset);
@@ -40,12 +39,7 @@ namespace L10_HerbstwiesePolymorphie {
             }
         }
 
-        draw(): void {
-
-            //
-
-
-        }
+        abstract draw(): void;
 
 
 

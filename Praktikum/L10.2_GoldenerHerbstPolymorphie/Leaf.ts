@@ -1,9 +1,9 @@
 namespace L10_HerbstwiesePolymorphie {
 
     export class Leaf extends Moveable {
-
-        type: number;
-        color: string;
+        
+        private color: string;
+        private type: number;
 
         constructor(_color: string, _type: number) {
 
@@ -11,22 +11,21 @@ namespace L10_HerbstwiesePolymorphie {
             
             this.velocity.randomForLeaf(100, 50);
             this.color = _color;
-
             this.type = _type;
 
         }
 
-        move(): void {
+        public move(): void {
 
             super.move(1 / 50, this.velocity.y);
         }
 
 
-        draw(): void {
+        public draw(): void {
             this.typeOfLeaf(this.type, this.color, this.position.x, this.position.y);
         }
 
-        typeOfLeaf(_typeOfLeaf: number, _colorOfLeaf: string, _positionX: number, _positionY: number): void {
+        private typeOfLeaf(_typeOfLeaf: number, _colorOfLeaf: string, _positionX: number, _positionY: number): void {
 
             crc2.fillStyle = _colorOfLeaf;
 

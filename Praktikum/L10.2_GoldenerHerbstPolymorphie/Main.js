@@ -1,19 +1,27 @@
 "use strict";
 /*
-Aufgabe: <Aufgabe 09.2_GoldenerHerbstClasses>
+Aufgabe: <Aufgabe 11.1_GoldenerHerbstAdvanced>
 Name: <Fatih Temiz>
 Matrikel-Nummer: <26825>
-Datum: <27.11.2021>
-Quellen: W3Schools, Amelie(switch Case für die Leaf Typen) und zusammen gearbeitet mit Eyüp Öcal
+Datum: <15.01.2022>
+Quellen: Eyüp Öcal, David Eichler (Konzept)
 */
+//Das mit der Teleportation des Eichhörnchen konnte ich leider nicht lösen
 var L10_HerbstwiesePolymorphie;
 (function (L10_HerbstwiesePolymorphie) {
     window.addEventListener("load", handleLoad);
     let golden = 0.62;
     let moveables = [];
+    let squirrelArray = [];
+    let nutArray = [];
+    let positionArray = [];
+    let isPressed = false;
     let cloudAsSubclass;
+    let hazelnutObject;
     let squirrelAsSubclass;
     let imgDataBackground;
+    let imgDataSun;
+    let imgDataSunNight;
     let imgDataMountains;
     let imgDataTree;
     function handleLoad(_event) {
@@ -24,12 +32,16 @@ var L10_HerbstwiesePolymorphie;
         //Startposition für den ersten Berg
         let startPointofFirstMountainX = Math.random() * (-50) - 80;
         drawBackground();
+        drawSun(150, 150);
         createCloud();
         drawMountains(startPointofFirstMountainX, horizone);
         drawTree(horizone + 50);
         createSquirrel();
         createLeaf();
+        canvas.addEventListener("mousedown", createHazelnut);
         window.setInterval(update, 20);
+        drawSunNight(150, 150);
+        document.addEventListener("keypress", changeSun);
     }
     function drawBackground() {
         //Gradient für den gesamten Hintergrund
@@ -41,6 +53,20 @@ var L10_HerbstwiesePolymorphie;
         L10_HerbstwiesePolymorphie.crc2.fillStyle = gradient;
         L10_HerbstwiesePolymorphie.crc2.fillRect(0, 0, L10_HerbstwiesePolymorphie.crc2.canvas.width, L10_HerbstwiesePolymorphie.crc2.canvas.height);
         imgDataBackground = L10_HerbstwiesePolymorphie.crc2.getImageData(0, 0, L10_HerbstwiesePolymorphie.crc2.canvas.width, L10_HerbstwiesePolymorphie.crc2.canvas.height);
+    }
+    function drawSun(_positionX, _positionY) {
+        let r1 = 30;
+        let r2 = 120;
+        let gradient = L10_HerbstwiesePolymorphie.crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
+        gradient.addColorStop(0, "yellow");
+        gradient.addColorStop(1, "HSLA(60, 100%, 50%, 0)");
+        L10_HerbstwiesePolymorphie.crc2.save();
+        L10_HerbstwiesePolymorphie.crc2.translate(_positionX, _positionY);
+        L10_HerbstwiesePolymorphie.crc2.fillStyle = gradient;
+        L10_HerbstwiesePolymorphie.crc2.arc(0, 0, r2, 0, 2 * Math.PI);
+        L10_HerbstwiesePolymorphie.crc2.fill();
+        L10_HerbstwiesePolymorphie.crc2.restore();
+        imgDataSun = L10_HerbstwiesePolymorphie.crc2.getImageData(0, 0, L10_HerbstwiesePolymorphie.crc2.canvas.width, L10_HerbstwiesePolymorphie.crc2.canvas.height);
     }
     function drawMountains(_startPointFirstMountainX, _horizoneY) {
         //Gradient für die Berge
@@ -118,30 +144,92 @@ var L10_HerbstwiesePolymorphie;
             let randomLeafType = Math.floor(Math.random() * 2);
             let leaf = new L10_HerbstwiesePolymorphie.Leaf(colors[randomNumberForColor], randomLeafType);
             moveables.push(leaf);
-            leaf.draw();
+            //leaf.draw();
         }
     }
     function createCloud() {
         cloudAsSubclass = new L10_HerbstwiesePolymorphie.Cloud();
         moveables.push(cloudAsSubclass);
     }
+    function createHazelnut(_event) {
+        let positionX = _event.clientX;
+        let positionY = _event.clientY;
+        positionArray.push(positionX);
+        positionArray.push(positionY);
+        hazelnutObject = new L10_HerbstwiesePolymorphie.Hazelnut(_event.clientX, _event.clientY);
+        moveables.push(hazelnutObject);
+        nutArray.push(hazelnutObject);
+        console.log(nutArray);
+        // createSquirrel();
+        if (squirrelArray.length == nutArray.length) {
+            for (let i = 0; i <= positionArray.length; i++) {
+                squirrelAsSubclass.changePosition(positionArray[0], positionArray[1]);
+                // squirrelAsSubclass.position.x = positionArray[i];
+                console.log(squirrelAsSubclass.position.x);
+                i++;
+                // squirrelAsSubclass.position.y = positionArray[i];
+                console.log(squirrelAsSubclass.position.y);
+            }
+        }
+    }
     function createSquirrel() {
-        squirrelAsSubclass = new L10_HerbstwiesePolymorphie.Squirrel();
+        squirrelAsSubclass = new L10_HerbstwiesePolymorphie.Squirrel;
         moveables.push(squirrelAsSubclass);
+        squirrelArray.push(squirrelAsSubclass);
+        // squirrelArray.splice(1, 1);
+        console.log(squirrelArray);
+        // if (squirrelArray.length == nutArray.length) {
+        //     for (let i: number = 0; i <= positionArray.length; i++) {
+        //         squirrelAsSubclass.changePosition(positionArray[0], positionArray[1]);
+        //         // squirrelAsSubclass.position.x = positionArray[i];
+        //         console.log(squirrelAsSubclass.position.x);
+        //         i++;
+        //         // squirrelAsSubclass.position.y = positionArray[i];
+        //         console.log(squirrelAsSubclass.position.y);
+        //     }
+        // }
+    }
+    function drawSunNight(_positionX, _positionY) {
+        if (isPressed == true) {
+            let r1 = 30;
+            let r2 = 120;
+            let gradient = L10_HerbstwiesePolymorphie.crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
+            gradient.addColorStop(0, "black");
+            gradient.addColorStop(1, "HSLA(30, 100%, 50%, 0)");
+            L10_HerbstwiesePolymorphie.crc2.save();
+            L10_HerbstwiesePolymorphie.crc2.translate(_positionX, _positionY);
+            L10_HerbstwiesePolymorphie.crc2.fillStyle = gradient;
+            L10_HerbstwiesePolymorphie.crc2.arc(0, 0, r2, 0, 2 * Math.PI);
+            L10_HerbstwiesePolymorphie.crc2.fill();
+            L10_HerbstwiesePolymorphie.crc2.restore();
+        }
     }
     function update() {
-        L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataBackground, 0, 0);
-        L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataMountains, 0, 0);
-        L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataTree, 0, 0);
-        cloudAsSubclass.draw();
-        cloudAsSubclass.moveCloud();
-        for (let leaf of moveables) {
-            leaf.move(1 / 50, 0);
-            leaf.draw();
+        if (isPressed == false) {
+            L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataBackground, 0, 0);
+            L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataSun, 0, 0);
+            L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataMountains, 0, 0);
+            L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataTree, 0, 0);
+            //crc2.putImageData(imgDataHazelnut, 0, 0);
+            console.log("Ist noch bei false");
         }
-        squirrelAsSubclass.draw();
-        squirrelAsSubclass.moveSquirrel();
+        else if (isPressed == true) {
+            L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataBackground, 0, 0);
+            drawSunNight(150, 150);
+            // crc2.putImageData(imgDataSunNight, 0, 0);
+            L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataMountains, 0, 0);
+            L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataTree, 0, 0);
+            console.log("Gewechselt auf true");
+            //drawSunNight(150, 150);
+        }
+        for (let i = 0; i < moveables.length; i++) {
+            moveables[i].move(1 / 50, 0);
+            moveables[i].draw();
+        }
     }
-    console.log(moveables);
+    function changeSun(_event) {
+        isPressed = true;
+        console.log("isPressed = true");
+    }
 })(L10_HerbstwiesePolymorphie || (L10_HerbstwiesePolymorphie = {}));
 //# sourceMappingURL=Main.js.map

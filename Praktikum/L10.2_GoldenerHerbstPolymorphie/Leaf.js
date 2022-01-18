@@ -2,8 +2,8 @@
 var L10_HerbstwiesePolymorphie;
 (function (L10_HerbstwiesePolymorphie) {
     class Leaf extends L10_HerbstwiesePolymorphie.Moveable {
-        type;
         color;
+        type;
         constructor(_color, _type) {
             super(Math.random() * L10_HerbstwiesePolymorphie.crc2.canvas.width, 0);
             this.velocity.randomForLeaf(100, 50);

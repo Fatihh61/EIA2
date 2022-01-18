@@ -10,7 +10,6 @@ var L10_HerbstwiesePolymorphie;
             this.velocity.random(100, 200);
         }
         move(_timeslice, _y) {
-            console.log("MoveMethode");
             let offset = new L10_HerbstwiesePolymorphie.Vector(this.velocity.x, _y);
             offset.scale(_timeslice);
             this.position.add(offset);
@@ -26,9 +25,6 @@ var L10_HerbstwiesePolymorphie;
             if (this.position.y > L10_HerbstwiesePolymorphie.crc2.canvas.height) {
                 this.position.y -= L10_HerbstwiesePolymorphie.crc2.canvas.height;
             }
-        }
-        draw() {
-            //
         }
     }
     L10_HerbstwiesePolymorphie.Moveable = Moveable;

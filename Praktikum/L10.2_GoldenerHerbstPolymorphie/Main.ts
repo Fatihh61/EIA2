@@ -1,10 +1,14 @@
 /*
-Aufgabe: <Aufgabe 09.2_GoldenerHerbstClasses>
+Aufgabe: <Aufgabe 11.1_GoldenerHerbstAdvanced>
 Name: <Fatih Temiz>
 Matrikel-Nummer: <26825>
-Datum: <27.11.2021>
-Quellen: W3Schools, Amelie(switch Case für die Leaf Typen) und zusammen gearbeitet mit Eyüp Öcal
+Datum: <15.01.2022>
+Quellen: Eyüp Öcal, David Eichler (Konzept)
 */
+
+
+
+//Das mit der Teleportation des Eichhörnchen konnte ich leider nicht lösen
 
 namespace L10_HerbstwiesePolymorphie {
 
@@ -15,14 +19,24 @@ namespace L10_HerbstwiesePolymorphie {
     let golden: number = 0.62;
 
     let moveables: Moveable[] = [];
+    let squirrelArray: Squirrel[] = [];
+    let nutArray: Hazelnut[] = [];
+    let positionArray: number[] = [];
+
+    let isPressed: boolean = false;
 
     let cloudAsSubclass: Cloud;
+    let hazelnutObject: Hazelnut;
 
     let squirrelAsSubclass: Squirrel;
 
     let imgDataBackground: ImageData;
+    let imgDataSun: ImageData;
+    let imgDataSunNight: ImageData;
     let imgDataMountains: ImageData;
     let imgDataTree: ImageData;
+
+    
 
 
     function handleLoad(_event: Event): void {
@@ -37,14 +51,21 @@ namespace L10_HerbstwiesePolymorphie {
         let startPointofFirstMountainX: number = Math.random() * (-50) - 80;
 
         drawBackground();
+        drawSun(150, 150);
         createCloud();
         drawMountains(startPointofFirstMountainX, horizone);
         drawTree(horizone + 50);
         createSquirrel();
         createLeaf();
 
+        canvas.addEventListener("mousedown", createHazelnut);
+
 
         window.setInterval(update, 20);
+
+        drawSunNight(150, 150);
+
+        document.addEventListener("keypress", changeSun);
     }
 
     function drawBackground(): void {
@@ -60,6 +81,21 @@ namespace L10_HerbstwiesePolymorphie {
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
         imgDataBackground = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
+    }
+
+    function drawSun(_positionX: number, _positionY: number): void {
+        let r1: number = 30;
+        let r2: number = 120;
+        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
+        gradient.addColorStop(0, "yellow");
+        gradient.addColorStop(1, "HSLA(60, 100%, 50%, 0)");
+        crc2.save();
+        crc2.translate(_positionX, _positionY);
+        crc2.fillStyle = gradient;
+        crc2.arc(0, 0, r2, 0, 2 * Math.PI);
+        crc2.fill();
+        crc2.restore();
+        imgDataSun = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
     function drawMountains(_startPointFirstMountainX: number, _horizoneY: number): void {
@@ -165,7 +201,7 @@ namespace L10_HerbstwiesePolymorphie {
 
             let leaf: Leaf = new Leaf(colors[randomNumberForColor], randomLeafType);
             moveables.push(leaf);
-            leaf.draw();
+            //leaf.draw();
         }
     }
 
@@ -174,31 +210,105 @@ namespace L10_HerbstwiesePolymorphie {
         moveables.push(cloudAsSubclass);
     }
 
+    function createHazelnut(_event: MouseEvent): void {
+
+        let positionX: number = _event.clientX;
+        let positionY: number = _event.clientY;
+        positionArray.push(positionX);
+        positionArray.push(positionY);
+
+        hazelnutObject = new Hazelnut(_event.clientX, _event.clientY);
+        moveables.push(hazelnutObject);
+        nutArray.push(hazelnutObject);
+        console.log(nutArray);
+        // createSquirrel();
+
+
+        if (squirrelArray.length == nutArray.length) {
+
+            for (let i: number = 0; i <= positionArray.length; i++) {
+
+                squirrelAsSubclass.changePosition(positionArray[0], positionArray[1]);
+                // squirrelAsSubclass.position.x = positionArray[i];
+                console.log(squirrelAsSubclass.position.x);
+                i++;
+                // squirrelAsSubclass.position.y = positionArray[i];
+                console.log(squirrelAsSubclass.position.y);
+            }
+        }
+
+
+    }
+
     function createSquirrel(): void {
 
-        squirrelAsSubclass = new Squirrel();
+        squirrelAsSubclass = new Squirrel;
         moveables.push(squirrelAsSubclass);
+        squirrelArray.push(squirrelAsSubclass);
+        // squirrelArray.splice(1, 1);
+        console.log(squirrelArray);
 
+
+        // if (squirrelArray.length == nutArray.length) {
+
+        //     for (let i: number = 0; i <= positionArray.length; i++) {
+
+        //         squirrelAsSubclass.changePosition(positionArray[0], positionArray[1]);
+        //         // squirrelAsSubclass.position.x = positionArray[i];
+        //         console.log(squirrelAsSubclass.position.x);
+        //         i++;
+        //         // squirrelAsSubclass.position.y = positionArray[i];
+        //         console.log(squirrelAsSubclass.position.y);
+        //     }
+        // }
+
+    }
+
+    function drawSunNight(_positionX: number, _positionY: number): void {
+
+        if (isPressed == true) {
+            let r1: number = 30;
+            let r2: number = 120;
+            let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
+            gradient.addColorStop(0, "black");
+            gradient.addColorStop(1, "HSLA(30, 100%, 50%, 0)");
+            crc2.save();
+            crc2.translate(_positionX, _positionY);
+            crc2.fillStyle = gradient;
+            crc2.arc(0, 0, r2, 0, 2 * Math.PI);
+            crc2.fill();
+            crc2.restore();
+        }
     }
 
     function update(): void {
 
-        crc2.putImageData(imgDataBackground, 0, 0);
-        crc2.putImageData(imgDataMountains, 0, 0);
-        crc2.putImageData(imgDataTree, 0, 0);
-
-        cloudAsSubclass.draw();
-        cloudAsSubclass.moveCloud();
-
-        for (let leaf of moveables) {
-            leaf.move(1 / 50, 0);
-            leaf.draw();
+        if (isPressed == false) {
+            crc2.putImageData(imgDataBackground, 0, 0);
+            crc2.putImageData(imgDataSun, 0, 0);
+            crc2.putImageData(imgDataMountains, 0, 0);
+            crc2.putImageData(imgDataTree, 0, 0);
+            //crc2.putImageData(imgDataHazelnut, 0, 0);
+            console.log("Ist noch bei false");
+            
+        } else if (isPressed == true) {
+            crc2.putImageData(imgDataBackground, 0, 0);
+            drawSunNight(150, 150);
+            // crc2.putImageData(imgDataSunNight, 0, 0);
+            crc2.putImageData(imgDataMountains, 0, 0);
+            crc2.putImageData(imgDataTree, 0, 0);
+            console.log("Gewechselt auf true");
+            //drawSunNight(150, 150);
         }
 
-        squirrelAsSubclass.draw();
-        squirrelAsSubclass.moveSquirrel();
+        for (let i: number = 0; i < moveables.length; i++) {
+            moveables[i].move(1 / 50, 0);
+            moveables[i].draw();
+        }
     }
 
-    console.log(moveables);
-    
+    function changeSun(_event: KeyboardEvent): void {
+        isPressed = true;
+        console.log("isPressed = true");
+    }
 }

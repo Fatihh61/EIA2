@@ -2,8 +2,8 @@ namespace L10_HerbstwiesePolymorphie {
 
     export class Vector {
 
-        x: number;
-        y: number;
+        public x: number;
+        public y: number;
 
         constructor(_x: number, _y: number) {
 
@@ -13,55 +13,49 @@ namespace L10_HerbstwiesePolymorphie {
         }
 
 
-        set(_x: number, _y: number): void {
+        public set(_x: number, _y: number): void {
 
             this.x = _x;
             this.y = _y;
         }
 
-        scale(_factor: number): void {
+        public scale(_factor: number): void {
 
             this.x *= _factor;
             this.y *= _factor;
         }
 
-        add(_addEnd: Vector): void {
+        public add(_addEnd: Vector): void {
 
             this.x += _addEnd.x;
             this.y += _addEnd.y;
         }
 
-        random(_minLength: number, _maxLength: number): void {
+        public random(_minLength: number, _maxLength: number): void {
             let length: number = _minLength + Math.random() * (_maxLength - _minLength);
             let direction: number = Math.random() * 2 * Math.PI;
-
-            console.log(direction);
-            console.log(length);
             
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
         }
 
-        randomForLeaf(_minLength: number, _maxLength: number): void {
+        public randomForLeaf(_minLength: number, _maxLength: number): void {
             let length: number = _minLength + Math.random() * (_maxLength - _minLength);
-            let direction: number = Math.random() * 2 * Math.PI;
-
-            console.log(direction);
-            console.log(length);
             
             this.set(Math.cos(1), Math.sin(1));
             this.scale(length);
         }
 
-        randomForSquirrel(_minLength: number, _maxLength: number): void {
+        public randomForSquirrel(_minLength: number, _maxLength: number): void {
             let length: number = _minLength + Math.random() * (_maxLength - _minLength);
-            let direction: number = Math.random() * 2 * Math.PI;
-
-            console.log(direction);
-            console.log(length);
             
             this.set(Math.cos(1), Math.sin(0));
             this.scale(length);
+        }
+
+        copy(): Vector {
+
+            return new Vector(this.x, this.y);
         }
     }
 

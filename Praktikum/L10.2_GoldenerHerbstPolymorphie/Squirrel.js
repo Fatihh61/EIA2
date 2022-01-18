@@ -6,9 +6,9 @@ var L10_HerbstwiesePolymorphie;
             super(Math.random() * L10_HerbstwiesePolymorphie.crc2.canvas.width, Math.random() * 100 + 450);
             this.velocity.randomForSquirrel(100, 200);
         }
-        moveSquirrel() {
-            super.move(1 / 180, 0);
-        }
+        // moveSquirrel(): void {
+        //     super.move(1 / 180, 0);
+        // }
         draw() {
             L10_HerbstwiesePolymorphie.crc2.save();
             //let positionXSquirrel: number = Math.random() * 800;
@@ -71,6 +71,10 @@ var L10_HerbstwiesePolymorphie;
             L10_HerbstwiesePolymorphie.crc2.stroke();
             L10_HerbstwiesePolymorphie.crc2.closePath();
             L10_HerbstwiesePolymorphie.crc2.restore();
+        }
+        changePosition(_x, _y) {
+            this.position.x = _x;
+            this.position.y = _y;
         }
     }
     L10_HerbstwiesePolymorphie.Squirrel = Squirrel;
