@@ -202,6 +202,7 @@ var L10_HerbstwiesePolymorphie;
             L10_HerbstwiesePolymorphie.crc2.arc(0, 0, r2, 0, 2 * Math.PI);
             L10_HerbstwiesePolymorphie.crc2.fill();
             L10_HerbstwiesePolymorphie.crc2.restore();
+            imgDataSunNight = L10_HerbstwiesePolymorphie.crc2.getImageData(0, 0, L10_HerbstwiesePolymorphie.crc2.canvas.width, L10_HerbstwiesePolymorphie.crc2.canvas.height);
         }
     }
     function update() {
@@ -215,8 +216,8 @@ var L10_HerbstwiesePolymorphie;
         }
         else if (isPressed == true) {
             L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataBackground, 0, 0);
-            drawSunNight(150, 150);
-            // crc2.putImageData(imgDataSunNight, 0, 0);
+            // drawSunNight(150, 150);
+            L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataSunNight, 0, 0);
             L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataMountains, 0, 0);
             L10_HerbstwiesePolymorphie.crc2.putImageData(imgDataTree, 0, 0);
             console.log("Gewechselt auf true");

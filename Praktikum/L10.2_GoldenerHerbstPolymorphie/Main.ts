@@ -278,6 +278,7 @@ namespace L10_HerbstwiesePolymorphie {
             crc2.arc(0, 0, r2, 0, 2 * Math.PI);
             crc2.fill();
             crc2.restore();
+            imgDataSunNight = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
         }
     }
 
@@ -293,8 +294,8 @@ namespace L10_HerbstwiesePolymorphie {
             
         } else if (isPressed == true) {
             crc2.putImageData(imgDataBackground, 0, 0);
-            drawSunNight(150, 150);
-            // crc2.putImageData(imgDataSunNight, 0, 0);
+            // drawSunNight(150, 150);
+            crc2.putImageData(imgDataSunNight, 0, 0);
             crc2.putImageData(imgDataMountains, 0, 0);
             crc2.putImageData(imgDataTree, 0, 0);
             console.log("Gewechselt auf true");
