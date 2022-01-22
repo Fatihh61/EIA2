@@ -9,6 +9,10 @@ var L10_HerbstwiesePolymorphie;
             //this.x = _x;
             //this.y = _y;
         }
+        static getDifference(_v0, _v1) {
+            let vector = new Vector(_v0.x - _v1.x, _v0.y - _v1.y);
+            return vector;
+        }
         set(_x, _y) {
             this.x = _x;
             this.y = _y;

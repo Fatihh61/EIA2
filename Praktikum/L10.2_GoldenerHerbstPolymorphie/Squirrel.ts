@@ -2,6 +2,8 @@ namespace L10_HerbstwiesePolymorphie {
 
     export class Squirrel extends Moveable {
 
+        hitbox: number = 1.0;
+
         constructor() {
             
             super(Math.random() * crc2.canvas.width, Math.random() * 100 + 450);
@@ -86,6 +88,12 @@ namespace L10_HerbstwiesePolymorphie {
 
             this.position.x = _x;
             this.position.y = _y;
+        }
+
+        isHitFromCage(_hotspot: Vector): boolean {
+            let hitsize: number = this.hitbox;
+            let difference: Vector = Vector.getDifference(_hotspot, this.position);
+            return (Math.abs(difference.x) < hitsize && Math.abs(difference.y) < hitsize);
         }
 
 

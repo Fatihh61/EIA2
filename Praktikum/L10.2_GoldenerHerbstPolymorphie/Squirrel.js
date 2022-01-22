@@ -2,6 +2,7 @@
 var L10_HerbstwiesePolymorphie;
 (function (L10_HerbstwiesePolymorphie) {
     class Squirrel extends L10_HerbstwiesePolymorphie.Moveable {
+        hitbox = 1.0;
         constructor() {
             super(Math.random() * L10_HerbstwiesePolymorphie.crc2.canvas.width, Math.random() * 100 + 450);
             this.velocity.randomForSquirrel(100, 200);
@@ -75,6 +76,11 @@ var L10_HerbstwiesePolymorphie;
         changePosition(_x, _y) {
             this.position.x = _x;
             this.position.y = _y;
+        }
+        isHitFromCage(_hotspot) {
+            let hitsize = this.hitbox;
+            let difference = L10_HerbstwiesePolymorphie.Vector.getDifference(_hotspot, this.position);
+            return (Math.abs(difference.x) < hitsize && Math.abs(difference.y) < hitsize);
         }
     }
     L10_HerbstwiesePolymorphie.Squirrel = Squirrel;

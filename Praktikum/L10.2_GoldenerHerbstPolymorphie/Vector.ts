@@ -12,6 +12,11 @@ namespace L10_HerbstwiesePolymorphie {
             //this.y = _y;
         }
 
+        static getDifference(_v0: Vector, _v1: Vector): Vector {
+            let vector: Vector = new Vector(_v0.x - _v1.x, _v0.y - _v1.y);
+            return vector;
+        }
+
 
         public set(_x: number, _y: number): void {
 
