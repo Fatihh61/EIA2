@@ -34,3 +34,10 @@ h2 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
 }
+
+#employee1 {
+
+    width: 1000px;
+    font-size: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
+}

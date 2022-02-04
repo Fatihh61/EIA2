@@ -32,24 +32,10 @@ namespace Döner_Trainer {
         //Rechteck innerhalb der Küche
         crc2.save();
 
+        crc2.beginPath();
         crc2.lineWidth = 4;
         crc2.strokeRect(200, 100, 500, 250);
         crc2.strokeStyle = "black";
-        
-        crc2.restore();
-
-
-
-        //Theke
-        crc2.save();
-
-        crc2.moveTo(700, 100);
-        crc2.lineTo(800, 100);
-        crc2.moveTo(700, 350);
-        crc2.lineTo(800, 350);
-        crc2.lineWidth = 4;
-        crc2.strokeStyle = "black";
-        crc2.stroke();
         crc2.closePath();
 
         crc2.restore();
@@ -59,9 +45,30 @@ namespace Döner_Trainer {
         //Theke
         crc2.save();
 
+        crc2.beginPath();
+        crc2.moveTo(700, 100);
+        crc2.lineTo(800, 100);
+        crc2.moveTo(700, 350);
+        crc2.lineTo(800, 350);
+        crc2.lineWidth = 4;
+        crc2.fillStyle = "#5b3a29";
+        crc2.strokeStyle = "black";
+        crc2.stroke();
+        crc2.fill();
+        crc2.closePath();
+
+        crc2.restore();
+
+
+
+        //Theke
+        crc2.save();
+
+        crc2.beginPath();
         crc2.lineWidth = 4;
         crc2.strokeRect(0, 350, 800, 125);
         crc2.strokeStyle = "black";
+        crc2.closePath();
 
         crc2.restore();
 
@@ -71,14 +78,21 @@ namespace Döner_Trainer {
 
         crc2.save();
 
-        crc2.lineWidth = 4;
-        crc2.fillStyle = "darkbrown";
-        // crc2.ellipse(100, 225, 30, 30, 0, 0, 2 * Math.PI);
+        crc2.beginPath();
+        crc2.lineWidth = 3;
+        crc2.fillStyle = "#b47636";
         crc2.arc(100, 225, 30, 0, 2 * Math.PI);
         crc2.fill();
+        crc2.stroke();
+        crc2.closePath();
 
         crc2.restore();
 
+        crc2.beginPath();
+        crc2.fillStyle = "black";
+        crc2.arc(100, 225, 1, 0, 2 * Math.PI);
+        crc2.fill();
+        crc2.closePath();
 
 
         //Behälter für Ersatzzutaten
@@ -89,10 +103,13 @@ namespace Döner_Trainer {
         for (let i: number = 0; i <= 4; i++) {
             crc2.save();
 
+            crc2.beginPath();
             crc2.lineWidth = 2;
             crc2.strokeRect(225 + positionOfErsatzbehälter, 25, 50, 50);
 
             positionOfErsatzbehälter += numberAdditionErsatzbehälter;            
+            
+            crc2.closePath();
             crc2.restore();
         } 
 
@@ -108,16 +125,36 @@ namespace Döner_Trainer {
             
             crc2.save();
 
+            crc2.beginPath();
             crc2.lineWidth = 2;
-            crc2.ellipse(245 + positionOfBehälter, 415, 15, 30, 0, 0, 2 * Math.PI);
+            crc2.ellipse(245 + positionOfBehälter, 415, 23, 30, 0, 0, 2 * Math.PI);
             crc2.strokeStyle = "black";
             crc2.stroke();
             
 
             positionOfBehälter += numberAdditionBehälter;
          
-            crc2.restore();
-            
+            crc2.closePath();
+            crc2.restore();  
         } 
+
+
+
+        //"Hallo" Matte
+
+        crc2.save();
+
+        crc2.beginPath();
+        crc2.lineWidth = 3;
+        crc2.fillStyle = "#B8860B";
+        crc2.strokeStyle = "black";
+        crc2.fillRect(50, 525, 75, 50);
+        crc2.strokeRect(50, 525, 75, 50);
+        crc2.fill();
+        crc2.stroke();
+        crc2.fillStyle = "black";
+        crc2.font = "25px Arial";
+        crc2.fillText("Hallo", 57, 558);
+        crc2.restore();
     }
 }

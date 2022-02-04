@@ -1,0 +1,1 @@
+{"version":3,"file":"Vegetable.js","sourceRoot":"","sources":["Vegetable.ts"],"names":[],"mappings":";AAAA,IAAU,aAAa,CAiBtB;AAjBD,WAAU,aAAa;IAEnB,MAAa,SAAS;QAElB,QAAQ,CAAS;QACjB,eAAe,CAAS;QAExB,YAAY,EAAU,EAAE,EAAU;QAGlC,CAAC;QAED,IAAI;YAEA,OAAO,CAAC,GAAG,CAAC,mBAAmB,CAAC,CAAC;QACrC,CAAC;KACJ;IAdY,uBAAS,YAcrB,CAAA;AACL,CAAC,EAjBS,aAAa,KAAb,aAAa,QAiBtB"}
