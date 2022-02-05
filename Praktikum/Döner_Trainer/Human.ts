@@ -2,7 +2,7 @@ namespace Döner_Trainer {
 
     export class Human {
 
-        public position: Vector;
+        position: Vector;
         velocity: Vector;
         state: number;
 
@@ -13,6 +13,7 @@ namespace Döner_Trainer {
 
         draw(_x: number, _y: number): void {
 
+            //Körper des Smiley
             crc2.save();
 
             crc2.beginPath();
@@ -24,6 +25,7 @@ namespace Döner_Trainer {
             crc2.stroke();
             crc2.closePath();
 
+            //Linkes Auge des Smiley
             crc2.save();
 
             crc2.beginPath();
@@ -34,6 +36,7 @@ namespace Döner_Trainer {
 
             crc2.restore();
 
+            //Rechtes Auge des Smiley
             crc2.save();
 
             crc2.beginPath();
@@ -44,6 +47,7 @@ namespace Döner_Trainer {
 
             crc2.restore();
 
+            //Mund des Smiley
             crc2.save();
 
             crc2.beginPath();

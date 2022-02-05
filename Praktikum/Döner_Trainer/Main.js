@@ -3,12 +3,12 @@ var Döner_Trainer;
 (function (Döner_Trainer) {
     window.addEventListener("load", handleLoad);
     let form;
-    let employeeInputElement1;
-    let employeeInputElement2;
-    let employeeInputElement3;
-    let employee1Value;
+    let humans = [];
+    let employeeValue;
+    let customerValue;
     let formData;
     let allInputElements;
+    let allSelectElements;
     function handleLoad(_event) {
         let startButton = document.querySelector("#startButton");
         startButton.addEventListener("click", loadCanvas);
@@ -25,7 +25,7 @@ var Döner_Trainer;
         Döner_Trainer.crc2.strokeRect(0, 0, 800, 600);
         Döner_Trainer.crc2.restore();
         drawKebabHouse();
-        createHumans();
+        createEmployee();
     }
     function drawKebabHouse() {
         //Rechteck innerhalb der Küche
@@ -117,21 +117,35 @@ var Döner_Trainer;
         Döner_Trainer.crc2.fillText("Hallo", 57, 558);
         Döner_Trainer.crc2.restore();
     }
-    function createHumans() {
-        let employee1 = new Döner_Trainer.Employee();
-        employee1.draw(Math.random() * 150 + 300, Math.random() * 135 + 125);
-        let employeeArray = [];
-        employeeInputElement1 = document.getElementById("radio1");
-        employeeInputElement2 = document.getElementById("radio2");
-        employeeInputElement3 = document.getElementById("radio3");
-        employeeArray.push(employeeInputElement1);
+    function createEmployee() {
+        //FormData wird übertragen
         formData = new FormData(document.forms[0]);
+        //Alle Input- und Selectelemente werden deklariert
         allInputElements = document.querySelectorAll("input");
-        console.log(allInputElements);
-        employee1Value = parseFloat(allInputElements[0].value);
-        console.log(employee1Value);
-        // console.log(formData);
-        // console.log(employeeInputElement1);
+        allSelectElements = document.querySelectorAll("select");
+        //Das erste Selectelement wird deklariert
+        employeeValue = parseFloat(allSelectElements[0].value);
+        for (let i = 0; i < employeeValue; i++) {
+            //Zufällige Startposition für die Mitarbeiter
+            let randomPositionX = Math.random() * 150 + 400;
+            let randomPositionY = Math.random() * 135 + 125;
+            //Mitarbeiter werden erstellt
+            let employee = new Döner_Trainer.Employee();
+            humans.push(employee);
+            employee.draw(randomPositionX, randomPositionY);
+            console.log(employeeValue);
+            // console.log(humans);
+            // console.log(randomPositionX);
+            // console.log(randomPositionY);
+            let number = 15000;
+            setInterval(createCustomer, number);
+        }
+    }
+    function createCustomer() {
+        console.log("Alle 15 Sekunden bitte ausloggen");
+        let customer = new Döner_Trainer.Customer();
+        humans.push(customer);
+        customer.draw(85, 555);
     }
 })(Döner_Trainer || (Döner_Trainer = {}));
 //# sourceMappingURL=Main.js.map

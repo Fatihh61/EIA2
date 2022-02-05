@@ -7,16 +7,15 @@ namespace Döner_Trainer {
 
     let form: HTMLFormElement;
 
-    let employeeInputElement1: HTMLInputElement;
-    let employeeInputElement2: HTMLInputElement;
-    let employeeInputElement3: HTMLInputElement;
+    let humans: Human[] = [];
 
-    let employee1Value: number;
+    let employeeValue: number;
+    let customerValue: number;
 
     let formData: FormData;
 
     let allInputElements: NodeListOf<HTMLInputElement>;
-
+    let allSelectElements: NodeListOf<HTMLSelectElement>;
 
 
     function handleLoad(_event: Event): void {
@@ -41,8 +40,7 @@ namespace Döner_Trainer {
         crc2.restore();
 
         drawKebabHouse();
-        createHumans();
-
+        createEmployee();
     }
 
 
@@ -170,39 +168,48 @@ namespace Döner_Trainer {
         crc2.restore();
     }
 
-    function createHumans(): void {
+    function createEmployee(): void {
 
-        let employee1: Human = new Employee();
-        employee1.draw(Math.random() * 150 + 300, Math.random() * 135 + 125)
-
-        let employeeArray: HTMLInputElement[] = [];
-
-        employeeInputElement1 = <HTMLInputElement>document.getElementById("radio1")
-        employeeInputElement2 = <HTMLInputElement>document.getElementById("radio2")
-        employeeInputElement3 = <HTMLInputElement>document.getElementById("radio3")
-
-        employeeArray.push(employeeInputElement1);
-
-
-
+        //FormData wird übertragen
         formData = new FormData(document.forms[0]);
 
+        //Alle Input- und Selectelemente werden deklariert
         allInputElements = document.querySelectorAll("input");
+        allSelectElements = document.querySelectorAll("select");
 
-        console.log(allInputElements);
+        //Das erste Selectelement wird deklariert
+        employeeValue = parseFloat(allSelectElements[0].value);
 
-        employee1Value = parseFloat(allInputElements[0].value);
+        for (let i: number = 0; i < employeeValue; i++) {
 
-        console.log(employee1Value);
+            //Zufällige Startposition für die Mitarbeiter
+            let randomPositionX: number = Math.random() * 150 + 400;
+            let randomPositionY: number = Math.random() * 135 + 125;
 
-        
+            //Mitarbeiter werden erstellt
+            let employee: Employee = new Employee();
+            humans.push(employee);
+            employee.draw(randomPositionX, randomPositionY)
+            console.log(employeeValue);
 
+            // console.log(humans);
+            // console.log(randomPositionX);
+            // console.log(randomPositionY);
 
+            let number: number = 15000;
 
+            
 
-        // console.log(formData);
-        // console.log(employeeInputElement1);
+            setInterval(createCustomer, number);
+        }
+    }
 
+    function createCustomer(): void {
 
+        console.log("Alle 15 Sekunden bitte ausloggen");
+
+        let customer: Customer = new Customer();
+        humans.push(customer);
+        customer.draw(85, 555);
     }
 }

@@ -8,6 +8,7 @@ var Döner_Trainer;
         constructor() {
         }
         draw(_x, _y) {
+            //Körper des Smiley
             Döner_Trainer.crc2.save();
             Döner_Trainer.crc2.beginPath();
             Döner_Trainer.crc2.lineWidth = 3;
@@ -17,6 +18,7 @@ var Döner_Trainer;
             Döner_Trainer.crc2.fill();
             Döner_Trainer.crc2.stroke();
             Döner_Trainer.crc2.closePath();
+            //Linkes Auge des Smiley
             Döner_Trainer.crc2.save();
             Döner_Trainer.crc2.beginPath();
             Döner_Trainer.crc2.fillStyle = "black";
@@ -24,6 +26,7 @@ var Döner_Trainer;
             Döner_Trainer.crc2.fill();
             Döner_Trainer.crc2.closePath();
             Döner_Trainer.crc2.restore();
+            //Rechtes Auge des Smiley
             Döner_Trainer.crc2.save();
             Döner_Trainer.crc2.beginPath();
             Döner_Trainer.crc2.fillStyle = "black";
@@ -31,6 +34,7 @@ var Döner_Trainer;
             Döner_Trainer.crc2.fill();
             Döner_Trainer.crc2.closePath();
             Döner_Trainer.crc2.restore();
+            //Mund des Smiley
             Döner_Trainer.crc2.save();
             Döner_Trainer.crc2.beginPath();
             Döner_Trainer.crc2.fillStyle = "black";

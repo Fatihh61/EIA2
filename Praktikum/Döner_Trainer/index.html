@@ -25,7 +25,7 @@
             <div id="form">
                 <h2>Auswähle bidde</h1>
 
-                    <fieldset>
+                    <!-- <fieldset>
                         <legend>Anzahl Mitarbeiter</legend>
                         <label for="radio">Wähle Mitarbeiteranzahl:</label>
                         <input type="radio" name="Mitarbeiter" value="1" id="radio1" />
@@ -34,19 +34,32 @@
                         <label for="radio2">2</label>
                         <input type="radio" name="Mitarbeiter" value="3" id="radio3" />
                         <label for="radio3">3</label>
+                    </fieldset> -->
+
+
+                    <fieldset>
+                        <legend>Anzahl Mitarbeiter</legend>
+                        <label for="select1">Wähle die Mitarbeiteranzahl:</label>
+                        <select name="mitarbeiter" id="mitarbeiter">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
                     </fieldset>
+
+
 
                     <br>
 
 
                     <fieldset>
                         <legend>Kunden im Durschnitt/Zeit</legend>
-                        <label for="select1">Wähle die Zeit:</label>
+                        <label for="select2">Wähle die Zeit:</label>
                         <select name="customerTime" id="timeForCustomer">
-                            <option value="1">00:15</option>
-                            <option value="2">00:45</option>
-                            <option value="3">00:30</option>
-                            <option value="4">01:00</option>
+                            <option value="15">00:15</option>
+                            <option value="20">00:20</option>
+                            <option value="25">00:25</option>
+                            <option value="30">00:30</option>
                         </select>
                     </fieldset>
 

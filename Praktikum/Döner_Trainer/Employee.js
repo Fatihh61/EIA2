@@ -6,8 +6,8 @@ var Döner_Trainer;
         constructor() {
             super();
         }
-        draw() {
-            super.draw(Math.random() * 275 + 175, Math.random() * 135 + 125);
+        draw(_x, _y) {
+            super.draw(_x, _y);
         }
         takeOrder() {
             console.log("takeOrder in Employee");

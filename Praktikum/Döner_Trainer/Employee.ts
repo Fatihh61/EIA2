@@ -14,9 +14,9 @@ namespace Döner_Trainer {
 
         }
 
-        draw(): void {
+        draw(_x: number, _y: number): void {
 
-            super.draw(Math.random() * 275 + 175, Math.random() * 135 + 125)
+            super.draw(_x, _y);
             
         }
 

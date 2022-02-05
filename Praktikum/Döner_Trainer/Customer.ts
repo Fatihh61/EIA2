@@ -4,7 +4,7 @@ namespace Döner_Trainer {
 
         satisfaction: string;
 
-        constructor(_x: number, _y: number) {
+        constructor() {
 
             super()
 
@@ -14,7 +14,9 @@ namespace Döner_Trainer {
 
         }
 
-        draw(): void {
+        draw(_x: number, _y: number): void {
+
+            super.draw(_x, _y);
             
         }
 
