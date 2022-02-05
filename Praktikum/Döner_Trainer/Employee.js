@@ -1,11 +1,13 @@
 "use strict";
 var Döner_Trainer;
 (function (Döner_Trainer) {
-    class Employee extends Döner_Trainer.BeingHuman {
+    class Employee extends Döner_Trainer.Human {
+        currentActivity;
         constructor() {
-            super(5, 5);
+            super();
         }
         draw() {
+            super.draw(Math.random() * 275 + 175, Math.random() * 135 + 125);
         }
         takeOrder() {
             console.log("takeOrder in Employee");

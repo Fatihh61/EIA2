@@ -1,10 +1,12 @@
 namespace Döner_Trainer {
 
-    export class Employee extends BeingHuman {
+    export class Employee extends Human {
+
+        currentActivity: string;
 
         constructor() {
 
-            super(5, 5)
+            super()
 
 
 
@@ -13,6 +15,8 @@ namespace Döner_Trainer {
         }
 
         draw(): void {
+
+            super.draw(Math.random() * 275 + 175, Math.random() * 135 + 125)
             
         }
 

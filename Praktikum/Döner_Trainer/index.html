@@ -7,15 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Döner-Trainer</title>
     <link rel="stylesheet" href="style.css">
+    <script src="Human.js"></script>
+    <script src="Employee.js"></script>
+    <script src="Customer.js"></script>
+    <script src="Vegetable.js"></script>
     <script src="Main.js"></script>
 </head>
 
 <body>
 
-    <canvas id="canvas" width="800" height="600"></canvas>
+    <canvas class="isHidden" id="canvas" width="800" height="600"></canvas>
 
-    <h1 class="isHidden">Startseite</h1>
-    <form class="isHidden">
+
+    <form>
+        <h1>Startseite</h1>
         <div id="container">
             <div id="form">
                 <h2>Auswähle bidde</h1>
@@ -23,11 +28,11 @@
                     <fieldset>
                         <legend>Anzahl Mitarbeiter</legend>
                         <label for="radio">Wähle Mitarbeiteranzahl:</label>
-                        <input type="radio" name="Mitarbeiter" value="radio1" id="radio1" />
+                        <input type="radio" name="Mitarbeiter" value="1" id="radio1" />
                         <label for="radio1">1</label>
-                        <input type="radio" name="Mitarbeiter" value="radio2" id="radio2" />
+                        <input type="radio" name="Mitarbeiter" value="2" id="radio2" />
                         <label for="radio2">2</label>
-                        <input type="radio" name="Mitarbeiter" value="radio3" id="radio3" />
+                        <input type="radio" name="Mitarbeiter" value="3" id="radio3" />
                         <label for="radio3">3</label>
                     </fieldset>
 
@@ -72,30 +77,11 @@
                     </fieldset>
 
 
+                    <br>
 
-
-
-
-
-
+                    <button id="startButton" type="button" id="start">Start</button>
             </div>
-
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
     </form>
-
 </body>
-
 </html>

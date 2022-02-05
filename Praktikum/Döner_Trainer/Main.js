@@ -2,16 +2,30 @@
 var Döner_Trainer;
 (function (Döner_Trainer) {
     window.addEventListener("load", handleLoad);
+    let form;
+    let employeeInputElement1;
+    let employeeInputElement2;
+    let employeeInputElement3;
+    let employee1Value;
+    let formData;
+    let allInputElements;
     function handleLoad(_event) {
-        console.log("Hallo");
+        let startButton = document.querySelector("#startButton");
+        startButton.addEventListener("click", loadCanvas);
+    }
+    function loadCanvas(_event) {
         let canvas = document.querySelector("canvas");
         Döner_Trainer.crc2 = canvas.getContext("2d");
+        form = document.querySelector("form");
+        form.classList.add("isHidden");
+        canvas.classList.remove("isHidden");
         Döner_Trainer.crc2.save();
         Döner_Trainer.crc2.lineWidth = 10;
         Döner_Trainer.crc2.strokeStyle = "black";
         Döner_Trainer.crc2.strokeRect(0, 0, 800, 600);
         Döner_Trainer.crc2.restore();
         drawKebabHouse();
+        createHumans();
     }
     function drawKebabHouse() {
         //Rechteck innerhalb der Küche
@@ -22,7 +36,7 @@ var Döner_Trainer;
         Döner_Trainer.crc2.strokeStyle = "black";
         Döner_Trainer.crc2.closePath();
         Döner_Trainer.crc2.restore();
-        //Theke
+        //Theke1
         Döner_Trainer.crc2.save();
         Döner_Trainer.crc2.beginPath();
         Döner_Trainer.crc2.moveTo(700, 100);
@@ -36,7 +50,7 @@ var Döner_Trainer;
         Döner_Trainer.crc2.fill();
         Döner_Trainer.crc2.closePath();
         Döner_Trainer.crc2.restore();
-        //Theke
+        //Theke2
         Döner_Trainer.crc2.save();
         Döner_Trainer.crc2.beginPath();
         Döner_Trainer.crc2.lineWidth = 4;
@@ -54,11 +68,13 @@ var Döner_Trainer;
         Döner_Trainer.crc2.stroke();
         Döner_Trainer.crc2.closePath();
         Döner_Trainer.crc2.restore();
+        Döner_Trainer.crc2.save();
         Döner_Trainer.crc2.beginPath();
         Döner_Trainer.crc2.fillStyle = "black";
         Döner_Trainer.crc2.arc(100, 225, 1, 0, 2 * Math.PI);
         Döner_Trainer.crc2.fill();
         Döner_Trainer.crc2.closePath();
+        Döner_Trainer.crc2.restore();
         //Behälter für Ersatzzutaten
         let positionOfErsatzbehälter = 0;
         let numberAdditionErsatzbehälter = 100;
@@ -100,6 +116,22 @@ var Döner_Trainer;
         Döner_Trainer.crc2.font = "25px Arial";
         Döner_Trainer.crc2.fillText("Hallo", 57, 558);
         Döner_Trainer.crc2.restore();
+    }
+    function createHumans() {
+        let employee1 = new Döner_Trainer.Employee();
+        employee1.draw(Math.random() * 150 + 300, Math.random() * 135 + 125);
+        let employeeArray = [];
+        employeeInputElement1 = document.getElementById("radio1");
+        employeeInputElement2 = document.getElementById("radio2");
+        employeeInputElement3 = document.getElementById("radio3");
+        employeeArray.push(employeeInputElement1);
+        formData = new FormData(document.forms[0]);
+        allInputElements = document.querySelectorAll("input");
+        console.log(allInputElements);
+        employee1Value = parseFloat(allInputElements[0].value);
+        console.log(employee1Value);
+        // console.log(formData);
+        // console.log(employeeInputElement1);
     }
 })(Döner_Trainer || (Döner_Trainer = {}));
 //# sourceMappingURL=Main.js.map
