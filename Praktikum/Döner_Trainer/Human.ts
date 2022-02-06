@@ -46,6 +46,9 @@ namespace Döner_Trainer {
             crc2.closePath();
 
             crc2.restore();
+        }
+
+        drawMouthOfSmiley(_x: number, _y: number): void {
 
             //Mund des Smiley
             crc2.save();
@@ -60,9 +63,6 @@ namespace Döner_Trainer {
 
             crc2.restore;
         }
-
-
-
     }
 
 

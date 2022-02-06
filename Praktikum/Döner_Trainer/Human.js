@@ -34,6 +34,8 @@ var Döner_Trainer;
             Döner_Trainer.crc2.fill();
             Döner_Trainer.crc2.closePath();
             Döner_Trainer.crc2.restore();
+        }
+        drawMouthOfSmiley(_x, _y) {
             //Mund des Smiley
             Döner_Trainer.crc2.save();
             Döner_Trainer.crc2.beginPath();

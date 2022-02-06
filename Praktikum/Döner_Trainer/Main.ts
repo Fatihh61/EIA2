@@ -7,7 +7,10 @@ namespace Döner_Trainer {
 
     let form: HTMLFormElement;
 
+    let canvasContainer: HTMLDivElement;
+
     let humans: Human[] = [];
+    let vegetables: Vegetable[] = [];
 
     let employeeValue: number;
     let customerValue: number;
@@ -16,6 +19,8 @@ namespace Döner_Trainer {
 
     let allInputElements: NodeListOf<HTMLInputElement>;
     let allSelectElements: NodeListOf<HTMLSelectElement>;
+
+    let onionbutton: HTMLButtonElement;
 
 
     function handleLoad(_event: Event): void {
@@ -33,18 +38,39 @@ namespace Döner_Trainer {
         form.classList.add("isHidden");
         canvas.classList.remove("isHidden");
 
+        canvasContainer = <HTMLDivElement> document.getElementById("canvasContainer");
+        canvasContainer.classList.remove("isHidden");
+
+        onionbutton = <HTMLButtonElement> document.getElementById("onionButton");
+        onionbutton.classList.remove("isHidden");
+
+        onionbutton.addEventListener("click", onionContainer);
+
+        drawKebabHouse();
+        drawOnion();
+        drawCorn();
+        drawSalad();
+        drawRedSalad();
+        drawTomatoe();
+        createEmployee();
+    }
+
+    function onionContainer(_event: MouseEvent): void {
+
+        console.log("Clicked");
+        
+
+    }
+
+
+    function drawKebabHouse(): void {
+
+        //Äußeren Wände der Küche
         crc2.save();
         crc2.lineWidth = 10;
         crc2.strokeStyle = "black";
         crc2.strokeRect(0, 0, 800, 600);
         crc2.restore();
-
-        drawKebabHouse();
-        createEmployee();
-    }
-
-
-    function drawKebabHouse(): void {
 
         //Rechteck innerhalb der Küche
         crc2.save();
@@ -86,7 +112,6 @@ namespace Döner_Trainer {
         crc2.restore();
 
         //Dönerspieß
-
         crc2.save();
 
         crc2.beginPath();
@@ -110,7 +135,6 @@ namespace Döner_Trainer {
         crc2.restore();
 
         //Behälter für Ersatzzutaten
-
         let positionOfErsatzbehälter: number = 0;
         let numberAdditionErsatzbehälter: number = 100;
 
@@ -168,6 +192,46 @@ namespace Döner_Trainer {
         crc2.restore();
     }
 
+    function drawOnion(): void {
+
+        let onion: Zwiebel = new Zwiebel();
+        
+        onion.draw(250, 425);
+        vegetables.push(onion);
+    }
+
+    function drawCorn(): void {
+
+        let mais: Mais = new Mais();
+        
+        mais.draw(350, 425);
+        vegetables.push(mais);
+    }
+
+    function drawRedSalad(): void {
+
+        let redSalad: Rotkraut = new Rotkraut();
+        
+        redSalad.draw(550, 425);
+        vegetables.push(redSalad);
+    }
+
+    function drawTomatoe(): void {
+
+        let tomatoe: Tomate = new Tomate();
+        
+        tomatoe.draw(650, 425);
+        vegetables.push(tomatoe);
+    }
+
+    function drawSalad(): void {
+
+        let salad: Salat = new Salat();
+        
+        salad.draw(450, 425);
+        vegetables.push(salad);
+    }
+
     function createEmployee(): void {
 
         //FormData wird übertragen
@@ -190,26 +254,29 @@ namespace Döner_Trainer {
             let employee: Employee = new Employee();
             humans.push(employee);
             employee.draw(randomPositionX, randomPositionY)
+            employee.drawMouthOfSmiley(randomPositionX, randomPositionY);
             console.log(employeeValue);
 
             // console.log(humans);
             // console.log(randomPositionX);
             // console.log(randomPositionY);
 
-            let number: number = 15000;
+            customerValue = parseFloat(allSelectElements[1].value);
 
+            console.log(customerValue);
             
 
-            setInterval(createCustomer, number);
+            setInterval(createCustomer, customerValue);
         }
     }
 
     function createCustomer(): void {
 
-        console.log("Alle 15 Sekunden bitte ausloggen");
+        console.log("Alle x Sekunden bitte ausloggen");
 
         let customer: Customer = new Customer();
         humans.push(customer);
         customer.draw(85, 555);
+        customer.drawMouthOfSmiley(85, 555);
     }
 }

@@ -11,12 +11,21 @@
     <script src="Employee.js"></script>
     <script src="Customer.js"></script>
     <script src="Vegetable.js"></script>
+    <script src="Zwiebel.js"></script>
+    <script src="Mais.js"></script>
+    <script src="Salat.js"></script>
+    <script src="Rotkraut.js"></script>
+    <script src="Tomate.js"></script>
     <script src="Main.js"></script>
 </head>
 
 <body>
 
-    <canvas class="isHidden" id="canvas" width="800" height="600"></canvas>
+    <div class="isHidden" id="canvasContainer">
+        <canvas class="isHidden" id="canvas" width="800" height="600"></canvas>
+
+        <button class="isHidden" id="onionButton"></button>
+    </div>
 
 
     <form>
@@ -56,10 +65,10 @@
                         <legend>Kunden im Durschnitt/Zeit</legend>
                         <label for="select2">Wähle die Zeit:</label>
                         <select name="customerTime" id="timeForCustomer">
-                            <option value="15">00:15</option>
-                            <option value="20">00:20</option>
-                            <option value="25">00:25</option>
-                            <option value="30">00:30</option>
+                            <option value="15000">00:15</option>
+                            <option value="20000">00:20</option>
+                            <option value="25000">00:25</option>
+                            <option value="30000">00:30</option>
                         </select>
                     </fieldset>
 
@@ -97,4 +106,5 @@
         </div>
     </form>
 </body>
+
 </html>

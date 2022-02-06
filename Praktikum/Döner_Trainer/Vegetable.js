@@ -4,10 +4,7 @@ var Döner_Trainer;
     class Vegetable {
         position;
         ressourceAmount;
-        constructor(_x, _y) {
-        }
-        draw() {
-            console.log("draw in Vegetable");
+        constructor() {
         }
     }
     Döner_Trainer.Vegetable = Vegetable;

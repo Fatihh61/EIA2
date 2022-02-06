@@ -3,12 +3,15 @@ var Döner_Trainer;
 (function (Döner_Trainer) {
     window.addEventListener("load", handleLoad);
     let form;
+    let canvasContainer;
     let humans = [];
+    let vegetables = [];
     let employeeValue;
     let customerValue;
     let formData;
     let allInputElements;
     let allSelectElements;
+    let onionbutton;
     function handleLoad(_event) {
         let startButton = document.querySelector("#startButton");
         startButton.addEventListener("click", loadCanvas);
@@ -19,15 +22,29 @@ var Döner_Trainer;
         form = document.querySelector("form");
         form.classList.add("isHidden");
         canvas.classList.remove("isHidden");
+        canvasContainer = document.getElementById("canvasContainer");
+        canvasContainer.classList.remove("isHidden");
+        onionbutton = document.getElementById("onionButton");
+        onionbutton.classList.remove("isHidden");
+        onionbutton.addEventListener("click", onionContainer);
+        drawKebabHouse();
+        drawOnion();
+        drawCorn();
+        drawSalad();
+        drawRedSalad();
+        drawTomatoe();
+        createEmployee();
+    }
+    function onionContainer(_event) {
+        console.log("Clicked");
+    }
+    function drawKebabHouse() {
+        //Äußeren Wände der Küche
         Döner_Trainer.crc2.save();
         Döner_Trainer.crc2.lineWidth = 10;
         Döner_Trainer.crc2.strokeStyle = "black";
         Döner_Trainer.crc2.strokeRect(0, 0, 800, 600);
         Döner_Trainer.crc2.restore();
-        drawKebabHouse();
-        createEmployee();
-    }
-    function drawKebabHouse() {
         //Rechteck innerhalb der Küche
         Döner_Trainer.crc2.save();
         Döner_Trainer.crc2.beginPath();
@@ -117,6 +134,31 @@ var Döner_Trainer;
         Döner_Trainer.crc2.fillText("Hallo", 57, 558);
         Döner_Trainer.crc2.restore();
     }
+    function drawOnion() {
+        let onion = new Döner_Trainer.Zwiebel();
+        onion.draw(250, 425);
+        vegetables.push(onion);
+    }
+    function drawCorn() {
+        let mais = new Döner_Trainer.Mais();
+        mais.draw(350, 425);
+        vegetables.push(mais);
+    }
+    function drawRedSalad() {
+        let redSalad = new Döner_Trainer.Rotkraut();
+        redSalad.draw(550, 425);
+        vegetables.push(redSalad);
+    }
+    function drawTomatoe() {
+        let tomatoe = new Döner_Trainer.Tomate();
+        tomatoe.draw(650, 425);
+        vegetables.push(tomatoe);
+    }
+    function drawSalad() {
+        let salad = new Döner_Trainer.Salat();
+        salad.draw(450, 425);
+        vegetables.push(salad);
+    }
     function createEmployee() {
         //FormData wird übertragen
         formData = new FormData(document.forms[0]);
@@ -133,19 +175,22 @@ var Döner_Trainer;
             let employee = new Döner_Trainer.Employee();
             humans.push(employee);
             employee.draw(randomPositionX, randomPositionY);
+            employee.drawMouthOfSmiley(randomPositionX, randomPositionY);
             console.log(employeeValue);
             // console.log(humans);
             // console.log(randomPositionX);
             // console.log(randomPositionY);
-            let number = 15000;
-            setInterval(createCustomer, number);
+            customerValue = parseFloat(allSelectElements[1].value);
+            console.log(customerValue);
+            setInterval(createCustomer, customerValue);
         }
     }
     function createCustomer() {
-        console.log("Alle 15 Sekunden bitte ausloggen");
+        console.log("Alle x Sekunden bitte ausloggen");
         let customer = new Döner_Trainer.Customer();
         humans.push(customer);
         customer.draw(85, 555);
+        customer.drawMouthOfSmiley(85, 555);
     }
 })(Döner_Trainer || (Döner_Trainer = {}));
 //# sourceMappingURL=Main.js.map

@@ -1,18 +1,15 @@
 namespace Döner_Trainer {
 
-    export class Vegetable {
+    export abstract class Vegetable {
 
         position: number;
         ressourceAmount: number;
 
-        constructor(_x: number, _y: number) {
+        constructor() {
 
 
         }
 
-        draw(): void {
-
-            console.log("draw in Vegetable");
-        }
+        abstract draw(_x: number, _y: number): void;
     }
 }
