@@ -64,6 +64,15 @@ namespace Döner_Trainer {
     let employee3ResourcenButton: HTMLButtonElement;
     let employee3PauseButton: HTMLButtonElement;
 
+    //ImageData
+
+    let imgDataKebabHouse: ImageData;
+    let imgDataOnion: ImageData;
+    let imgDataCorn: ImageData;
+    let imgDataRedSalad: ImageData;
+    let imgDataSalad: ImageData;
+    let imgDataTomato: ImageData;
+
 
     function handleLoad(_event: Event): void {
 
@@ -84,75 +93,75 @@ namespace Döner_Trainer {
         canvas.classList.remove("isHidden");
 
         //Wertzuweisung für Canvas und isHidden remove
-        canvasContainer = <HTMLDivElement> document.getElementById("canvasContainer");
+        canvasContainer = <HTMLDivElement>document.getElementById("canvasContainer");
         canvasContainer.classList.remove("isHidden");
 
         //Wertzuweisung für Zutaten an der Theke und isHidden remove
-        onionButton = <HTMLButtonElement> document.getElementById("onionButton");
+        onionButton = <HTMLButtonElement>document.getElementById("onionButton");
         onionButton.classList.remove("isHidden");
-        cornButton = <HTMLButtonElement> document.getElementById("cornButton");
+        cornButton = <HTMLButtonElement>document.getElementById("cornButton");
         cornButton.classList.remove("isHidden");
-        saladButton = <HTMLButtonElement> document.getElementById("saladButton");
+        saladButton = <HTMLButtonElement>document.getElementById("saladButton");
         saladButton.classList.remove("isHidden");
-        redsaladButton = <HTMLButtonElement> document.getElementById("redsaladButton");
+        redsaladButton = <HTMLButtonElement>document.getElementById("redsaladButton");
         redsaladButton.classList.remove("isHidden");
-        tomatoButton = <HTMLButtonElement> document.getElementById("tomatoButton");
+        tomatoButton = <HTMLButtonElement>document.getElementById("tomatoButton");
         tomatoButton.classList.remove("isHidden");
 
         //Wertzuweisung für Resourcen und isHidden remove
-        onionResourcenButton = <HTMLButtonElement> document.getElementById("onionResourcenButton");
+        onionResourcenButton = <HTMLButtonElement>document.getElementById("onionResourcenButton");
         onionResourcenButton.classList.remove("isHidden");
-        cornResourcenButton = <HTMLButtonElement> document.getElementById("cornResourcenButton");
+        cornResourcenButton = <HTMLButtonElement>document.getElementById("cornResourcenButton");
         cornResourcenButton.classList.remove("isHidden");
-        saladResourcenButton = <HTMLButtonElement> document.getElementById("saladResourcenButton");
+        saladResourcenButton = <HTMLButtonElement>document.getElementById("saladResourcenButton");
         saladResourcenButton.classList.remove("isHidden");
-        redsaladResourcenButton = <HTMLButtonElement> document.getElementById("redsaladResourcenButton");
+        redsaladResourcenButton = <HTMLButtonElement>document.getElementById("redsaladResourcenButton");
         redsaladResourcenButton.classList.remove("isHidden");
-        tomatoResourcenButton = <HTMLButtonElement> document.getElementById("tomatoResourcenButton");
+        tomatoResourcenButton = <HTMLButtonElement>document.getElementById("tomatoResourcenButton");
         tomatoResourcenButton.classList.remove("isHidden");
 
         //Wertzuweisung für Mitarbeiter Nummer 1 und isHidden remove
-        employee1Name = <HTMLParagraphElement> document.getElementById("employee1");
+        employee1Name = <HTMLParagraphElement>document.getElementById("employee1");
         employee1Name.classList.remove("isHidden");
-        employee1ThekeButton = <HTMLButtonElement> document.getElementById("employee1Theke");
+        employee1ThekeButton = <HTMLButtonElement>document.getElementById("employee1Theke");
         employee1ThekeButton.classList.remove("isHidden");
-        employee1DönerButton = <HTMLButtonElement> document.getElementById("employee1Döner");
+        employee1DönerButton = <HTMLButtonElement>document.getElementById("employee1Döner");
         employee1DönerButton.classList.remove("isHidden");
-        employee1TelefonButton = <HTMLButtonElement> document.getElementById("employee1Telefon");
+        employee1TelefonButton = <HTMLButtonElement>document.getElementById("employee1Telefon");
         employee1TelefonButton.classList.remove("isHidden");
-        employee1ResourcenButton = <HTMLButtonElement> document.getElementById("employee1Resourcen");
+        employee1ResourcenButton = <HTMLButtonElement>document.getElementById("employee1Resourcen");
         employee1ResourcenButton.classList.remove("isHidden");
-        employee1PauseButton = <HTMLButtonElement> document.getElementById("employee1Pause");
+        employee1PauseButton = <HTMLButtonElement>document.getElementById("employee1Pause");
         employee1PauseButton.classList.remove("isHidden");
 
         //Wertzuweisung für Mitarbeiter Nummer 2 und isHidden remove
-        employee2Name = <HTMLParagraphElement> document.getElementById("employee2");
+        employee2Name = <HTMLParagraphElement>document.getElementById("employee2");
         employee2Name.classList.remove("isHidden");
-        employee2ThekeButton = <HTMLButtonElement> document.getElementById("employee2Theke");
+        employee2ThekeButton = <HTMLButtonElement>document.getElementById("employee2Theke");
         employee2ThekeButton.classList.remove("isHidden");
-        employee2DönerButton = <HTMLButtonElement> document.getElementById("employee2Döner");
+        employee2DönerButton = <HTMLButtonElement>document.getElementById("employee2Döner");
         employee2DönerButton.classList.remove("isHidden");
-        employee2TelefonButton = <HTMLButtonElement> document.getElementById("employee2Telefon");
+        employee2TelefonButton = <HTMLButtonElement>document.getElementById("employee2Telefon");
         employee2TelefonButton.classList.remove("isHidden");
-        employee2ResourcenButton = <HTMLButtonElement> document.getElementById("employee2Resourcen");
+        employee2ResourcenButton = <HTMLButtonElement>document.getElementById("employee2Resourcen");
         employee2ResourcenButton.classList.remove("isHidden");
-        employee2PauseButton = <HTMLButtonElement> document.getElementById("employee2Pause");
+        employee2PauseButton = <HTMLButtonElement>document.getElementById("employee2Pause");
         employee2PauseButton.classList.remove("isHidden");
 
         //Wertzuweisung für Mitarbeiter Nummer 3 und isHidden remove
-        employee3Name = <HTMLParagraphElement> document.getElementById("employee3");
+        employee3Name = <HTMLParagraphElement>document.getElementById("employee3");
         employee3Name.classList.remove("isHidden");
-        employee3ThekeButton = <HTMLButtonElement> document.getElementById("employee3Theke");
+        employee3ThekeButton = <HTMLButtonElement>document.getElementById("employee3Theke");
         employee3ThekeButton.classList.remove("isHidden");
-        employee3DönerButton = <HTMLButtonElement> document.getElementById("employee3Döner");
+        employee3DönerButton = <HTMLButtonElement>document.getElementById("employee3Döner");
         employee3DönerButton.classList.remove("isHidden");
-        employee3TelefonButton = <HTMLButtonElement> document.getElementById("employee3Telefon");
+        employee3TelefonButton = <HTMLButtonElement>document.getElementById("employee3Telefon");
         employee3TelefonButton.classList.remove("isHidden");
-        employee3ResourcenButton = <HTMLButtonElement> document.getElementById("employee3Resourcen");
+        employee3ResourcenButton = <HTMLButtonElement>document.getElementById("employee3Resourcen");
         employee3ResourcenButton.classList.remove("isHidden");
-        employee3PauseButton = <HTMLButtonElement> document.getElementById("employee3Pause");
+        employee3PauseButton = <HTMLButtonElement>document.getElementById("employee3Pause");
         employee3PauseButton.classList.remove("isHidden");
-        
+
 
         onionButton.addEventListener("click", onionContainer);
 
@@ -164,6 +173,8 @@ namespace Döner_Trainer {
         drawRedSalad();
         drawTomatoe();
         createEmployee();
+
+        window.setInterval(update, 20);
     }
 
     function onionContainer(_event: MouseEvent): void {
@@ -276,51 +287,63 @@ namespace Döner_Trainer {
         crc2.font = "25px Arial";
         crc2.fillText("Hallo", 57, 558);
         crc2.restore();
+
+        imgDataKebabHouse = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
     //Onion Objekt wird kreiert
     function drawOnion(): void {
 
         let onion: Onion = new Onion();
-        
+
         onion.draw(600, 353);
         vegetables.push(onion);
+
+        imgDataOnion = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
     //Corn Objekt wird kreiert
     function drawCorn(): void {
 
         let mais: Corn = new Corn();
-        
+
         mais.draw(500, 353);
         vegetables.push(mais);
+
+        imgDataCorn = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
     //RedSalad Objekt wird kreiert
     function drawRedSalad(): void {
 
         let redSalad: Redsalad = new Redsalad();
-        
+
         redSalad.draw(300, 353);
         vegetables.push(redSalad);
+
+        imgDataRedSalad = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
     //Tomato Objekt wird kreiert
     function drawTomatoe(): void {
 
-        let tomatoe: Tomato = new Tomato();
-        
-        tomatoe.draw(200, 353);
-        vegetables.push(tomatoe);
+        let tomato: Tomato = new Tomato();
+
+        tomato.draw(200, 353);
+        vegetables.push(tomato);
+
+        imgDataTomato = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
     //Salad Objekt wird kreiert
     function drawSalad(): void {
 
         let salad: Salad = new Salad();
-        
+
         salad.draw(400, 353);
         vegetables.push(salad);
+
+        imgDataSalad = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
     function createEmployee(): void {
@@ -364,5 +387,24 @@ namespace Döner_Trainer {
         humans.push(customer);
         customer.draw(85, 555);
         customer.drawMouthOfSmiley(85, 555);
+    }
+
+    function update(): void {
+
+        console.log("Update wird immer aufgerufen");
+        
+
+        crc2.putImageData(imgDataKebabHouse, 0, 0);
+        crc2.putImageData(imgDataOnion, 0, 0);
+        crc2.putImageData(imgDataCorn, 0, 0);
+        crc2.putImageData(imgDataRedSalad, 0, 0);
+        crc2.putImageData(imgDataSalad, 0, 0);
+        crc2.putImageData(imgDataTomato, 0, 0);
+
+
+        // for (let i: number = 0; i < humans.length; i++) {
+        //     humans[i].draw();
+        // }
+        // cageObject.draw();
     }
 }

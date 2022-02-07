@@ -50,6 +50,13 @@ var Döner_Trainer;
     let employee3TelefonButton;
     let employee3ResourcenButton;
     let employee3PauseButton;
+    //ImageData
+    let imgDataKebabHouse;
+    let imgDataOnion;
+    let imgDataCorn;
+    let imgDataRedSalad;
+    let imgDataSalad;
+    let imgDataTomato;
     function handleLoad(_event) {
         //Start Button von Startseite wird deklariert und listener drauf installiert
         let startButton = document.querySelector("#startButton");
@@ -136,6 +143,7 @@ var Döner_Trainer;
         drawRedSalad();
         drawTomatoe();
         createEmployee();
+        window.setInterval(update, 20);
     }
     function onionContainer(_event) {
         console.log("Clicked");
@@ -221,36 +229,42 @@ var Döner_Trainer;
         Döner_Trainer.crc2.font = "25px Arial";
         Döner_Trainer.crc2.fillText("Hallo", 57, 558);
         Döner_Trainer.crc2.restore();
+        imgDataKebabHouse = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     //Onion Objekt wird kreiert
     function drawOnion() {
         let onion = new Döner_Trainer.Onion();
         onion.draw(600, 353);
         vegetables.push(onion);
+        imgDataOnion = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     //Corn Objekt wird kreiert
     function drawCorn() {
         let mais = new Döner_Trainer.Corn();
         mais.draw(500, 353);
         vegetables.push(mais);
+        imgDataCorn = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     //RedSalad Objekt wird kreiert
     function drawRedSalad() {
         let redSalad = new Döner_Trainer.Redsalad();
         redSalad.draw(300, 353);
         vegetables.push(redSalad);
+        imgDataRedSalad = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     //Tomato Objekt wird kreiert
     function drawTomatoe() {
-        let tomatoe = new Döner_Trainer.Tomato();
-        tomatoe.draw(200, 353);
-        vegetables.push(tomatoe);
+        let tomato = new Döner_Trainer.Tomato();
+        tomato.draw(200, 353);
+        vegetables.push(tomato);
+        imgDataTomato = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     //Salad Objekt wird kreiert
     function drawSalad() {
         let salad = new Döner_Trainer.Salad();
         salad.draw(400, 353);
         vegetables.push(salad);
+        imgDataSalad = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     function createEmployee() {
         //Wertzuweisung für FormData
@@ -282,6 +296,19 @@ var Döner_Trainer;
         humans.push(customer);
         customer.draw(85, 555);
         customer.drawMouthOfSmiley(85, 555);
+    }
+    function update() {
+        console.log("Update wird immer aufgerufen");
+        Döner_Trainer.crc2.putImageData(imgDataKebabHouse, 0, 0);
+        Döner_Trainer.crc2.putImageData(imgDataOnion, 0, 0);
+        Döner_Trainer.crc2.putImageData(imgDataCorn, 0, 0);
+        Döner_Trainer.crc2.putImageData(imgDataRedSalad, 0, 0);
+        Döner_Trainer.crc2.putImageData(imgDataSalad, 0, 0);
+        Döner_Trainer.crc2.putImageData(imgDataTomato, 0, 0);
+        // for (let i: number = 0; i < humans.length; i++) {
+        //     humans[i].draw();
+        // }
+        // cageObject.draw();
     }
 })(Döner_Trainer || (Döner_Trainer = {}));
 //# sourceMappingURL=Main.js.map
