@@ -47,7 +47,6 @@ h2 {
     position: relative;
     width: 800px;
     height: 600px;
-
 }
 
 #startButton {
@@ -57,15 +56,239 @@ h2 {
 #onionButton {
 
     position: relative;
-    width: 45px;
-    height: 40px;
-    bottom: 200px;
+    width: 77px;
+    height: 120px;
+    bottom: 251px;
+    left: 599px;
+    /* background: none;
+    border: none; */
+}
+
+#cornButton {
+
+    position: relative;
+    width: 77px;
+    height: 120px;
+    bottom: 251px;
+    left: 418px;
+    /* background: none;
+    border: none; */
+}
+
+#saladButton {
+
+    position: relative;
+    width: 77px;
+    height: 120px;
+    bottom: 251px;
+    left: 156px;
+    /* background: none;
+    border: none; */
+}
+
+#redsaladButton {
+
+    position: relative;
+    width: 77px;
+    height: 120px;
+    bottom: 251px;
+    left: -25px;
+    /* background: none;
+    border: none; */
+}
+
+#tomatoButton {
+
+    position: relative;
+    width: 77px;
+    height: 120px;
+    bottom: 251px;
+    left: 37px;
+    /* background: none;
+    border: none; */
+}
+
+#onionResourcenButton {
+
+    position: relative;
+    width: 50px;
+    height: 50px;
+    bottom: 614px;
     left: 220px;
-    z-index: 1;
+    /* background: none;
+    border: none; */
+}
+
+#cornResourcenButton {
+
+    position: relative;
+    width: 50px;
+    height: 50px;
+    bottom: 614px;
+    left: 66px;
+    /* background: none;
+    border: none; */
+}
+
+#saladResourcenButton {
+
+    position: relative;
+    width: 50px;
+    height: 50px;
+    bottom: 614px;
+    left: -142px;
+    /* background: none;
+    border: none; */
+}
+
+#redsaladResourcenButton {
+
+    position: relative;
+    width: 50px;
+    height: 50px;
+    bottom: 614px;
+    left: -296px;
+    /* background: none;
+    border: none; */
+}
+
+#tomatoResourcenButton {
+
+    position: relative;
+    width: 50px;
+    height: 50px;
+    bottom: 614px;
+    left: -288px;
+    /* background: none;
+    border: none; */
+}
+
+#employee1 {
+
+    position: relative;
+    margin-left: 825px;
+    margin-top: -700px;
+    font-size: 15pt;
+}
+
+#employee1Theke {
+
+    position: relative;
+    margin-left: 825px;
+}
+
+#employee1Döner {
+
+    position: relative;
+    margin-left: 825px;
+    margin-top: 10px;
+}
+
+#employee1Telefon {
+
+    position: relative;
+    margin-left: 825px;
+    margin-top: 10px;
+}
+
+#employee1Resourcen {
+
+    position: relative;
+    margin-left: 825px;
+    margin-top: 10px;
+}
+
+#employee1Pause {
+
+    position: relative;
+    margin-left: 825px;
+    margin-top: 10px;
+}
+
+#employee2 {
+
+    position: relative;
+    margin-left: 950px;
+    margin-top: -193px;
+    font-size: 15pt;
+}
+
+#employee2Theke {
+
+    position: relative;
+    margin-left: 950px;
+}
+
+#employee2Döner {
+
+    position: relative;
+    margin-left: 950px;
+    margin-top: 10px;
+}
+
+#employee2Telefon {
+
+    position: relative;
+    margin-left: 950px;
+    margin-top: 10px;
+}
+
+#employee2Resourcen {
+
+    position: relative;
+    margin-left: 950px;
+    margin-top: 10px;
+}
+
+#employee2Pause {
+
+    position: relative;
+    margin-left: 950px;
+    margin-top: 10px;
+}
+
+#employee3 {
+
+    position: relative;
+    margin-left: 1075px;
+    margin-top: -193px;
+    font-size: 15pt;
+}
+
+#employee3Theke {
+
+    position: relative;
+    margin-left: 1075px;
+}
+
+#employee3Döner {
+
+    position: relative;
+    margin-left: 1075px;
+    margin-top: 10px;
+}
+
+#employee3Telefon {
+
+    position: relative;
+    margin-left: 1075px;
+    margin-top: 10px;
+}
+
+#employee3Resourcen {
+
+    position: relative;
+    margin-left: 1075px;
+    margin-top: 10px;
+}
+
+#employee3Pause {
+
+    position: relative;
+    margin-left: 1075px;
+    margin-top: 10px;
 }
 
 #canvas {
-
     position: relative;
-    z-index: 0;
 }

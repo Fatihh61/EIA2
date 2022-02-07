@@ -5,47 +5,158 @@ namespace Döner_Trainer {
 
     window.addEventListener("load", handleLoad);
 
+    //Deklariere Formelement
     let form: HTMLFormElement;
 
+    //Deklariere div für canvas
     let canvasContainer: HTMLDivElement;
 
+    //Deklariere Superklassen als array
     let humans: Human[] = [];
     let vegetables: Vegetable[] = [];
 
+    //Deklariere Anzahl der Mitarbeiter und Kunden im Durschnitt/Zeit
     let employeeValue: number;
     let customerValue: number;
 
+    //Deklariere FormData
     let formData: FormData;
 
+    //Deklariere alle Input- und Selectelemente
     let allInputElements: NodeListOf<HTMLInputElement>;
     let allSelectElements: NodeListOf<HTMLSelectElement>;
 
-    let onionbutton: HTMLButtonElement;
+    //Deklariere alle Button für die Zutaten an der Theke
+    let onionButton: HTMLButtonElement;
+    let cornButton: HTMLButtonElement;
+    let saladButton: HTMLButtonElement;
+    let redsaladButton: HTMLButtonElement;
+    let tomatoButton: HTMLButtonElement;
+
+    //Deklariere alle Button für die Resourcen
+    let onionResourcenButton: HTMLButtonElement;
+    let cornResourcenButton: HTMLButtonElement;
+    let saladResourcenButton: HTMLButtonElement;
+    let redsaladResourcenButton: HTMLButtonElement;
+    let tomatoResourcenButton: HTMLButtonElement;
+
+    //Deklariere Button für Mitarbeiter Nummer 1 
+    let employee1Name: HTMLParagraphElement;
+    let employee1ThekeButton: HTMLButtonElement;
+    let employee1DönerButton: HTMLButtonElement;
+    let employee1TelefonButton: HTMLButtonElement;
+    let employee1ResourcenButton: HTMLButtonElement;
+    let employee1PauseButton: HTMLButtonElement;
+
+    //Deklariere Button für Mitarbeiter Nummer 2
+    let employee2Name: HTMLParagraphElement;
+    let employee2ThekeButton: HTMLButtonElement;
+    let employee2DönerButton: HTMLButtonElement;
+    let employee2TelefonButton: HTMLButtonElement;
+    let employee2ResourcenButton: HTMLButtonElement;
+    let employee2PauseButton: HTMLButtonElement;
+
+    //Deklariere Button für Mitarbeiter Nummer 3
+    let employee3Name: HTMLParagraphElement;
+    let employee3ThekeButton: HTMLButtonElement;
+    let employee3DönerButton: HTMLButtonElement;
+    let employee3TelefonButton: HTMLButtonElement;
+    let employee3ResourcenButton: HTMLButtonElement;
+    let employee3PauseButton: HTMLButtonElement;
 
 
     function handleLoad(_event: Event): void {
 
+        //Start Button von Startseite wird deklariert und listener drauf installiert
         let startButton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#startButton");
         startButton.addEventListener("click", loadCanvas);
     }
 
     function loadCanvas(_event: MouseEvent): void {
 
+        //Canvas wird deklariert
         let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
 
+        //Wertzuweisung für Formelement und isHidden remove
         form = <HTMLFormElement>document.querySelector("form");
         form.classList.add("isHidden");
         canvas.classList.remove("isHidden");
 
+        //Wertzuweisung für Canvas und isHidden remove
         canvasContainer = <HTMLDivElement> document.getElementById("canvasContainer");
         canvasContainer.classList.remove("isHidden");
 
-        onionbutton = <HTMLButtonElement> document.getElementById("onionButton");
-        onionbutton.classList.remove("isHidden");
+        //Wertzuweisung für Zutaten an der Theke und isHidden remove
+        onionButton = <HTMLButtonElement> document.getElementById("onionButton");
+        onionButton.classList.remove("isHidden");
+        cornButton = <HTMLButtonElement> document.getElementById("cornButton");
+        cornButton.classList.remove("isHidden");
+        saladButton = <HTMLButtonElement> document.getElementById("saladButton");
+        saladButton.classList.remove("isHidden");
+        redsaladButton = <HTMLButtonElement> document.getElementById("redsaladButton");
+        redsaladButton.classList.remove("isHidden");
+        tomatoButton = <HTMLButtonElement> document.getElementById("tomatoButton");
+        tomatoButton.classList.remove("isHidden");
 
-        onionbutton.addEventListener("click", onionContainer);
+        //Wertzuweisung für Resourcen und isHidden remove
+        onionResourcenButton = <HTMLButtonElement> document.getElementById("onionResourcenButton");
+        onionResourcenButton.classList.remove("isHidden");
+        cornResourcenButton = <HTMLButtonElement> document.getElementById("cornResourcenButton");
+        cornResourcenButton.classList.remove("isHidden");
+        saladResourcenButton = <HTMLButtonElement> document.getElementById("saladResourcenButton");
+        saladResourcenButton.classList.remove("isHidden");
+        redsaladResourcenButton = <HTMLButtonElement> document.getElementById("redsaladResourcenButton");
+        redsaladResourcenButton.classList.remove("isHidden");
+        tomatoResourcenButton = <HTMLButtonElement> document.getElementById("tomatoResourcenButton");
+        tomatoResourcenButton.classList.remove("isHidden");
 
+        //Wertzuweisung für Mitarbeiter Nummer 1 und isHidden remove
+        employee1Name = <HTMLParagraphElement> document.getElementById("employee1");
+        employee1Name.classList.remove("isHidden");
+        employee1ThekeButton = <HTMLButtonElement> document.getElementById("employee1Theke");
+        employee1ThekeButton.classList.remove("isHidden");
+        employee1DönerButton = <HTMLButtonElement> document.getElementById("employee1Döner");
+        employee1DönerButton.classList.remove("isHidden");
+        employee1TelefonButton = <HTMLButtonElement> document.getElementById("employee1Telefon");
+        employee1TelefonButton.classList.remove("isHidden");
+        employee1ResourcenButton = <HTMLButtonElement> document.getElementById("employee1Resourcen");
+        employee1ResourcenButton.classList.remove("isHidden");
+        employee1PauseButton = <HTMLButtonElement> document.getElementById("employee1Pause");
+        employee1PauseButton.classList.remove("isHidden");
+
+        //Wertzuweisung für Mitarbeiter Nummer 2 und isHidden remove
+        employee2Name = <HTMLParagraphElement> document.getElementById("employee2");
+        employee2Name.classList.remove("isHidden");
+        employee2ThekeButton = <HTMLButtonElement> document.getElementById("employee2Theke");
+        employee2ThekeButton.classList.remove("isHidden");
+        employee2DönerButton = <HTMLButtonElement> document.getElementById("employee2Döner");
+        employee2DönerButton.classList.remove("isHidden");
+        employee2TelefonButton = <HTMLButtonElement> document.getElementById("employee2Telefon");
+        employee2TelefonButton.classList.remove("isHidden");
+        employee2ResourcenButton = <HTMLButtonElement> document.getElementById("employee2Resourcen");
+        employee2ResourcenButton.classList.remove("isHidden");
+        employee2PauseButton = <HTMLButtonElement> document.getElementById("employee2Pause");
+        employee2PauseButton.classList.remove("isHidden");
+
+        //Wertzuweisung für Mitarbeiter Nummer 3 und isHidden remove
+        employee3Name = <HTMLParagraphElement> document.getElementById("employee3");
+        employee3Name.classList.remove("isHidden");
+        employee3ThekeButton = <HTMLButtonElement> document.getElementById("employee3Theke");
+        employee3ThekeButton.classList.remove("isHidden");
+        employee3DönerButton = <HTMLButtonElement> document.getElementById("employee3Döner");
+        employee3DönerButton.classList.remove("isHidden");
+        employee3TelefonButton = <HTMLButtonElement> document.getElementById("employee3Telefon");
+        employee3TelefonButton.classList.remove("isHidden");
+        employee3ResourcenButton = <HTMLButtonElement> document.getElementById("employee3Resourcen");
+        employee3ResourcenButton.classList.remove("isHidden");
+        employee3PauseButton = <HTMLButtonElement> document.getElementById("employee3Pause");
+        employee3PauseButton.classList.remove("isHidden");
+        
+
+        onionButton.addEventListener("click", onionContainer);
+
+        //Zeichne Canvaselemente und kreiere die Objekte 
         drawKebabHouse();
         drawOnion();
         drawCorn();
@@ -58,11 +169,9 @@ namespace Döner_Trainer {
     function onionContainer(_event: MouseEvent): void {
 
         console.log("Clicked");
-        
-
     }
 
-
+    //Kebabhaus wird durch Canvas gezeichnet
     function drawKebabHouse(): void {
 
         //Äußeren Wände der Küche
@@ -151,29 +260,6 @@ namespace Döner_Trainer {
             crc2.restore();
         }
 
-        //Behälter für Zutaten
-        crc2.save();
-
-        let positionOfBehälter: number = 0;
-        let numberAdditionBehälter: number = 100;
-
-        for (let i: number = 0; i <= 4; i++) {
-
-            crc2.save();
-
-            crc2.beginPath();
-            crc2.lineWidth = 2;
-            crc2.ellipse(245 + positionOfBehälter, 415, 23, 30, 0, 0, 2 * Math.PI);
-            crc2.strokeStyle = "black";
-            crc2.stroke();
-
-
-            positionOfBehälter += numberAdditionBehälter;
-
-            crc2.closePath();
-            crc2.restore();
-        }
-
         //"Hallo" Matte
 
         crc2.save();
@@ -192,49 +278,54 @@ namespace Döner_Trainer {
         crc2.restore();
     }
 
+    //Onion Objekt wird kreiert
     function drawOnion(): void {
 
-        let onion: Zwiebel = new Zwiebel();
+        let onion: Onion = new Onion();
         
-        onion.draw(250, 425);
+        onion.draw(600, 353);
         vegetables.push(onion);
     }
 
+    //Corn Objekt wird kreiert
     function drawCorn(): void {
 
-        let mais: Mais = new Mais();
+        let mais: Corn = new Corn();
         
-        mais.draw(350, 425);
+        mais.draw(500, 353);
         vegetables.push(mais);
     }
 
+    //RedSalad Objekt wird kreiert
     function drawRedSalad(): void {
 
-        let redSalad: Rotkraut = new Rotkraut();
+        let redSalad: Redsalad = new Redsalad();
         
-        redSalad.draw(550, 425);
+        redSalad.draw(300, 353);
         vegetables.push(redSalad);
     }
 
+    //Tomato Objekt wird kreiert
     function drawTomatoe(): void {
 
-        let tomatoe: Tomate = new Tomate();
+        let tomatoe: Tomato = new Tomato();
         
-        tomatoe.draw(650, 425);
+        tomatoe.draw(200, 353);
         vegetables.push(tomatoe);
     }
 
+    //Salad Objekt wird kreiert
     function drawSalad(): void {
 
-        let salad: Salat = new Salat();
+        let salad: Salad = new Salad();
         
-        salad.draw(450, 425);
+        salad.draw(400, 353);
         vegetables.push(salad);
     }
 
     function createEmployee(): void {
 
-        //FormData wird übertragen
+        //Wertzuweisung für FormData
         formData = new FormData(document.forms[0]);
 
         //Alle Input- und Selectelemente werden deklariert
@@ -246,30 +337,25 @@ namespace Döner_Trainer {
 
         for (let i: number = 0; i < employeeValue; i++) {
 
-            //Zufällige Startposition für die Mitarbeiter
+            //Zufällige Startposition für die Mitarbeiter innerhalb der Küche
             let randomPositionX: number = Math.random() * 150 + 400;
             let randomPositionY: number = Math.random() * 135 + 125;
 
-            //Mitarbeiter werden erstellt
+            //Employee Objekt wird kreiert
             let employee: Employee = new Employee();
             humans.push(employee);
             employee.draw(randomPositionX, randomPositionY)
             employee.drawMouthOfSmiley(randomPositionX, randomPositionY);
             console.log(employeeValue);
 
-            // console.log(humans);
-            // console.log(randomPositionX);
-            // console.log(randomPositionY);
-
             customerValue = parseFloat(allSelectElements[1].value);
 
-            console.log(customerValue);
-            
-
+            //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
             setInterval(createCustomer, customerValue);
         }
     }
 
+    //Customer Objekt wird kreiert
     function createCustomer(): void {
 
         console.log("Alle x Sekunden bitte ausloggen");
