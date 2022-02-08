@@ -4,10 +4,10 @@ var Döner_Trainer;
     class Customer extends Döner_Trainer.Human {
         satisfaction;
         constructor() {
-            super();
+            super(85, 555);
         }
-        draw(_x, _y) {
-            super.draw(_x, _y);
+        draw() {
+            super.draw();
         }
         orderMeal() {
             console.log("orderMeal in Customer");

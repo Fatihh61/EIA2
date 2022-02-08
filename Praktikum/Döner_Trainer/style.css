@@ -35,13 +35,6 @@ h2 {
     text-align: center;
 }
 
-#employee1 {
-
-    width: 1000px;
-    font-size: 10pt;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 #canvasContainer {
 
     position: relative;
@@ -93,8 +86,8 @@ h2 {
     height: 120px;
     bottom: 251px;
     left: -25px;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #tomatoButton {
@@ -163,130 +156,70 @@ h2 {
     border: none; */
 }
 
-#employee1 {
+#aktuellerMitarbeiter {
 
     position: relative;
+    width: 65px;
+    height: 50px;
+    border-color: black;
+    border-style: solid;
     margin-left: 825px;
-    margin-top: -700px;
-    font-size: 15pt;
+    bottom: 700px;
 }
 
 #employee1Theke {
 
     position: relative;
-    margin-left: 825px;
+    margin-left: 900px;
+    bottom: 700px;
 }
 
 #employee1Döner {
 
     position: relative;
-    margin-left: 825px;
-    margin-top: 10px;
+    margin-left: 900px;
+    bottom: 690px;
+    
 }
 
 #employee1Telefon {
 
     position: relative;
-    margin-left: 825px;
-    margin-top: 10px;
+    margin-left: 900px;
+    bottom: 680px;
 }
 
 #employee1Resourcen {
 
     position: relative;
-    margin-left: 825px;
-    margin-top: 10px;
+    margin-left: 900px;
+    bottom: 670px;
 }
 
 #employee1Pause {
 
     position: relative;
-    margin-left: 825px;
-    margin-top: 10px;
+    margin-left: 900px;
+    bottom: 660px;
 }
 
-#employee2 {
+#employee1PrepareResource {
 
     position: relative;
-    margin-left: 950px;
-    margin-top: -193px;
-    font-size: 15pt;
+    margin-left: 900px;
+    bottom: 650px;
 }
 
-#employee2Theke {
+#order {
 
     position: relative;
-    margin-left: 950px;
-}
-
-#employee2Döner {
-
-    position: relative;
-    margin-left: 950px;
-    margin-top: 10px;
-}
-
-#employee2Telefon {
-
-    position: relative;
-    margin-left: 950px;
-    margin-top: 10px;
-}
-
-#employee2Resourcen {
-
-    position: relative;
-    margin-left: 950px;
-    margin-top: 10px;
-}
-
-#employee2Pause {
-
-    position: relative;
-    margin-left: 950px;
-    margin-top: 10px;
-}
-
-#employee3 {
-
-    position: relative;
-    margin-left: 1075px;
-    margin-top: -193px;
-    font-size: 15pt;
-}
-
-#employee3Theke {
-
-    position: relative;
-    margin-left: 1075px;
-}
-
-#employee3Döner {
-
-    position: relative;
-    margin-left: 1075px;
-    margin-top: 10px;
-}
-
-#employee3Telefon {
-
-    position: relative;
-    margin-left: 1075px;
-    margin-top: 10px;
-}
-
-#employee3Resourcen {
-
-    position: relative;
-    margin-left: 1075px;
-    margin-top: 10px;
-}
-
-#employee3Pause {
-
-    position: relative;
-    margin-left: 1075px;
-    margin-top: 10px;
+    width: 150px;
+    height: 100px;
+    border-color: black;
+    border-style: solid;
+    border-width: 5px;
+    bottom: 545px;
+    margin-left: 850px;
 }
 
 #canvas {

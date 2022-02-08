@@ -6,7 +6,7 @@ namespace Döner_Trainer {
 
         constructor() {
 
-            super()
+            super(Math.random() * 150 + 400, Math.random() * 135 + 125);
 
 
 
@@ -14,32 +14,47 @@ namespace Döner_Trainer {
 
         }
 
-        draw(_x: number, _y: number): void {
-
-            super.draw(_x, _y);
+        draw(): void {
+            
+            super.draw();
             
         }
 
 
-        takeOrder(): void {
+        takeOrder(_x: number, _y: number): void {
 
-            console.log("takeOrder in Employee");
+            this.position.x = _x;
+            this.position.y = _y;
         }
 
-        buyRessources(): void {
+        buyResources(_x: number, _y: number): void {
 
-            console.log("buyRessources in Employee");
+            this.position.x = _x;
+            this.position.y = _y;
         }
 
-        takeNap(): void {
+        takeNap(_x: number, _y: number): void {
 
-
-            console.log("takeNap in Employee");
+            this.position.x = _x;
+            this.position.y = _y;
         }
 
-        fillRessources(): void {
+        cutKebab(_x: number, _y: number): void {
 
-            console.log("fillRessources in Employee");
+            this.position.x = _x;
+            this.position.y = _y;
+        }
+
+        fillResources(_x: number, _y: number): void {
+
+            this.position.x = _x;
+            this.position.y = _y;
+        }
+
+        prepareResource(_x: number, _y: number): void {
+
+            this.position.x = _x;
+            this.position.y = _y;
         }
     }
 

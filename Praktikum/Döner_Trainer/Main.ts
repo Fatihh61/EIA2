@@ -8,12 +8,15 @@ namespace Döner_Trainer {
     //Deklariere Formelement
     let form: HTMLFormElement;
 
+    let orderDiv: HTMLDivElement;
+
     //Deklariere div für canvas
     let canvasContainer: HTMLDivElement;
 
     //Deklariere Superklassen als array
     let humans: Human[] = [];
     let vegetables: Vegetable[] = [];
+    let employeeArray: Employee[] = [];
 
     //Deklariere Anzahl der Mitarbeiter und Kunden im Durschnitt/Zeit
     let employeeValue: number;
@@ -34,44 +37,54 @@ namespace Döner_Trainer {
     let tomatoButton: HTMLButtonElement;
 
     //Deklariere alle Button für die Resourcen
-    let onionResourcenButton: HTMLButtonElement;
-    let cornResourcenButton: HTMLButtonElement;
-    let saladResourcenButton: HTMLButtonElement;
-    let redsaladResourcenButton: HTMLButtonElement;
-    let tomatoResourcenButton: HTMLButtonElement;
+    let onionResourceButton: HTMLButtonElement;
+    let cornResourceButton: HTMLButtonElement;
+    let saladResourceButton: HTMLButtonElement;
+    let redsaladResourceButton: HTMLButtonElement;
+    let tomatoResourceButton: HTMLButtonElement;
 
     //Deklariere Button für Mitarbeiter Nummer 1 
-    let employee1Name: HTMLParagraphElement;
     let employee1ThekeButton: HTMLButtonElement;
     let employee1DönerButton: HTMLButtonElement;
     let employee1TelefonButton: HTMLButtonElement;
-    let employee1ResourcenButton: HTMLButtonElement;
+    let employee1ResourceButton: HTMLButtonElement;
     let employee1PauseButton: HTMLButtonElement;
-
-    //Deklariere Button für Mitarbeiter Nummer 2
-    let employee2Name: HTMLParagraphElement;
-    let employee2ThekeButton: HTMLButtonElement;
-    let employee2DönerButton: HTMLButtonElement;
-    let employee2TelefonButton: HTMLButtonElement;
-    let employee2ResourcenButton: HTMLButtonElement;
-    let employee2PauseButton: HTMLButtonElement;
-
-    //Deklariere Button für Mitarbeiter Nummer 3
-    let employee3Name: HTMLParagraphElement;
-    let employee3ThekeButton: HTMLButtonElement;
-    let employee3DönerButton: HTMLButtonElement;
-    let employee3TelefonButton: HTMLButtonElement;
-    let employee3ResourcenButton: HTMLButtonElement;
-    let employee3PauseButton: HTMLButtonElement;
+    let employee1PrepareResourceButton: HTMLButtonElement;
 
     //ImageData
-
     let imgDataKebabHouse: ImageData;
     let imgDataOnion: ImageData;
     let imgDataCorn: ImageData;
     let imgDataRedSalad: ImageData;
     let imgDataSalad: ImageData;
     let imgDataTomato: ImageData;
+
+    let ingredientAmountOnion: number;
+    let ingredientAmountCorn: number;
+    let ingredientAmountSalad: number;
+    let ingredientAmountRedsalad: number;
+    let ingredientAmountTomato: number;
+
+    let employee1ThekeBoolean: boolean = true;
+    let employee1DönerBoolean: boolean = true;
+    let employee1TelefonBoolean: boolean = true;
+    let employee1ResourceBoolean: boolean = true;
+    let employee1PauseBoolean: boolean = true;
+    let employee1PrepareBoolean: boolean = true;
+
+    let employee2ThekeBoolean: boolean = true;
+    let employee2DönerBoolean: boolean = true;
+    let employee2TelefonBoolean: boolean = true;
+    let employee2ResourceBoolean: boolean = true;
+    let employee2PauseBoolean: boolean = true;
+    let employee2PrepareBoolean: boolean = true;
+
+    let employee3ThekeBoolean: boolean = true;
+    let employee3DönerBoolean: boolean = true;
+    let employee3TelefonBoolean: boolean = true;
+    let employee3ResourceBoolean: boolean = true;
+    let employee3PauseBoolean: boolean = true;
+    let employee3PrepareBoolean: boolean = true;
 
 
     function handleLoad(_event: Event): void {
@@ -96,6 +109,9 @@ namespace Döner_Trainer {
         canvasContainer = <HTMLDivElement>document.getElementById("canvasContainer");
         canvasContainer.classList.remove("isHidden");
 
+        orderDiv = <HTMLDivElement>document.getElementById("order");
+        orderDiv.classList.remove("isHidden");
+
         //Wertzuweisung für Zutaten an der Theke und isHidden remove
         onionButton = <HTMLButtonElement>document.getElementById("onionButton");
         onionButton.classList.remove("isHidden");
@@ -109,61 +125,45 @@ namespace Döner_Trainer {
         tomatoButton.classList.remove("isHidden");
 
         //Wertzuweisung für Resourcen und isHidden remove
-        onionResourcenButton = <HTMLButtonElement>document.getElementById("onionResourcenButton");
-        onionResourcenButton.classList.remove("isHidden");
-        cornResourcenButton = <HTMLButtonElement>document.getElementById("cornResourcenButton");
-        cornResourcenButton.classList.remove("isHidden");
-        saladResourcenButton = <HTMLButtonElement>document.getElementById("saladResourcenButton");
-        saladResourcenButton.classList.remove("isHidden");
-        redsaladResourcenButton = <HTMLButtonElement>document.getElementById("redsaladResourcenButton");
-        redsaladResourcenButton.classList.remove("isHidden");
-        tomatoResourcenButton = <HTMLButtonElement>document.getElementById("tomatoResourcenButton");
-        tomatoResourcenButton.classList.remove("isHidden");
+        onionResourceButton = <HTMLButtonElement>document.getElementById("onionResourcenButton");
+        onionResourceButton.classList.remove("isHidden");
+        cornResourceButton = <HTMLButtonElement>document.getElementById("cornResourcenButton");
+        cornResourceButton.classList.remove("isHidden");
+        saladResourceButton = <HTMLButtonElement>document.getElementById("saladResourcenButton");
+        saladResourceButton.classList.remove("isHidden");
+        redsaladResourceButton = <HTMLButtonElement>document.getElementById("redsaladResourcenButton");
+        redsaladResourceButton.classList.remove("isHidden");
+        tomatoResourceButton = <HTMLButtonElement>document.getElementById("tomatoResourcenButton");
+        tomatoResourceButton.classList.remove("isHidden");
 
         //Wertzuweisung für Mitarbeiter Nummer 1 und isHidden remove
-        employee1Name = <HTMLParagraphElement>document.getElementById("employee1");
-        employee1Name.classList.remove("isHidden");
         employee1ThekeButton = <HTMLButtonElement>document.getElementById("employee1Theke");
         employee1ThekeButton.classList.remove("isHidden");
         employee1DönerButton = <HTMLButtonElement>document.getElementById("employee1Döner");
         employee1DönerButton.classList.remove("isHidden");
         employee1TelefonButton = <HTMLButtonElement>document.getElementById("employee1Telefon");
         employee1TelefonButton.classList.remove("isHidden");
-        employee1ResourcenButton = <HTMLButtonElement>document.getElementById("employee1Resourcen");
-        employee1ResourcenButton.classList.remove("isHidden");
+        employee1ResourceButton = <HTMLButtonElement>document.getElementById("employee1Resourcen");
+        employee1ResourceButton.classList.remove("isHidden");
         employee1PauseButton = <HTMLButtonElement>document.getElementById("employee1Pause");
         employee1PauseButton.classList.remove("isHidden");
+        employee1PrepareResourceButton = <HTMLButtonElement>document.getElementById("employee1PrepareResource");
+        employee1PrepareResourceButton.classList.remove("isHidden");
 
-        //Wertzuweisung für Mitarbeiter Nummer 2 und isHidden remove
-        employee2Name = <HTMLParagraphElement>document.getElementById("employee2");
-        employee2Name.classList.remove("isHidden");
-        employee2ThekeButton = <HTMLButtonElement>document.getElementById("employee2Theke");
-        employee2ThekeButton.classList.remove("isHidden");
-        employee2DönerButton = <HTMLButtonElement>document.getElementById("employee2Döner");
-        employee2DönerButton.classList.remove("isHidden");
-        employee2TelefonButton = <HTMLButtonElement>document.getElementById("employee2Telefon");
-        employee2TelefonButton.classList.remove("isHidden");
-        employee2ResourcenButton = <HTMLButtonElement>document.getElementById("employee2Resourcen");
-        employee2ResourcenButton.classList.remove("isHidden");
-        employee2PauseButton = <HTMLButtonElement>document.getElementById("employee2Pause");
-        employee2PauseButton.classList.remove("isHidden");
+        employee1ThekeButton.addEventListener("click", employee1Theke);
+        employee1DönerButton.addEventListener("click", employee1Döner);
+        employee1TelefonButton.addEventListener("click", employee1Telefon);
+        employee1ResourceButton.addEventListener("click", employee1Resourcen);
+        employee1PauseButton.addEventListener("click", employee1Pause);
+        employee1PrepareResourceButton.addEventListener("click", employee1PrepareResource);
 
-        //Wertzuweisung für Mitarbeiter Nummer 3 und isHidden remove
-        employee3Name = <HTMLParagraphElement>document.getElementById("employee3");
-        employee3Name.classList.remove("isHidden");
-        employee3ThekeButton = <HTMLButtonElement>document.getElementById("employee3Theke");
-        employee3ThekeButton.classList.remove("isHidden");
-        employee3DönerButton = <HTMLButtonElement>document.getElementById("employee3Döner");
-        employee3DönerButton.classList.remove("isHidden");
-        employee3TelefonButton = <HTMLButtonElement>document.getElementById("employee3Telefon");
-        employee3TelefonButton.classList.remove("isHidden");
-        employee3ResourcenButton = <HTMLButtonElement>document.getElementById("employee3Resourcen");
-        employee3ResourcenButton.classList.remove("isHidden");
-        employee3PauseButton = <HTMLButtonElement>document.getElementById("employee3Pause");
-        employee3PauseButton.classList.remove("isHidden");
+        onionButton.addEventListener("click", onionIngredient);
+        cornButton.addEventListener("click", cornIngredient);
+        saladButton.addEventListener("click", saladIngredient);
+        redsaladButton.addEventListener("click", redsaladIngredient);
+        tomatoButton.addEventListener("click", tomatoIngredient);
 
-
-        onionButton.addEventListener("click", onionContainer);
+        onionResourceButton.addEventListener("click", onionResource);
 
         //Zeichne Canvaselemente und kreiere die Objekte 
         drawKebabHouse();
@@ -177,9 +177,676 @@ namespace Döner_Trainer {
         window.setInterval(update, 20);
     }
 
-    function onionContainer(_event: MouseEvent): void {
+    //Mitarbeiter 1 Tastatur
+    function employee1Theke(_event: MouseEvent): void {
 
-        console.log("Clicked");
+        console.log(_event.target);
+
+        let aktuellerMitarbeiter: number;
+
+        allSelectElements = document.querySelectorAll("select");
+
+        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+
+        console.log(aktuellerMitarbeiter);
+
+        switch (aktuellerMitarbeiter) {
+            case 1:
+
+                employee2DönerBoolean = true;
+                employee3DönerBoolean = true;
+
+                employee2TelefonBoolean = true;
+                employee3TelefonBoolean = true;
+
+                employee2ResourceBoolean = true;
+                employee3ResourceBoolean = true;
+
+                employee2PauseBoolean = true;
+                employee3PauseBoolean = true;
+
+                employee2PrepareBoolean = true;
+                employee3PrepareBoolean = true;
+
+                console.log(employee1ThekeBoolean);
+                
+
+                // employeeArray[0].takeOrder(450, 320);
+
+                if (employee1ThekeBoolean === true) {
+
+                    employeeArray[0].takeOrder(450, 320);
+
+                    employee1ThekeBoolean = !employee1ThekeBoolean;
+                    employee2ThekeBoolean = !employee2ThekeBoolean;
+                    employee3ThekeBoolean = !employee3ThekeBoolean;
+
+                    console.log(employee1ThekeBoolean);
+                }
+                break;
+            case 2:
+
+                employee1DönerBoolean = true;
+                employee3DönerBoolean = true;
+
+                employee1TelefonBoolean = true;
+                employee3TelefonBoolean = true;
+
+                employee1ResourceBoolean = true;
+                employee3ResourceBoolean = true;
+
+                employee1PauseBoolean = true;
+                employee3PauseBoolean = true;
+
+                employee1PrepareBoolean = true;
+                employee3PrepareBoolean = true;
+
+                // employeeArray[1].takeOrder(450, 320);
+
+                if (employee2ThekeBoolean === true) {
+
+                    employeeArray[1].takeOrder(450, 320);
+
+                    employee1ThekeBoolean = !employee1ThekeBoolean;
+                    employee2ThekeBoolean = !employee2ThekeBoolean;
+                    employee3ThekeBoolean = !employee3ThekeBoolean;
+
+                }
+                break;
+            case 3:
+
+                employee1DönerBoolean = true;
+                employee2DönerBoolean = true;
+
+                employee1TelefonBoolean = true;
+                employee2TelefonBoolean = true;
+
+                employee1ResourceBoolean = true;
+                employee2ResourceBoolean = true;
+
+                employee1PauseBoolean = true;
+                employee2PauseBoolean = true;
+
+                employee1PrepareBoolean = true;
+                employee2PrepareBoolean = true;
+
+                // employeeArray[2].takeOrder(450, 320);
+
+                if (employee3ThekeBoolean === true) {
+
+                    employeeArray[2].takeOrder(450, 320);
+
+                    employee1ThekeBoolean = !employee1ThekeBoolean;
+                    employee2ThekeBoolean = !employee2ThekeBoolean;
+                    employee3ThekeBoolean = !employee3ThekeBoolean;
+
+                }
+                break;
+            default:
+
+                console.log("Fehlgeschlagen");
+
+
+        }
+    }
+
+    function employee1Döner(_event: MouseEvent): void {
+
+        let aktuellerMitarbeiter: number;
+
+        allSelectElements = document.querySelectorAll("select");
+
+        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+
+
+        switch (aktuellerMitarbeiter) {
+            case 1:
+
+                employee2ThekeBoolean = true;
+                employee3ThekeBoolean = true;
+
+                employee2TelefonBoolean = true;
+                employee3TelefonBoolean = true;
+
+                employee2ResourceBoolean = true;
+                employee3ResourceBoolean = true;
+
+                employee2PauseBoolean = true;
+                employee3PauseBoolean = true;
+
+                employee2PrepareBoolean = true;
+                employee3PrepareBoolean = true;
+
+                // employeeArray[0].cutKebab(245, 225);
+
+                if (employee1DönerBoolean === true) {
+
+                    employeeArray[0].cutKebab(245, 225);
+
+                    employee1DönerBoolean = !employee1DönerBoolean;
+                    employee2DönerBoolean = !employee2DönerBoolean;
+                    employee3DönerBoolean = !employee3DönerBoolean;
+                }
+                break;
+            case 2:
+
+                employee1ThekeBoolean = true;
+                employee3ThekeBoolean = true;
+
+                employee1TelefonBoolean = true;
+                employee3TelefonBoolean = true;
+
+                employee1ResourceBoolean = true;
+                employee3ResourceBoolean = true;
+
+                employee1PauseBoolean = true;
+                employee3PauseBoolean = true;
+
+                employee1PrepareBoolean = true;
+                employee3PrepareBoolean = true;
+
+                // employeeArray[1].cutKebab(245, 225);
+
+                if (employee2DönerBoolean === true) {
+
+                    employeeArray[1].cutKebab(245, 225);
+
+                    employee1DönerBoolean = !employee1DönerBoolean;
+                    employee2DönerBoolean = !employee2DönerBoolean;
+                    employee3DönerBoolean = !employee3DönerBoolean;
+                }
+                break;
+            case 3:
+
+                employee1ThekeBoolean = true;
+                employee2ThekeBoolean = true;
+
+                employee1TelefonBoolean = true;
+                employee2TelefonBoolean = true;
+
+                employee1ResourceBoolean = true;
+                employee2ResourceBoolean = true;
+
+                employee1PauseBoolean = true;
+                employee2PauseBoolean = true;
+
+                employee1PrepareBoolean = true;
+                employee2PrepareBoolean = true;
+
+                //employeeArray[2].cutKebab(245, 225);
+
+                if (employee3DönerBoolean === true) {
+
+                    employeeArray[2].cutKebab(245, 225);
+
+                    employee1DönerBoolean = !employee1DönerBoolean;
+                    employee2DönerBoolean = !employee2DönerBoolean;
+                    employee3DönerBoolean = !employee3DönerBoolean;
+                }
+                break;
+            default:
+
+                console.log("Fehlgeschlagen");
+        }
+    }
+
+    function employee1Telefon(_event: MouseEvent): void {
+
+        let aktuellerMitarbeiter: number;
+
+        allSelectElements = document.querySelectorAll("select");
+
+        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+
+
+        switch (aktuellerMitarbeiter) {
+            case 1:
+
+                employee2ThekeBoolean = true;
+                employee3ThekeBoolean = true;
+
+                employee2DönerBoolean = true;
+                employee3DönerBoolean = true;
+
+                employee2ResourceBoolean = true;
+                employee3ResourceBoolean = true;
+
+                employee2PauseBoolean = true;
+                employee3PauseBoolean = true;
+
+                employee2PrepareBoolean = true;
+                employee3PrepareBoolean = true;
+
+                // employeeArray[0].buyResources(650, 315);
+
+                if (employee1TelefonBoolean === true) {
+
+                    employeeArray[0].buyResources(650, 315);
+
+                    employee1TelefonBoolean = !employee1TelefonBoolean;
+                    employee2TelefonBoolean = !employee2TelefonBoolean;
+                    employee3TelefonBoolean = !employee3TelefonBoolean;
+                }
+                break;
+            case 2:
+
+                employee1ThekeBoolean = true;
+                employee3ThekeBoolean = true;
+
+                employee1DönerBoolean = true;
+                employee3DönerBoolean = true;
+
+                employee1ResourceBoolean = true;
+                employee3ResourceBoolean = true;
+
+                employee1PauseBoolean = true;
+                employee3PauseBoolean = true;
+
+                employee1PrepareBoolean = true;
+                employee3PrepareBoolean = true;
+
+                // employeeArray[1].buyResources(650, 315);
+
+                if (employee2TelefonBoolean === true) {
+
+                    employeeArray[1].buyResources(650, 315);
+
+                    employee1TelefonBoolean = !employee1TelefonBoolean;
+                    employee2TelefonBoolean = !employee2TelefonBoolean;
+                    employee3TelefonBoolean = !employee3TelefonBoolean;
+                }
+                break;
+            case 3:
+
+                employee1ThekeBoolean = true;
+                employee2ThekeBoolean = true;
+
+                employee1DönerBoolean = true;
+                employee2DönerBoolean = true;
+
+                employee1ResourceBoolean = true;
+                employee2ResourceBoolean = true;
+
+                employee1PauseBoolean = true;
+                employee2PauseBoolean = true;
+
+                employee1PrepareBoolean = true;
+                employee2PrepareBoolean = true;
+
+                // employeeArray[2].buyResources(650, 315);
+
+                if (employee3TelefonBoolean === true) {
+
+                    employeeArray[2].buyResources(650, 315);
+
+                    employee1TelefonBoolean = !employee1TelefonBoolean;
+                    employee2TelefonBoolean = !employee2TelefonBoolean;
+                    employee3TelefonBoolean = !employee3TelefonBoolean;
+                }
+                break;
+            default:
+
+                console.log("Fehlgeschlagen");
+        }
+    }
+
+    function employee1Resourcen(_event: MouseEvent): void {
+
+        let aktuellerMitarbeiter: number;
+
+        allSelectElements = document.querySelectorAll("select");
+
+        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+
+
+        switch (aktuellerMitarbeiter) {
+            case 1:
+
+                employee2ThekeBoolean = true;
+                employee3ThekeBoolean = true;
+
+                employee2DönerBoolean = true;
+                employee3DönerBoolean = true;
+
+                employee2TelefonBoolean = true;
+                employee3TelefonBoolean = true;
+
+                employee2PauseBoolean = true;
+                employee3PauseBoolean = true;
+
+                employee2PrepareBoolean = true;
+                employee3PrepareBoolean = true;
+
+                // employeeArray[0].fillResources(450, 140);
+
+                if (employee1ResourceBoolean === true) {
+
+                    employeeArray[0].fillResources(450, 140);
+
+                    employee1ResourceBoolean = !employee1ResourceBoolean;
+                    employee2ResourceBoolean = !employee2ResourceBoolean;
+                    employee3ResourceBoolean = !employee3ResourceBoolean;
+                }
+                break;
+            case 2:
+
+                employee1ThekeBoolean = true;
+                employee3ThekeBoolean = true;
+
+                employee1DönerBoolean = true;
+                employee3DönerBoolean = true;
+
+                employee1TelefonBoolean = true;
+                employee3TelefonBoolean = true;
+
+                employee1PauseBoolean = true;
+                employee3PauseBoolean = true;
+
+                employee1PrepareBoolean = true;
+                employee3PrepareBoolean = true;
+
+                // employeeArray[1].fillResources(450, 140);
+
+                if (employee2ResourceBoolean === true) {
+
+                    employeeArray[1].fillResources(450, 140);
+
+                    employee1ResourceBoolean = !employee1ResourceBoolean;
+                    employee2ResourceBoolean = !employee2ResourceBoolean;
+                    employee3ResourceBoolean = !employee3ResourceBoolean;
+                }
+                break;
+            case 3:
+
+                employee1ThekeBoolean = true;
+                employee2ThekeBoolean = true;
+
+                employee1DönerBoolean = true;
+                employee2DönerBoolean = true;
+
+                employee1TelefonBoolean = true;
+                employee2TelefonBoolean = true;
+
+                employee1PauseBoolean = true;
+                employee2PauseBoolean = true;
+
+                employee1PrepareBoolean = true;
+                employee2PrepareBoolean = true;
+
+                //employeeArray[2].fillResources(450, 140);
+
+                if (employee3ResourceBoolean === true) {
+
+                    employeeArray[2].fillResources(450, 140);
+
+                    employee1ResourceBoolean = !employee1ResourceBoolean;
+                    employee2ResourceBoolean = !employee2ResourceBoolean;
+                    employee3ResourceBoolean = !employee3ResourceBoolean;
+                }
+                break;
+            default:
+
+                console.log("Fehlgeschlagen");
+        }
+    }
+
+    function employee1Pause(_event: MouseEvent): void {
+
+        let aktuellerMitarbeiter: number;
+
+        allSelectElements = document.querySelectorAll("select");
+
+        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+
+
+        switch (aktuellerMitarbeiter) {
+            case 1:
+
+                employee2ThekeBoolean = true;
+                employee3ThekeBoolean = true;
+
+                employee2DönerBoolean = true;
+                employee3DönerBoolean = true;
+
+                employee2TelefonBoolean = true;
+                employee3TelefonBoolean = true;
+
+                employee2ResourceBoolean = true;
+                employee3ResourceBoolean = true;
+
+                employee2PrepareBoolean = true;
+                employee3PrepareBoolean = true;
+
+                //employeeArray[0].takeNap(650, 140);
+
+                if (employee1PauseBoolean === true) {
+
+                    employeeArray[0].takeNap(650, 140);
+
+                    employee1PauseBoolean = !employee1PauseBoolean;
+                    employee2PauseBoolean = !employee2PauseBoolean;
+                    employee3PauseBoolean = !employee3PauseBoolean;
+                }
+                break;
+            case 2:
+
+                employee1ThekeBoolean = true;
+                employee3ThekeBoolean = true;
+
+                employee1DönerBoolean = true;
+                employee3DönerBoolean = true;
+
+                employee1TelefonBoolean = true;
+                employee3TelefonBoolean = true;
+
+                employee1ResourceBoolean = true;
+                employee3ResourceBoolean = true;
+
+                employee1PrepareBoolean = true;
+                employee3PrepareBoolean = true;
+
+                // employeeArray[1].takeNap(650, 140);
+
+
+                if (employee2PauseBoolean === true) {
+
+                    employeeArray[1].takeNap(650, 140);
+
+                    employee1PauseBoolean = !employee1PauseBoolean;
+                    employee2PauseBoolean = !employee2PauseBoolean;
+                    employee3PauseBoolean = !employee3PauseBoolean;
+                }
+                break;
+            case 3:
+
+                employee1ThekeBoolean = true;
+                employee2ThekeBoolean = true;
+
+                employee1DönerBoolean = true;
+                employee2DönerBoolean = true;
+
+                employee1TelefonBoolean = true;
+                employee2TelefonBoolean = true;
+
+                employee1ResourceBoolean = true;
+                employee2ResourceBoolean = true;
+
+                employee1PrepareBoolean = true;
+                employee2PrepareBoolean = true;
+
+                // employeeArray[2].takeNap(650, 140);
+
+
+                if (employee3PauseBoolean === true) {
+
+                    employeeArray[2].takeNap(650, 140);
+
+                    employee1PauseBoolean = !employee1PauseBoolean;
+                    employee2PauseBoolean = !employee2PauseBoolean;
+                    employee3PauseBoolean = !employee3PauseBoolean;
+                }
+                break;
+            default:
+
+                console.log("Fehlgeschlagen");
+        }
+    }
+
+    function employee1PrepareResource(_event: MouseEvent): void {
+
+
+        let aktuellerMitarbeiter: number;
+
+        allSelectElements = document.querySelectorAll("select");
+
+        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+
+
+        switch (aktuellerMitarbeiter) {
+            case 1:
+
+                employee2ThekeBoolean = true;
+                employee3ThekeBoolean = true;
+
+                employee2DönerBoolean = true;
+                employee3DönerBoolean = true;
+
+                employee2TelefonBoolean = true;
+                employee3TelefonBoolean = true;
+
+                employee2ResourceBoolean = true;
+                employee3ResourceBoolean = true;
+
+                employee2PauseBoolean = true;
+                employee3PauseBoolean = true;
+
+                // employeeArray[0].prepareResource(650, 225);
+
+                if (employee1PrepareBoolean === true) {
+
+                    employeeArray[0].prepareResource(650, 225);
+
+                    employee1PrepareBoolean = !employee1PrepareBoolean;
+                    employee2PrepareBoolean = !employee2PrepareBoolean;
+                    employee3PrepareBoolean = !employee3PrepareBoolean;
+                }
+                break;
+            case 2:
+
+                employee1ThekeBoolean = true;
+                employee3ThekeBoolean = true;
+        
+                employee1DönerBoolean = true;
+                employee3DönerBoolean = true;
+        
+                employee1TelefonBoolean = true;
+                employee3TelefonBoolean = true;
+        
+                employee1ResourceBoolean = true;
+                employee3ResourceBoolean = true;
+        
+                employee1PauseBoolean = true;
+                employee3PauseBoolean = true;
+
+                // employeeArray[1].prepareResource(650, 225);
+        
+                if (employee2PrepareBoolean === true) {
+        
+                    employeeArray[1].prepareResource(650, 225);
+        
+                    employee1PrepareBoolean = !employee1PrepareBoolean;
+                    employee2PrepareBoolean = !employee2PrepareBoolean;
+                    employee3PrepareBoolean = !employee3PrepareBoolean;
+                }
+                break;
+            case 3:
+
+                employee1ThekeBoolean = true;
+                employee2ThekeBoolean = true;
+        
+                employee1DönerBoolean = true;
+                employee2DönerBoolean = true;
+        
+                employee1TelefonBoolean = true;
+                employee2TelefonBoolean = true;
+        
+                employee1ResourceBoolean = true;
+                employee2ResourceBoolean = true;
+        
+                employee1PauseBoolean = true;
+                employee2PauseBoolean = true;
+
+                // employeeArray[2].prepareResource(650, 225);
+        
+                if (employee3PrepareBoolean === true) {
+        
+                    employeeArray[2].prepareResource(650, 225);
+        
+                    employee1PrepareBoolean = !employee1PrepareBoolean;
+                    employee2PrepareBoolean = !employee2PrepareBoolean;
+                    employee3PrepareBoolean = !employee3PrepareBoolean;
+                }
+                break;
+            default:
+
+                console.log("Fehlgeschlagen");
+        }
+    }
+
+    function onionIngredient(_event: MouseEvent): void {
+
+        console.log("clicked onionIngredient");
+
+        vegetables[0].ingredientsAmount -= 5;
+
+        console.log(vegetables[0].ingredientsAmount);
+    }
+
+    function cornIngredient(_event: MouseEvent): void {
+
+        console.log("clicked cornIngredient");
+
+        vegetables[1].ingredientsAmount -= 5;
+
+        console.log(vegetables[1].ingredientsAmount);
+    }
+
+    function saladIngredient(_event: MouseEvent): void {
+
+        console.log("clicked saladIngredient");
+
+        vegetables[2].ingredientsAmount -= 5;
+
+        console.log(vegetables[2].ingredientsAmount);
+    }
+
+    function redsaladIngredient(_event: MouseEvent): void {
+
+        console.log("clicked redsaladIngredient");
+
+        vegetables[3].ingredientsAmount -= 5;
+
+        console.log(vegetables[3].ingredientsAmount);
+    }
+
+    function tomatoIngredient(_event: MouseEvent): void {
+
+        console.log("clicked tomatoIngredient");
+
+        vegetables[4].ingredientsAmount -= 5;
+
+        console.log(vegetables[4].ingredientsAmount);
+    }
+
+    function onionResource(_event: MouseEvent): void {
+
+        console.log("clicked onionResource");
+        
+        vegetables[0].ingredientsAmount = ingredientAmountOnion;
+
+        console.log(vegetables[0].ingredientsAmount);
+        
+
     }
 
     //Kebabhaus wird durch Canvas gezeichnet
@@ -216,6 +883,20 @@ namespace Döner_Trainer {
         crc2.strokeStyle = "black";
         crc2.stroke();
         crc2.fill();
+        crc2.closePath();
+
+        crc2.restore();
+
+        //Anzeigemenge für Zutaten
+
+        crc2.save();
+
+        crc2.beginPath();
+        crc2.lineWidth = 4;
+        crc2.strokeStyle = "black";
+        crc2.moveTo(0, 500);
+        crc2.lineTo(800, 500);
+        crc2.stroke();
         crc2.closePath();
 
         crc2.restore();
@@ -294,9 +975,11 @@ namespace Döner_Trainer {
     //Onion Objekt wird kreiert
     function drawOnion(): void {
 
-        let onion: Onion = new Onion();
+        allInputElements = document.querySelectorAll("input");
+        ingredientAmountOnion = parseFloat(allInputElements[0].value);
 
-        onion.draw(600, 353);
+        let onion: Onion = new Onion(ingredientAmountOnion, ingredientAmountOnion);
+
         vegetables.push(onion);
 
         imgDataOnion = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -305,10 +988,12 @@ namespace Döner_Trainer {
     //Corn Objekt wird kreiert
     function drawCorn(): void {
 
-        let mais: Corn = new Corn();
+        allInputElements = document.querySelectorAll("input");
+        ingredientAmountCorn = parseFloat(allInputElements[0].value);
 
-        mais.draw(500, 353);
-        vegetables.push(mais);
+        let corn: Corn = new Corn(ingredientAmountCorn, ingredientAmountCorn);
+
+        vegetables.push(corn);
 
         imgDataCorn = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
@@ -316,9 +1001,11 @@ namespace Döner_Trainer {
     //RedSalad Objekt wird kreiert
     function drawRedSalad(): void {
 
-        let redSalad: Redsalad = new Redsalad();
+        allInputElements = document.querySelectorAll("input");
+        ingredientAmountRedsalad = parseFloat(allInputElements[0].value);
 
-        redSalad.draw(300, 353);
+        let redSalad: Redsalad = new Redsalad(ingredientAmountRedsalad, ingredientAmountRedsalad);
+
         vegetables.push(redSalad);
 
         imgDataRedSalad = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -327,9 +1014,11 @@ namespace Döner_Trainer {
     //Tomato Objekt wird kreiert
     function drawTomatoe(): void {
 
-        let tomato: Tomato = new Tomato();
+        allInputElements = document.querySelectorAll("input");
+        ingredientAmountTomato = parseFloat(allInputElements[0].value);
 
-        tomato.draw(200, 353);
+        let tomato: Tomato = new Tomato(ingredientAmountTomato, ingredientAmountTomato);        
+
         vegetables.push(tomato);
 
         imgDataTomato = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -338,9 +1027,11 @@ namespace Döner_Trainer {
     //Salad Objekt wird kreiert
     function drawSalad(): void {
 
-        let salad: Salad = new Salad();
+        allInputElements = document.querySelectorAll("input");
+        ingredientAmountSalad = parseFloat(allInputElements[0].value);
 
-        salad.draw(400, 353);
+        let salad: Salad = new Salad(ingredientAmountSalad, ingredientAmountSalad);
+
         vegetables.push(salad);
 
         imgDataSalad = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -356,45 +1047,39 @@ namespace Döner_Trainer {
         allSelectElements = document.querySelectorAll("select");
 
         //Das erste Selectelement wird deklariert
-        employeeValue = parseFloat(allSelectElements[0].value);
+        employeeValue = parseFloat(allSelectElements[1].value);
 
         for (let i: number = 0; i < employeeValue; i++) {
-
-            //Zufällige Startposition für die Mitarbeiter innerhalb der Küche
-            let randomPositionX: number = Math.random() * 150 + 400;
-            let randomPositionY: number = Math.random() * 135 + 125;
 
             //Employee Objekt wird kreiert
             let employee: Employee = new Employee();
             humans.push(employee);
-            employee.draw(randomPositionX, randomPositionY)
-            employee.drawMouthOfSmiley(randomPositionX, randomPositionY);
-            console.log(employeeValue);
+            employeeArray.push(employee);
 
-            customerValue = parseFloat(allSelectElements[1].value);
+            customerValue = parseFloat(allSelectElements[2].value);
 
             //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
-            setInterval(createCustomer, customerValue);
+            // setInterval(createCustomer, customerValue);
         }
+        //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
+        setInterval(createCustomer, customerValue);
     }
 
     //Customer Objekt wird kreiert
     function createCustomer(): void {
 
-        console.log("Alle x Sekunden bitte ausloggen");
+        // console.log("Alle x Sekunden bitte ausloggen");
 
         let customer: Customer = new Customer();
         humans.push(customer);
-        customer.draw(85, 555);
-        customer.drawMouthOfSmiley(85, 555);
     }
 
     function update(): void {
 
-        console.log("Update wird immer aufgerufen");
-        
+        // console.log("Update wird immer aufgerufen");
 
-        crc2.putImageData(imgDataKebabHouse, 0, 0);
+
+        // crc2.putImageData(imgDataKebabHouse, 0, 0);
         crc2.putImageData(imgDataOnion, 0, 0);
         crc2.putImageData(imgDataCorn, 0, 0);
         crc2.putImageData(imgDataRedSalad, 0, 0);
@@ -402,9 +1087,12 @@ namespace Döner_Trainer {
         crc2.putImageData(imgDataTomato, 0, 0);
 
 
-        // for (let i: number = 0; i < humans.length; i++) {
-        //     humans[i].draw();
-        // }
-        // cageObject.draw();
+        for (let i: number = 0; i < humans.length; i++) {
+            humans[i].draw();
+        }
+
+        for (let i: number = 0; i < vegetables.length; i++) {
+            vegetables[i].draw();
+        }
     }
 }

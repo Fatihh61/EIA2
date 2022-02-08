@@ -3,7 +3,8 @@ var Döner_Trainer;
 (function (Döner_Trainer) {
     class Vegetable {
         position;
-        ressourceAmount;
+        ingredientsAmount;
+        resourceAmount;
         constructor() {
         }
     }

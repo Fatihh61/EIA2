@@ -1,1 +1,1 @@
-{"version":3,"file":"Vegetable.js","sourceRoot":"","sources":["Vegetable.ts"],"names":[],"mappings":";AAAA,IAAU,aAAa,CActB;AAdD,WAAU,aAAa;IAEnB,MAAsB,SAAS;QAE3B,QAAQ,CAAS;QACjB,eAAe,CAAS;QAExB;QAGA,CAAC;KAGJ;IAXqB,uBAAS,YAW9B,CAAA;AACL,CAAC,EAdS,aAAa,KAAb,aAAa,QActB"}
+{"version":3,"file":"Vegetable.js","sourceRoot":"","sources":["Vegetable.ts"],"names":[],"mappings":";AAAA,IAAU,aAAa,CAiBtB;AAjBD,WAAU,aAAa;IAEnB,MAAsB,SAAS;QAE3B,QAAQ,CAAS;QACjB,iBAAiB,CAAS;QAC1B,cAAc,CAAQ;QAEtB;QAKA,CAAC;KAGJ;IAdqB,uBAAS,YAc9B,CAAA;AACL,CAAC,EAjBS,aAAa,KAAb,aAAa,QAiBtB"}

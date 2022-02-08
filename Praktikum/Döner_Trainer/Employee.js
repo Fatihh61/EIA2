@@ -4,22 +4,34 @@ var Döner_Trainer;
     class Employee extends Döner_Trainer.Human {
         currentActivity;
         constructor() {
-            super();
+            super(Math.random() * 150 + 400, Math.random() * 135 + 125);
         }
-        draw(_x, _y) {
-            super.draw(_x, _y);
+        draw() {
+            super.draw();
         }
-        takeOrder() {
-            console.log("takeOrder in Employee");
+        takeOrder(_x, _y) {
+            this.position.x = _x;
+            this.position.y = _y;
         }
-        buyRessources() {
-            console.log("buyRessources in Employee");
+        buyResources(_x, _y) {
+            this.position.x = _x;
+            this.position.y = _y;
         }
-        takeNap() {
-            console.log("takeNap in Employee");
+        takeNap(_x, _y) {
+            this.position.x = _x;
+            this.position.y = _y;
         }
-        fillRessources() {
-            console.log("fillRessources in Employee");
+        cutKebab(_x, _y) {
+            this.position.x = _x;
+            this.position.y = _y;
+        }
+        fillResources(_x, _y) {
+            this.position.x = _x;
+            this.position.y = _y;
+        }
+        prepareResource(_x, _y) {
+            this.position.x = _x;
+            this.position.y = _y;
         }
     }
     Döner_Trainer.Employee = Employee;

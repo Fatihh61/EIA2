@@ -6,17 +6,12 @@ namespace Döner_Trainer {
 
         constructor() {
 
-            super()
-
-
-
-
-
+            super(85, 555);
         }
 
-        draw(_x: number, _y: number): void {
+        draw(): void {
 
-            super.draw(_x, _y);
+            super.draw();
             
         }
 
