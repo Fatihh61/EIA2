@@ -8,7 +8,7 @@ var Döner_Trainer;
         constructor(_x, _y) {
             this.position = new Döner_Trainer.Vector(_x, _y);
             this.velocity = new Döner_Trainer.Vector(0, 0);
-            this.velocity.random(100, 200);
+            // this.velocity.random(100, 200);
         }
         draw() {
             //Körper des Smiley

@@ -18,8 +18,6 @@ namespace Döner_Trainer {
         orderMeal(): void {
 
             console.log("orderMeal in Customer");
-            
-
         }
     }
 

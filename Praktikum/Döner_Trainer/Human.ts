@@ -10,7 +10,7 @@ namespace Döner_Trainer {
 
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
-            this.velocity.random(100, 200);
+            // this.velocity.random(100, 200);
 
 
         }
