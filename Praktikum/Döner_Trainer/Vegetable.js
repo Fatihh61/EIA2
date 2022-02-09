@@ -2,7 +2,6 @@
 var Döner_Trainer;
 (function (Döner_Trainer) {
     class Vegetable {
-        position;
         ingredientsAmount;
         resourceAmount;
         constructor() {

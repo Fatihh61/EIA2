@@ -16,6 +16,7 @@ var Döner_Trainer;
     let customerValue;
     //Deklariere FormData
     let formData;
+    //Aktueller Mitarbeiter für die Positionsauswahl
     let currentEmployee;
     //Deklariere alle Input- und Selectelemente
     let allInputElements;
@@ -39,6 +40,18 @@ var Döner_Trainer;
     let employeeResourceButton;
     let employeePauseButton;
     let employeePrepareResourceButton;
+    //Ingredients als Paragraphen
+    let paragraphOnion;
+    let paragraphTomato;
+    let paragraphSalad;
+    let paragraphRedsalad;
+    let paragraphCorn;
+    //Resourcen als Paragraphen
+    let paragraphOnionResource;
+    let paragraphTomatoResource;
+    let paragraphSaladResource;
+    let paragraphRedsaladResource;
+    let paragraphCornResource;
     //ImageData
     let imgDataKebabHouse;
     let imgDataOnion;
@@ -46,11 +59,14 @@ var Döner_Trainer;
     let imgDataRedSalad;
     let imgDataSalad;
     let imgDataTomato;
+    //Menge der Zutaten an der Theke
     let ingredientAmountOnion;
     let ingredientAmountCorn;
     let ingredientAmountSalad;
     let ingredientAmountRedsalad;
     let ingredientAmountTomato;
+    let employeeBread = [];
+    let employeeIngredient = [];
     function handleLoad(_event) {
         //Start Button von Startseite wird deklariert und listener drauf installiert
         let startButton = document.querySelector("#startButton");
@@ -116,6 +132,10 @@ var Döner_Trainer;
         redsaladButton.addEventListener("click", redsaladIngredient);
         tomatoButton.addEventListener("click", tomatoIngredient);
         onionResourceButton.addEventListener("click", onionResource);
+        tomatoResourceButton.addEventListener("click", tomatoResource);
+        saladResourceButton.addEventListener("click", saladResource);
+        redsaladResourceButton.addEventListener("click", redsaladResource);
+        cornResourceButton.addEventListener("click", cornResource);
         //Zeichne Canvaselemente und kreiere die Objekte 
         drawKebabHouse();
         drawOnion();
@@ -128,7 +148,6 @@ var Döner_Trainer;
     }
     //Mitarbeiter 1 Tastatur
     function employeeTheke(_event) {
-        console.log(_event.target);
         allSelectElements = document.querySelectorAll("select");
         currentEmployee = parseFloat(allSelectElements[0].value);
         switch (currentEmployee) {
@@ -142,7 +161,7 @@ var Döner_Trainer;
                 employeeArray[2].takeOrder(450, 320);
                 break;
             default:
-                console.log("Fehlgeschlagen");
+            // console.log("Fehlgeschlagen");
         }
     }
     function employeeDöner(_event) {
@@ -159,7 +178,7 @@ var Döner_Trainer;
                 employeeArray[2].cutKebab(245, 225);
                 break;
             default:
-                console.log("Fehlgeschlagen");
+            // console.log("Fehlgeschlagen");
         }
     }
     function employeeTelefon(_event) {
@@ -170,13 +189,14 @@ var Döner_Trainer;
             case 1:
                 employeeArray[0].buyResources(650, 315);
                 break;
+            case 2:
                 employeeArray[1].buyResources(650, 315);
                 break;
             case 3:
                 employeeArray[2].buyResources(650, 315);
                 break;
             default:
-                console.log("Fehlgeschlagen");
+            // console.log("Fehlgeschlagen");
         }
     }
     function employeeResourcen(_event) {
@@ -194,7 +214,7 @@ var Döner_Trainer;
                 employeeArray[2].fillResources(450, 140);
                 break;
             default:
-                console.log("Fehlgeschlagen");
+            // console.log("Fehlgeschlagen");
         }
     }
     function employeePause(_event) {
@@ -212,7 +232,7 @@ var Döner_Trainer;
                 employeeArray[2].takeNap(650, 140);
                 break;
             default:
-                console.log("Fehlgeschlagen");
+            // console.log("Fehlgeschlagen");
         }
     }
     function employeePrepareResource(_event) {
@@ -230,42 +250,103 @@ var Döner_Trainer;
                 employeeArray[2].prepareResource(650, 225);
                 break;
             default:
-                console.log("Fehlgeschlagen");
+            // console.log("Fehlgeschlagen");
         }
     }
     function onionIngredient(_event) {
-        console.log("clicked onionIngredient");
+        // console.log("clicked onionIngredient");
         vegetables[0].ingredientsAmount -= 5;
+        paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
         console.log(vegetables[0].ingredientsAmount);
-    }
-    function cornIngredient(_event) {
-        console.log("clicked cornIngredient");
-        vegetables[1].ingredientsAmount -= 5;
-        console.log(vegetables[1].ingredientsAmount);
-    }
-    function saladIngredient(_event) {
-        console.log("clicked saladIngredient");
-        vegetables[2].ingredientsAmount -= 5;
-        console.log(vegetables[2].ingredientsAmount);
-    }
-    function redsaladIngredient(_event) {
-        console.log("clicked redsaladIngredient");
-        vegetables[3].ingredientsAmount -= 5;
-        console.log(vegetables[3].ingredientsAmount);
-    }
-    function tomatoIngredient(_event) {
-        console.log("clicked tomatoIngredient");
-        vegetables[4].ingredientsAmount -= 5;
-        console.log(vegetables[4].ingredientsAmount);
     }
     function onionResource(_event) {
-        console.log("clicked onionResource");
+        // console.log("clicked onionResource");
+        if (vegetables[0].resourceAmount > 0) {
+            setTimeout(fillOnion, 10000);
+            console.log("Wird nach 10 Sekunden aufgefüllt");
+        }
+    }
+    function fillOnion() {
+        console.log("Fülle mich auf nach 10 Sekunden");
         vegetables[0].ingredientsAmount = ingredientAmountOnion;
         console.log(vegetables[0].ingredientsAmount);
-        setTimeout(fillOnion, 30000);
-        function fillOnion() {
-            console.log("Fülle mich auf nach 30 Sekunden");
+        paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
+    }
+    function cornIngredient(_event) {
+        // console.log("clicked cornIngredient");
+        vegetables[1].ingredientsAmount -= 5;
+        paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
+        console.log(vegetables[1].ingredientsAmount);
+    }
+    function cornResource(_event) {
+        // console.log("clicked onionResource");
+        if (vegetables[1].resourceAmount > 0) {
+            setTimeout(fillCorn, 10000);
+            console.log("Wird nach 10 Sekunden aufgefüllt");
         }
+    }
+    function fillCorn() {
+        console.log("Fülle mich auf nach 10 Sekunden");
+        vegetables[1].ingredientsAmount = ingredientAmountOnion;
+        console.log(vegetables[1].ingredientsAmount);
+        paragraphCorn.innerHTML = "" + vegetables[1].ingredientsAmount;
+    }
+    function saladIngredient(_event) {
+        // console.log("clicked saladIngredient");
+        vegetables[2].ingredientsAmount -= 5;
+        paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
+        console.log(vegetables[2].ingredientsAmount);
+    }
+    function saladResource(_event) {
+        // console.log("clicked onionResource");
+        if (vegetables[2].resourceAmount > 0) {
+            setTimeout(fillSalad, 10000);
+            console.log("Wird nach 10 Sekunden aufgefüllt");
+        }
+    }
+    function fillSalad() {
+        console.log("Fülle mich auf nach 10 Sekunden");
+        vegetables[2].ingredientsAmount = ingredientAmountOnion;
+        console.log(vegetables[2].ingredientsAmount);
+        paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
+    }
+    function redsaladIngredient(_event) {
+        // console.log("clicked redsaladIngredient");
+        vegetables[3].ingredientsAmount -= 5;
+        paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
+        console.log(vegetables[3].ingredientsAmount);
+    }
+    function redsaladResource(_event) {
+        // console.log("clicked onionResource");
+        if (vegetables[3].resourceAmount > 0) {
+            setTimeout(fillRedsalad, 10000);
+            console.log("Wird nach 10 Sekunden aufgefüllt");
+        }
+    }
+    function fillRedsalad() {
+        console.log("Fülle mich auf nach 10 Sekunden");
+        vegetables[3].ingredientsAmount = ingredientAmountOnion;
+        console.log(vegetables[3].ingredientsAmount);
+        paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
+    }
+    function tomatoIngredient(_event) {
+        // console.log("clicked tomatoIngredient");
+        vegetables[4].ingredientsAmount -= 5;
+        console.log(vegetables[4].ingredientsAmount);
+        paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
+    }
+    function tomatoResource(_event) {
+        // console.log("clicked onionResource");
+        if (vegetables[4].resourceAmount > 0) {
+            setTimeout(fillTomato, 10000);
+            console.log("Wird nach 10 Sekunden aufgefüllt");
+        }
+    }
+    function fillTomato() {
+        console.log("Fülle mich auf nach 10 Sekunden");
+        vegetables[4].ingredientsAmount = ingredientAmountOnion;
+        console.log(vegetables[4].ingredientsAmount);
+        paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
     }
     //Kebabhaus wird durch Canvas gezeichnet
     function drawKebabHouse() {
@@ -366,6 +447,16 @@ var Döner_Trainer;
         ingredientAmountOnion = parseFloat(allInputElements[0].value);
         let onion = new Döner_Trainer.Onion(ingredientAmountOnion, ingredientAmountOnion);
         vegetables.push(onion);
+        //Paragraph für Zutat wird erstellt
+        paragraphOnion = document.createElement("p");
+        onionButton.appendChild(paragraphOnion);
+        paragraphOnion.innerHTML = "Zwiebel:" + allInputElements[0].value;
+        paragraphOnion.classList.add("ingredientsValue");
+        //Paragraph für Resource wird erstellt
+        paragraphOnionResource = document.createElement("p");
+        onionResourceButton.appendChild(paragraphOnionResource);
+        paragraphOnionResource.innerHTML = "Zwiebel:" + allInputElements[0].value;
+        paragraphOnionResource.classList.add("resourceValue");
         imgDataOnion = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     //Corn Objekt wird kreiert
@@ -374,6 +465,10 @@ var Döner_Trainer;
         ingredientAmountCorn = parseFloat(allInputElements[0].value);
         let corn = new Döner_Trainer.Corn(ingredientAmountCorn, ingredientAmountCorn);
         vegetables.push(corn);
+        paragraphCorn = document.createElement("p");
+        cornButton.appendChild(paragraphCorn);
+        paragraphCorn.innerHTML = "Mais:" + allInputElements[0].value;
+        paragraphCorn.classList.add("ingredientsValue");
         imgDataCorn = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     //RedSalad Objekt wird kreiert
@@ -382,6 +477,10 @@ var Döner_Trainer;
         ingredientAmountRedsalad = parseFloat(allInputElements[0].value);
         let redSalad = new Döner_Trainer.Redsalad(ingredientAmountRedsalad, ingredientAmountRedsalad);
         vegetables.push(redSalad);
+        paragraphRedsalad = document.createElement("p");
+        redsaladButton.appendChild(paragraphRedsalad);
+        paragraphRedsalad.innerHTML = "Rotkraut:" + allInputElements[0].value;
+        paragraphRedsalad.classList.add("ingredientsValue");
         imgDataRedSalad = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     //Tomato Objekt wird kreiert
@@ -390,6 +489,10 @@ var Döner_Trainer;
         ingredientAmountTomato = parseFloat(allInputElements[0].value);
         let tomato = new Döner_Trainer.Tomato(ingredientAmountTomato, ingredientAmountTomato);
         vegetables.push(tomato);
+        paragraphTomato = document.createElement("p");
+        tomatoButton.appendChild(paragraphTomato);
+        paragraphTomato.innerHTML = "Tomate:" + allInputElements[0].value;
+        paragraphTomato.classList.add("ingredientsValue");
         imgDataTomato = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     //Salad Objekt wird kreiert
@@ -398,6 +501,10 @@ var Döner_Trainer;
         ingredientAmountSalad = parseFloat(allInputElements[0].value);
         let salad = new Döner_Trainer.Salad(ingredientAmountSalad, ingredientAmountSalad);
         vegetables.push(salad);
+        paragraphSalad = document.createElement("p");
+        saladButton.appendChild(paragraphSalad);
+        paragraphSalad.innerHTML = "Salat:" + allInputElements[0].value;
+        paragraphSalad.classList.add("ingredientsValue");
         imgDataSalad = Döner_Trainer.crc2.getImageData(0, 0, Döner_Trainer.crc2.canvas.width, Döner_Trainer.crc2.canvas.height);
     }
     function createEmployee() {

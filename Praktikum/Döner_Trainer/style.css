@@ -23,6 +23,24 @@
     display: none !important;
 }
 
+
+.ingredientsValue {
+
+    position: absolute;
+    margin-top: 65px;
+    font-size: 10pt;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.resourceValue {
+
+    position: absolute;
+    margin-top: 28px;
+    font-size: 10pt;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 h1 {
     font-size: 20pt;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -44,6 +62,7 @@ h2 {
 
 #startButton {
     margin-left: 375px;
+    cursor: pointer;
 }
 
 #onionButton {
@@ -53,6 +72,7 @@ h2 {
     height: 120px;
     bottom: 251px;
     left: 599px;
+    cursor: pointer;
     /* background: none;
     border: none; */
 }
@@ -64,6 +84,7 @@ h2 {
     height: 120px;
     bottom: 251px;
     left: 418px;
+    cursor: pointer;
     /* background: none;
     border: none; */
 }
@@ -75,6 +96,7 @@ h2 {
     height: 120px;
     bottom: 251px;
     left: 156px;
+    cursor: pointer;
     /* background: none;
     border: none; */
 }
@@ -86,8 +108,9 @@ h2 {
     height: 120px;
     bottom: 251px;
     left: -25px;
-    background: none;
-    border: none;
+    cursor: pointer;
+    /* background: none;
+    border: none; */
 }
 
 #tomatoButton {
@@ -97,6 +120,7 @@ h2 {
     height: 120px;
     bottom: 251px;
     left: 37px;
+    cursor: pointer;
     /* background: none;
     border: none; */
 }
@@ -108,6 +132,7 @@ h2 {
     height: 50px;
     bottom: 614px;
     left: 220px;
+    cursor: pointer;
     /* background: none;
     border: none; */
 }
@@ -119,6 +144,7 @@ h2 {
     height: 50px;
     bottom: 614px;
     left: 66px;
+    cursor: pointer;
     /* background: none;
     border: none; */
 }
@@ -130,6 +156,7 @@ h2 {
     height: 50px;
     bottom: 614px;
     left: -142px;
+    cursor: pointer;
     /* background: none;
     border: none; */
 }
@@ -141,6 +168,7 @@ h2 {
     height: 50px;
     bottom: 614px;
     left: -296px;
+    cursor: pointer;
     /* background: none;
     border: none; */
 }
@@ -152,6 +180,7 @@ h2 {
     height: 50px;
     bottom: 614px;
     left: -288px;
+    cursor: pointer;
     /* background: none;
     border: none; */
 }
@@ -172,6 +201,7 @@ h2 {
     position: relative;
     margin-left: 900px;
     bottom: 700px;
+    cursor: pointer;
 }
 
 #employee1Döner {
@@ -179,7 +209,7 @@ h2 {
     position: relative;
     margin-left: 900px;
     bottom: 690px;
-    
+    cursor: pointer;
 }
 
 #employee1Telefon {
@@ -187,6 +217,7 @@ h2 {
     position: relative;
     margin-left: 900px;
     bottom: 680px;
+    cursor: pointer;
 }
 
 #employee1Resourcen {
@@ -194,6 +225,7 @@ h2 {
     position: relative;
     margin-left: 900px;
     bottom: 670px;
+    cursor: pointer;
 }
 
 #employee1Pause {
@@ -201,6 +233,7 @@ h2 {
     position: relative;
     margin-left: 900px;
     bottom: 660px;
+    cursor: pointer;
 }
 
 #employee1PrepareResource {
@@ -208,6 +241,7 @@ h2 {
     position: relative;
     margin-left: 900px;
     bottom: 650px;
+    cursor: pointer;
 }
 
 #order {
