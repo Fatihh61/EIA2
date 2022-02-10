@@ -2,13 +2,12 @@ namespace Döner_Trainer {
 
     export class Employee extends Human {
 
-        // motivation: number
         currentActivity: string;
 
         constructor() {
 
             super(Math.random() * 150 + 400, Math.random() * 135 + 125, 100);
-            // this.motivation = _motivation;
+            // this.mood = _mood;
 
 
 
@@ -25,7 +24,7 @@ namespace Döner_Trainer {
 
         takeOrder(_x: number, _y: number): void {
 
-            if (this.motivation > 0) {
+            if (this.mood > 0) {
                 this.position.x = _x;
                 this.position.y = _y;
             } else {
@@ -36,7 +35,7 @@ namespace Döner_Trainer {
 
         buyResources(_x: number, _y: number): void {
 
-            if (this.motivation > 0) {
+            if (this.mood > 0) {
                 this.position.x = _x;
                 this.position.y = _y;
             } else {
@@ -49,13 +48,15 @@ namespace Döner_Trainer {
             this.position.x = _x;
             this.position.y = _y;
 
-            this.motivation = 100;
+            this.mood = 100;
+
+            
 
         }
 
         cutKebab(_x: number, _y: number): void {
 
-            if (this.motivation > 0) {
+            if (this.mood > 0) {
                 this.position.x = _x;
                 this.position.y = _y;
             } else {
@@ -65,7 +66,7 @@ namespace Döner_Trainer {
 
         fillResources(_x: number, _y: number): void {
 
-            if (this.motivation > 0) {
+            if (this.mood > 0) {
                 this.position.x = _x;
                 this.position.y = _y;
             } else {
@@ -75,7 +76,7 @@ namespace Döner_Trainer {
 
         prepareResource(_x: number, _y: number): void {
 
-            if (this.motivation > 0) {
+            if (this.mood > 0) {
                 this.position.x = _x;
                 this.position.y = _y;
             } else {

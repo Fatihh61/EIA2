@@ -10,6 +10,7 @@ namespace Döner_Trainer {
 
     let orderDiv: HTMLDivElement;
     let totalMotivationDiv: HTMLDivElement;
+    let currentOrder: HTMLDivElement;
 
     //Deklariere div für canvas
     let canvasContainer: HTMLDivElement;
@@ -24,11 +25,26 @@ namespace Döner_Trainer {
 
     //Deklariere Brotarten in einem Array
     let breadArray: string[] = ["döner", "yufka", "lahmacun"];
-    let ingredientsArray: string[] = ["zwiebel", "tomate", "mais", "salat", "rotkraut"];
+    let ingredientsArray: string[] = ["zwiebel", "mais", "salat", "rotkraut", "tomate"];
+
+    //Deklariere Brotart und Zutaten, die Mitarbeiter verwendet
+    let employeeBread: string[] = [];
+    let employeeIngredient: string[] = [];
+
 
     //Deklariere Anzahl der Mitarbeiter und Kunden im Durschnitt/Zeit
     let employeeValue: number;
     let customerValue: number;
+
+    let resourceAmount: number;
+
+
+
+
+    let paragraphCurrentOrder: HTMLParagraphElement;
+
+
+
 
     //Deklariere FormData
     let formData: FormData;
@@ -96,11 +112,6 @@ namespace Döner_Trainer {
     let ingredientAmountRedsalad: number;
     let ingredientAmountTomato: number;
 
-    //Deklariere Brotart und Zutaten, die Mitarbeiter verwendet
-    let employeeBread: string[] = [];
-    let employeeIngredient: string[] = [];
-
-
     function handleLoad(_event: Event): void {
 
         //Start Button von Startseite wird deklariert und listener drauf installiert
@@ -124,7 +135,8 @@ namespace Döner_Trainer {
         canvasContainer.classList.remove("isHidden");
 
         orderDiv = <HTMLDivElement>document.getElementById("order");
-        totalMotivationDiv = <HTMLDivElement> document.getElementById("totalMotivation");
+        totalMotivationDiv = <HTMLDivElement>document.getElementById("totalMotivation");
+        currentOrder = <HTMLDivElement>document.getElementById("currentOrder");
 
         //Wertzuweisung für Zutaten an der Theke und isHidden remove
         onionButton = <HTMLButtonElement>document.getElementById("onionButton");
@@ -169,6 +181,13 @@ namespace Döner_Trainer {
         redsaladButton.addEventListener("click", redsaladIngredient);
         tomatoButton.addEventListener("click", tomatoIngredient);
 
+        // onionButton.addEventListener("click", testZutat);
+
+
+
+
+        // onionButton.addEventListener("click", function (): void {deleteIngredient(vegetables[0]); });
+
         //Ressource wird angeklickt und Zutat aufgefüllt
         onionResourceButton.addEventListener("click", onionResource);
         tomatoResourceButton.addEventListener("click", tomatoResource);
@@ -193,15 +212,26 @@ namespace Döner_Trainer {
         window.setInterval(update, 20);
     }
 
+    function displayCurrentOrder(): void {
+
+        console.log("Hier currentOrder Funktion");
+
+        paragraphCurrentOrder = <HTMLParagraphElement> document.createElement("p");
+        currentOrder.appendChild(paragraphCurrentOrder);
+
+        paragraphCurrentOrder.innerHTML = "" + employeeIngredient;
+
+    }
+
     function displayTotalMotivation(): void {
 
         let totalMotivationAmount: number = 0;
-       
+
         for (let i: number = 0; i < humans.length; i++) {
-            totalMotivationAmount += humans[i].motivation;
+            totalMotivationAmount += humans[i].mood;
         }
         totalMotivationAmount /= humans.length;
-        
+
 
         totalMotivationDiv.innerHTML = "" + Math.floor(totalMotivationAmount);
 
@@ -221,8 +251,10 @@ namespace Döner_Trainer {
         // console.log(currentEmployee);
 
         employeeArray[currentEmployee].takeOrder(450, 320);
-        employeeArray[currentEmployee].motivation -=5;
-        console.log(employeeArray[currentEmployee].motivation);
+        employeeArray[currentEmployee].mood -= 5;
+        console.log(employeeArray[currentEmployee].mood);
+
+        console.log(currentEmployee);
     }
 
     function employeeDöner(_event: MouseEvent): void {
@@ -232,7 +264,11 @@ namespace Döner_Trainer {
         currentEmployee = parseFloat(allSelectElements[0].value);
 
         employeeArray[currentEmployee].cutKebab(245, 225);
-        employeeArray[currentEmployee].motivation -=5;
+        employeeArray[currentEmployee].mood -= 5;
+
+        console.log(currentEmployee);
+
+
         // console.log(employeeArray[currentEmployee].motivation);
     }
 
@@ -242,9 +278,39 @@ namespace Döner_Trainer {
 
         currentEmployee = parseFloat(allSelectElements[0].value);
 
+        resourceAmount = parseFloat(allInputElements[0].value);
+
         employeeArray[currentEmployee].buyResources(650, 315);
-        employeeArray[currentEmployee].motivation -=5;
+
+        employeeArray[currentEmployee].mood -= 5;
+
+        setTimeout(fillResourcesByTelephone, 10000)
+
+        console.log("TELEFON");
+
+
+
+        function fillResourcesByTelephone(): void {
+
+            for (let i: number = 0; i < vegetables.length; i++) {
+
+                vegetables[i].resourceAmount = resourceAmount;
+                console.log(vegetables[i].resourceAmount);
+            }
+            paragraphTomatoResource.innerHTML = "Tomate:" + allInputElements[0].value;
+            paragraphOnionResource.innerHTML = "Zwiebel:" + allInputElements[0].value;
+            paragraphSaladResource.innerHTML = "Salat:" + allInputElements[0].value;
+            paragraphRedsaladResource.innerHTML = "Rotkraut:" + allInputElements[0].value;
+            paragraphCornResource.innerHTML = "Mais:" + allInputElements[0].value;
+        }
+
+
+
+        employeeArray[currentEmployee].buyResources(650, 315);
+        employeeArray[currentEmployee].mood -= 5;
         // console.log(employeeArray[currentEmployee].motivation);
+
+
     }
 
     function employeeResourcen(_event: MouseEvent): void {
@@ -254,7 +320,7 @@ namespace Döner_Trainer {
         currentEmployee = parseFloat(allSelectElements[0].value);
 
         employeeArray[currentEmployee].fillResources(450, 140);
-        employeeArray[currentEmployee].motivation -=5;
+        employeeArray[currentEmployee].mood -= 5;
         // console.log(employeeArray[currentEmployee].motivation);
     }
 
@@ -266,18 +332,22 @@ namespace Döner_Trainer {
 
         customerValue = parseFloat(allSelectElements[3].value);
 
-        // employeeArray[aktuellerMitarbeiter].position.x = 650;
-        // employeeArray[aktuellerMitarbeiter].position.y = 140;
+        employeeArray[currentEmployee].position.x = 650;
+        employeeArray[currentEmployee].position.y = 140;
+
+        console.log("Am erholen");
+
+
 
         setTimeout(fillMotivation, customerValue);
 
         function fillMotivation(): void {
 
-            // console.log("Nach x Sekunden Motivation auffüllen");
-            
+            console.log("Nach x Sekunden Motivation auffüllen");
+
             employeeArray[currentEmployee].takeNap(650, 140);
 
-            // console.log(employeeArray[currentEmployee].motivation);
+            console.log(employeeArray[currentEmployee].mood);
         }
     }
 
@@ -288,7 +358,7 @@ namespace Döner_Trainer {
         currentEmployee = parseFloat(allSelectElements[0].value);
 
         employeeArray[currentEmployee].prepareResource(650, 225);
-        employeeArray[currentEmployee].motivation -=5;
+        employeeArray[currentEmployee].mood -= 5;
         // console.log(employeeArray[currentEmployee].motivation);
     }
 
@@ -300,44 +370,130 @@ namespace Döner_Trainer {
 
     function addDöner(_event: MouseEvent): void {
 
-        employeeBread.push(breadArray[0]);
+        if (employeeArray[currentEmployee].position.x == 245 && employeeArray[currentEmployee].position.y == 225) {
 
-        console.log(employeeBread);
+            employeeBread.push(breadArray[0]);
+            console.log(employeeBread);
+
+            employeeIngredient.push(breadArray[0]);
+
+            console.log(employeeIngredient);
+
+            displayCurrentOrder();
+        }
     }
 
     function addYufka(_event: MouseEvent): void {
 
-        employeeBread.push(breadArray[1]);
+        if (employeeArray[currentEmployee].position.x == 245 && employeeArray[currentEmployee].position.y == 225) {
 
-        console.log(employeeBread);
+            employeeBread.push(breadArray[1]);
+
+            console.log(employeeBread);
+
+            employeeIngredient.push(breadArray[1]);
+
+            displayCurrentOrder();
+
+        }
     }
 
     function addLahmacun(_event: MouseEvent): void {
 
-        employeeBread.push(breadArray[2]);
+        if (employeeArray[currentEmployee].position.x == 245 && employeeArray[currentEmployee].position.y == 225) {
 
-        console.log(employeeBread);
+            employeeBread.push(breadArray[2]);
+            console.log(employeeBread);
+
+            employeeIngredient.push(breadArray[2]);
+
+            displayCurrentOrder();
+        }
     }
 
 
 
 
 
+    // function testZutat(_event: MouseEvent): void {
 
+    //     console.log(_event);
+        
+
+
+    //     if (_vegetable.ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320) {
+
+    //         _vegetable.ingredientsAmount -= 5;
+
+    //         console.log("Zwiebel -5");
+
+    //         employeeIngredient.push(ingredientsArray[0]);
+
+
+
+    //         paragraphOnion.innerHTML = "Zwiebel:" + _vegetable.ingredientsAmount;
+    //         displayCurrentOrder();
+    //     } else {
+
+    //         console.log(_vegetable.ingredientsAmount);
+
+    //         console.log("Keine Zwiebel Zutat mehr  verfügbar");
+    //     }
+
+    // }
+
+
+
+    
+
+    // function deleteIngredient(_vegetable: Vegetable): void {
+
+    //     if (_vegetable.ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320) {
+
+    //         _vegetable.ingredientsAmount -= 5;
+
+    //         console.log("Zwiebel -5");
+
+    //         employeeIngredient.push(ingredientsArray[0]);
+
+
+
+    //         paragraphOnion.innerHTML = "Zwiebel:" + _vegetable.ingredientsAmount;
+    //         displayCurrentOrder();
+    //     } else {
+
+    //         console.log(_vegetable.ingredientsAmount);
+
+    //         console.log("Keine Zwiebel Zutat mehr  verfügbar");
+    //     }
+    // }
 
 
     function onionIngredient(_event: MouseEvent): void {
 
         // console.log("clicked onionIngredient");
 
-        if (vegetables[0].ingredientsAmount > 0) {
+        
+
+        let button = _event.target;
+        
+        console.log(button);
+
+        console.log(employeeArray[currentEmployee].position.x);
+
+
+        if (vegetables[0].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320) {
 
             vegetables[0].ingredientsAmount -= 5;
 
             console.log("Zwiebel -5");
-            
+
+            employeeIngredient.push(ingredientsArray[0]);
+
+
 
             paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
+            displayCurrentOrder();
         } else {
 
             console.log(vegetables[0].ingredientsAmount);
@@ -350,7 +506,7 @@ namespace Döner_Trainer {
 
         // console.log("clicked onionResource");
 
-        if (vegetables[0].resourceAmount > 0) {
+        if (vegetables[0].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
 
             setTimeout(fillOnion, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
@@ -388,11 +544,14 @@ namespace Döner_Trainer {
 
         // console.log("clicked cornIngredient");
 
-        if (vegetables[1].ingredientsAmount > 0) {
+        if (vegetables[1].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320) {
 
             vegetables[1].ingredientsAmount -= 5;
 
+            employeeIngredient.push(ingredientsArray[1]);
+
             paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
+            displayCurrentOrder();
         } else {
 
             console.log(vegetables[1].ingredientsAmount);
@@ -405,7 +564,7 @@ namespace Döner_Trainer {
 
         // console.log("clicked onionResource");
 
-        if (vegetables[1].resourceAmount > 0) {
+        if (vegetables[1].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
 
             setTimeout(fillCorn, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
@@ -442,11 +601,14 @@ namespace Döner_Trainer {
 
         // console.log("clicked saladIngredient");
 
-        if (vegetables[2].ingredientsAmount > 0) {
+        if (vegetables[2].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320) {
 
             vegetables[2].ingredientsAmount -= 5;
 
+            employeeIngredient.push(ingredientsArray[2]);
+
             paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
+            displayCurrentOrder();
         } else {
 
             console.log(vegetables[2].ingredientsAmount);
@@ -459,7 +621,7 @@ namespace Döner_Trainer {
 
         // console.log("clicked onionResource");
 
-        if (vegetables[2].resourceAmount > 0) {
+        if (vegetables[2].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
 
             setTimeout(fillSalad, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
@@ -498,11 +660,14 @@ namespace Döner_Trainer {
 
         // console.log("clicked redsaladIngredient");
 
-        if (vegetables[3].ingredientsAmount > 0) {
+        if (vegetables[3].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320) {
 
             vegetables[3].ingredientsAmount -= 5;
 
+            employeeIngredient.push(ingredientsArray[3]);
+
             paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
+            displayCurrentOrder();
         } else {
 
             console.log(vegetables[3].ingredientsAmount);
@@ -515,7 +680,7 @@ namespace Döner_Trainer {
 
         // console.log("clicked onionResource");
 
-        if (vegetables[3].resourceAmount > 0) {
+        if (vegetables[3].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
 
             setTimeout(fillRedsalad, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
@@ -555,11 +720,14 @@ namespace Döner_Trainer {
 
         // console.log("clicked tomatoIngredient");
 
-        if (vegetables[4].ingredientsAmount > 0) {
+        if (vegetables[4].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320) {
 
             vegetables[4].ingredientsAmount -= 5;
 
+            employeeIngredient.push(ingredientsArray[4]);
+
             paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
+            displayCurrentOrder();
         } else {
 
             console.log(vegetables[4].ingredientsAmount);
@@ -572,7 +740,7 @@ namespace Döner_Trainer {
 
         // console.log("clicked onionResource");
 
-        if (vegetables[4].resourceAmount > 0) {
+        if (vegetables[4].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
 
             setTimeout(fillTomato, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
@@ -894,7 +1062,6 @@ namespace Döner_Trainer {
         }
         //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
         setInterval(createCustomer, customerValue);
-        // displayTotalMotivation();
     }
 
     //Customer Objekt wird kreiert
@@ -904,8 +1071,10 @@ namespace Döner_Trainer {
 
         let customer: Customer = new Customer();
         humans.push(customer);
-        // displayTotalMotivation();
-        
+        customerArray.push(customer);
+        console.log(customer);
+
+
     }
 
 

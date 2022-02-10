@@ -4,10 +4,10 @@ var Döner_Trainer;
     class Human {
         position;
         velocity;
-        motivation;
+        mood;
         state;
-        constructor(_x, _y, _motivation) {
-            this.motivation = _motivation;
+        constructor(_x, _y, _mood) {
+            this.mood = _mood;
             this.position = new Döner_Trainer.Vector(_x, _y);
             this.velocity = new Döner_Trainer.Vector(0, 0);
             // this.velocity.random(100, 200);
@@ -24,22 +24,49 @@ var Döner_Trainer;
             Döner_Trainer.crc2.stroke();
             Döner_Trainer.crc2.closePath();
             //Linkes Auge des Smiley
-            Döner_Trainer.crc2.save();
-            Döner_Trainer.crc2.beginPath();
-            Döner_Trainer.crc2.fillStyle = "black";
-            Döner_Trainer.crc2.arc(this.position.x - 8, this.position.y - 8, 5, 0, Math.PI * 2);
-            Döner_Trainer.crc2.fill();
-            Döner_Trainer.crc2.closePath();
-            Döner_Trainer.crc2.restore();
-            //Rechtes Auge des Smiley
-            Döner_Trainer.crc2.save();
-            Döner_Trainer.crc2.beginPath();
-            Döner_Trainer.crc2.fillStyle = "black";
-            Döner_Trainer.crc2.arc(this.position.x + 8, this.position.y - 8, 5, 0, Math.PI * 2);
-            Döner_Trainer.crc2.fill();
-            Döner_Trainer.crc2.closePath();
-            Döner_Trainer.crc2.restore();
-            if (this.motivation >= 66) {
+            if (this.mood > 0) {
+                Döner_Trainer.crc2.save();
+                Döner_Trainer.crc2.beginPath();
+                Döner_Trainer.crc2.fillStyle = "black";
+                Döner_Trainer.crc2.arc(this.position.x - 8, this.position.y - 8, 5, 0, Math.PI * 2);
+                Döner_Trainer.crc2.fill();
+                Döner_Trainer.crc2.closePath();
+                Döner_Trainer.crc2.restore();
+                //Rechtes Auge des Smiley
+                Döner_Trainer.crc2.save();
+                Döner_Trainer.crc2.beginPath();
+                Döner_Trainer.crc2.fillStyle = "black";
+                Döner_Trainer.crc2.arc(this.position.x + 8, this.position.y - 8, 5, 0, Math.PI * 2);
+                Döner_Trainer.crc2.fill();
+                Döner_Trainer.crc2.closePath();
+                Döner_Trainer.crc2.restore();
+            }
+            else if (this.mood <= 0) {
+                Döner_Trainer.crc2.save();
+                Döner_Trainer.crc2.beginPath();
+                Döner_Trainer.crc2.fillStyle = "black";
+                Döner_Trainer.crc2.moveTo(this.position.x - 12, this.position.y - 12);
+                Döner_Trainer.crc2.lineTo(this.position.x - 7, this.position.y - 7);
+                Döner_Trainer.crc2.moveTo(this.position.x - 12, this.position.y - 7);
+                Döner_Trainer.crc2.lineTo(this.position.x - 7, this.position.y - 12);
+                // crc2.arc(this.position.x - 8, this.position.y - 8, 5, 0, Math.PI * 2)
+                Döner_Trainer.crc2.stroke();
+                Döner_Trainer.crc2.closePath();
+                Döner_Trainer.crc2.restore();
+                //Rechtes Auge des Smiley
+                Döner_Trainer.crc2.save();
+                Döner_Trainer.crc2.beginPath();
+                Döner_Trainer.crc2.fillStyle = "black";
+                Döner_Trainer.crc2.moveTo(this.position.x + 12, this.position.y - 12);
+                Döner_Trainer.crc2.lineTo(this.position.x + 7, this.position.y - 7);
+                Döner_Trainer.crc2.moveTo(this.position.x + 12, this.position.y - 7);
+                Döner_Trainer.crc2.lineTo(this.position.x + 7, this.position.y - 12);
+                // crc2.arc(this.position.x + 8, this.position.y - 8, 5, 0, Math.PI * 2)
+                Döner_Trainer.crc2.stroke();
+                Döner_Trainer.crc2.closePath();
+                Döner_Trainer.crc2.restore();
+            }
+            if (this.mood >= 66) {
                 Döner_Trainer.crc2.save();
                 Döner_Trainer.crc2.beginPath();
                 Döner_Trainer.crc2.strokeStyle = 'black';
@@ -48,7 +75,7 @@ var Döner_Trainer;
                 Döner_Trainer.crc2.closePath();
                 Döner_Trainer.crc2.restore();
             }
-            else if (this.motivation >= 33 && this.motivation < 66) {
+            else if (this.mood >= 33 && this.mood < 66) {
                 Döner_Trainer.crc2.save();
                 Döner_Trainer.crc2.beginPath();
                 Döner_Trainer.crc2.fillStyle = "black";
@@ -59,7 +86,7 @@ var Döner_Trainer;
                 Döner_Trainer.crc2.closePath();
                 Döner_Trainer.crc2.restore();
             }
-            else if (this.motivation <= 33) {
+            else if (this.mood <= 33) {
                 Döner_Trainer.crc2.save();
                 Döner_Trainer.crc2.beginPath();
                 Döner_Trainer.crc2.strokeStyle = 'black';
@@ -69,16 +96,6 @@ var Döner_Trainer;
                 Döner_Trainer.crc2.closePath();
                 Döner_Trainer.crc2.restore();
             }
-            // //Mund des Smiley
-            // crc2.save();
-            // crc2.beginPath();
-            // crc2.fillStyle = "black";
-            // crc2.moveTo(this.position.x - 5, this.position.y + 8)
-            // crc2.lineTo(this.position.x + 5, this.position.y + 8)
-            // crc2.fill();
-            // crc2.stroke();
-            // crc2.closePath();
-            // crc2.restore;
         }
     }
     Döner_Trainer.Human = Human;

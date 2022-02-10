@@ -6,7 +6,7 @@ namespace Döner_Trainer {
 
         constructor() {
 
-            super(85, 555, 100);
+            super(Math.random() * 400 + 200, 555, 100);
         }
 
         draw(): void {
