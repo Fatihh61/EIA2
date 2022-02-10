@@ -84,59 +84,37 @@ var Döner_Trainer;
         //Canvas wird deklariert
         let canvas = document.querySelector("canvas");
         Döner_Trainer.crc2 = canvas.getContext("2d");
-        let body = document.querySelector("body");
         //Wertzuweisung für Formelement und isHidden remove
         form = document.querySelector("form");
         form.classList.add("isHidden");
-        // body.removeChild(form);
         canvas.classList.remove("isHidden");
         //Wertzuweisung für Canvas und isHidden remove
         canvasContainer = document.getElementById("canvasContainer");
         canvasContainer.classList.remove("isHidden");
         orderDiv = document.getElementById("order");
-        orderDiv.classList.remove("isHidden");
         //Wertzuweisung für Zutaten an der Theke und isHidden remove
         onionButton = document.getElementById("onionButton");
-        // onionButton.classList.remove("isHidden");
         cornButton = document.getElementById("cornButton");
-        // cornButton.classList.remove("isHidden");
         saladButton = document.getElementById("saladButton");
-        // saladButton.classList.remove("isHidden");
         redsaladButton = document.getElementById("redsaladButton");
-        // redsaladButton.classList.remove("isHidden");
         tomatoButton = document.getElementById("tomatoButton");
-        // tomatoButton.classList.remove("isHidden");
         //Wertzuweisung für Resourcen und isHidden remove
         onionResourceButton = document.getElementById("onionResourcenButton");
-        onionResourceButton.classList.remove("isHidden");
         cornResourceButton = document.getElementById("cornResourcenButton");
-        cornResourceButton.classList.remove("isHidden");
         saladResourceButton = document.getElementById("saladResourcenButton");
-        saladResourceButton.classList.remove("isHidden");
         redsaladResourceButton = document.getElementById("redsaladResourcenButton");
-        redsaladResourceButton.classList.remove("isHidden");
         tomatoResourceButton = document.getElementById("tomatoResourcenButton");
-        tomatoResourceButton.classList.remove("isHidden");
         //Wertzuweisung für Brotarten und isHidden remove
         dönerButton = document.getElementById("dönerButton");
-        dönerButton.classList.remove("isHidden");
         yufkaButton = document.getElementById("yufkaButton");
-        yufkaButton.classList.remove("isHidden");
         lahmacunButton = document.getElementById("lahmacunButton");
-        lahmacunButton.classList.remove("isHidden");
         //Wertzuweisung für Mitarbeiter und isHidden remove
         employeeThekeButton = document.getElementById("employee1Theke");
-        employeeThekeButton.classList.remove("isHidden");
         employeeDönerButton = document.getElementById("employee1Döner");
-        employeeDönerButton.classList.remove("isHidden");
         employeeTelefonButton = document.getElementById("employee1Telefon");
-        employeeTelefonButton.classList.remove("isHidden");
         employeeResourceButton = document.getElementById("employee1Resourcen");
-        employeeResourceButton.classList.remove("isHidden");
         employeePauseButton = document.getElementById("employee1Pause");
-        employeePauseButton.classList.remove("isHidden");
         employeePrepareResourceButton = document.getElementById("employee1PrepareResource");
-        employeePrepareResourceButton.classList.remove("isHidden");
         //Steuerung für die Mitarbeiter
         employeeThekeButton.addEventListener("click", employeeTheke);
         employeeDönerButton.addEventListener("click", employeeDöner);
@@ -174,6 +152,7 @@ var Döner_Trainer;
     function employeeTheke(_event) {
         allSelectElements = document.querySelectorAll("select");
         currentEmployee = parseFloat(allSelectElements[0].value);
+        console.log(currentEmployee);
         switch (currentEmployee) {
             case 1:
                 employeeArray[0].takeOrder(450, 320);
@@ -269,10 +248,11 @@ var Döner_Trainer;
         let aktuellerMitarbeiter;
         allSelectElements = document.querySelectorAll("select");
         aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+        customerValue = parseFloat(allSelectElements[3].value);
         switch (aktuellerMitarbeiter) {
             case 1:
                 employeeArray[0].takeNap(650, 140);
-                // setTimeout(fillMotivation, )
+                setTimeout(fillMotivation, customerValue);
                 break;
             case 2:
                 employeeArray[1].takeNap(650, 140);
@@ -283,6 +263,10 @@ var Döner_Trainer;
             default:
             // console.log("Fehlgeschlagen");
         }
+    }
+    function fillMotivation() {
+        console.log("Nach x Sekunden Motivation auffüllen");
+        employeeArray[0].takeNap(650, 140);
     }
     function employeePrepareResource(_event) {
         let aktuellerMitarbeiter;
@@ -667,8 +651,6 @@ var Döner_Trainer;
             humans.push(employee);
             employeeArray.push(employee);
             customerValue = parseFloat(allSelectElements[2].value);
-            //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
-            // setInterval(createCustomer, customerValue);
         }
         //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
         setInterval(createCustomer, customerValue);

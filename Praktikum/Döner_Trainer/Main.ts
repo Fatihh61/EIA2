@@ -21,7 +21,7 @@ namespace Döner_Trainer {
     let employeeArray: Employee[] = [];
 
     //Deklariere Brotarten in einem Array
-    let breadArray: string [] = ["döner", "yufka", "lahmacun"];
+    let breadArray: string[] = ["döner", "yufka", "lahmacun"];
 
     //Deklariere Anzahl der Mitarbeiter und Kunden im Durschnitt/Zeit
     let employeeValue: number;
@@ -111,12 +111,9 @@ namespace Döner_Trainer {
         let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
 
-        let body: HTMLBodyElement = <HTMLBodyElement> document.querySelector("body");
-
         //Wertzuweisung für Formelement und isHidden remove
         form = <HTMLFormElement>document.querySelector("form");
         form.classList.add("isHidden");
-        // body.removeChild(form);
         canvas.classList.remove("isHidden");
 
         //Wertzuweisung für Canvas und isHidden remove
@@ -124,53 +121,34 @@ namespace Döner_Trainer {
         canvasContainer.classList.remove("isHidden");
 
         orderDiv = <HTMLDivElement>document.getElementById("order");
-        orderDiv.classList.remove("isHidden");
 
         //Wertzuweisung für Zutaten an der Theke und isHidden remove
         onionButton = <HTMLButtonElement>document.getElementById("onionButton");
-        // onionButton.classList.remove("isHidden");
         cornButton = <HTMLButtonElement>document.getElementById("cornButton");
-        // cornButton.classList.remove("isHidden");
         saladButton = <HTMLButtonElement>document.getElementById("saladButton");
-        // saladButton.classList.remove("isHidden");
         redsaladButton = <HTMLButtonElement>document.getElementById("redsaladButton");
-        // redsaladButton.classList.remove("isHidden");
         tomatoButton = <HTMLButtonElement>document.getElementById("tomatoButton");
-        // tomatoButton.classList.remove("isHidden");
 
         //Wertzuweisung für Resourcen und isHidden remove
         onionResourceButton = <HTMLButtonElement>document.getElementById("onionResourcenButton");
-        onionResourceButton.classList.remove("isHidden");
         cornResourceButton = <HTMLButtonElement>document.getElementById("cornResourcenButton");
-        cornResourceButton.classList.remove("isHidden");
         saladResourceButton = <HTMLButtonElement>document.getElementById("saladResourcenButton");
-        saladResourceButton.classList.remove("isHidden");
         redsaladResourceButton = <HTMLButtonElement>document.getElementById("redsaladResourcenButton");
-        redsaladResourceButton.classList.remove("isHidden");
         tomatoResourceButton = <HTMLButtonElement>document.getElementById("tomatoResourcenButton");
-        tomatoResourceButton.classList.remove("isHidden");
 
         //Wertzuweisung für Brotarten und isHidden remove
         dönerButton = <HTMLButtonElement>document.getElementById("dönerButton");
-        dönerButton.classList.remove("isHidden");
         yufkaButton = <HTMLButtonElement>document.getElementById("yufkaButton");
-        yufkaButton.classList.remove("isHidden");
         lahmacunButton = <HTMLButtonElement>document.getElementById("lahmacunButton");
-        lahmacunButton.classList.remove("isHidden");
 
         //Wertzuweisung für Mitarbeiter und isHidden remove
         employeeThekeButton = <HTMLButtonElement>document.getElementById("employee1Theke");
-        employeeThekeButton.classList.remove("isHidden");
         employeeDönerButton = <HTMLButtonElement>document.getElementById("employee1Döner");
-        employeeDönerButton.classList.remove("isHidden");
         employeeTelefonButton = <HTMLButtonElement>document.getElementById("employee1Telefon");
-        employeeTelefonButton.classList.remove("isHidden");
         employeeResourceButton = <HTMLButtonElement>document.getElementById("employee1Resourcen");
-        employeeResourceButton.classList.remove("isHidden");
         employeePauseButton = <HTMLButtonElement>document.getElementById("employee1Pause");
-        employeePauseButton.classList.remove("isHidden");
         employeePrepareResourceButton = <HTMLButtonElement>document.getElementById("employee1PrepareResource");
-        employeePrepareResourceButton.classList.remove("isHidden");
+
 
         //Steuerung für die Mitarbeiter
         employeeThekeButton.addEventListener("click", employeeTheke);
@@ -218,6 +196,8 @@ namespace Döner_Trainer {
 
         currentEmployee = parseFloat(allSelectElements[0].value);
 
+        console.log(currentEmployee);
+
         switch (currentEmployee) {
             case 1:
                 employeeArray[0].takeOrder(450, 320);
@@ -245,7 +225,7 @@ namespace Döner_Trainer {
         allSelectElements = document.querySelectorAll("select");
 
         currentEmployee = parseFloat(allSelectElements[0].value);
-        
+
 
         switch (currentEmployee) {
             case 1:
@@ -334,11 +314,13 @@ namespace Döner_Trainer {
 
         aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
 
+        customerValue = parseFloat(allSelectElements[3].value);
+
         switch (aktuellerMitarbeiter) {
             case 1:
                 employeeArray[0].takeNap(650, 140);
 
-                // setTimeout(fillMotivation, )
+                setTimeout(fillMotivation, customerValue);
                 break;
             case 2:
                 employeeArray[1].takeNap(650, 140);
@@ -349,6 +331,15 @@ namespace Döner_Trainer {
             default:
             // console.log("Fehlgeschlagen");
         }
+    }
+
+    function fillMotivation(): void {
+
+        console.log("Nach x Sekunden Motivation auffüllen");
+        
+        employeeArray[0].takeNap(650, 140);
+
+
     }
 
     function employeePrepareResource(_event: MouseEvent): void {
@@ -390,21 +381,21 @@ namespace Döner_Trainer {
     function addDöner(_event: MouseEvent): void {
 
         employeeBread.push(breadArray[0]);
-        
+
         console.log(employeeBread);
     }
 
     function addYufka(_event: MouseEvent): void {
 
         employeeBread.push(breadArray[1]);
-        
+
         console.log(employeeBread);
     }
 
     function addLahmacun(_event: MouseEvent): void {
 
         employeeBread.push(breadArray[2]);
-        
+
         console.log(employeeBread);
     }
 
@@ -422,7 +413,7 @@ namespace Döner_Trainer {
         if (vegetables[0].ingredientsAmount > 0) {
 
             vegetables[0].ingredientsAmount -= 5;
-            
+
             paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
         } else {
 
@@ -444,7 +435,7 @@ namespace Döner_Trainer {
         } else {
 
             console.log("Keine Zwiebel Resourcen mehr verfügbar");
-            
+
 
         }
     }
@@ -477,7 +468,7 @@ namespace Döner_Trainer {
         if (vegetables[1].ingredientsAmount > 0) {
 
             vegetables[1].ingredientsAmount -= 5;
-            
+
             paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
         } else {
 
@@ -498,7 +489,7 @@ namespace Döner_Trainer {
         } else {
 
             console.log("Keine Mais Resourcen mehr verfügbar");
-            
+
 
         }
     }
@@ -531,7 +522,7 @@ namespace Döner_Trainer {
         if (vegetables[2].ingredientsAmount > 0) {
 
             vegetables[2].ingredientsAmount -= 5;
-            
+
             paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
         } else {
 
@@ -553,7 +544,7 @@ namespace Döner_Trainer {
         } else {
 
             console.log("Keine Salat Resourcen mehr verfügbar");
-            
+
 
         }
     }
@@ -587,7 +578,7 @@ namespace Döner_Trainer {
         if (vegetables[3].ingredientsAmount > 0) {
 
             vegetables[3].ingredientsAmount -= 5;
-            
+
             paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
         } else {
 
@@ -609,7 +600,7 @@ namespace Döner_Trainer {
         } else {
 
             console.log("Keine Rotkraut Resourcen mehr verfügbar");
-            
+
 
         }
     }
@@ -662,13 +653,13 @@ namespace Döner_Trainer {
 
             setTimeout(fillTomato, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
-            
+
         } else {
 
             console.log(vegetables[4].resourceAmount);
-            
+
             console.log("Keine Tomaten Resourcen mehr verfügbar");
-            
+
 
         }
     }
@@ -888,7 +879,7 @@ namespace Döner_Trainer {
         vegetables.push(redSalad);
 
         //Paragraph für Zutat wird erstellt
-        paragraphRedsalad= <HTMLParagraphElement>document.createElement("p");
+        paragraphRedsalad = <HTMLParagraphElement>document.createElement("p");
         redsaladButton.appendChild(paragraphRedsalad);
         paragraphRedsalad.innerHTML = "Rotkraut:" + allInputElements[0].value;
         paragraphRedsalad.classList.add("ingredientsValue");
@@ -913,7 +904,7 @@ namespace Döner_Trainer {
         vegetables.push(tomato);
 
         //Paragraph für Zutat wird erstellt
-        paragraphTomato= <HTMLParagraphElement>document.createElement("p");
+        paragraphTomato = <HTMLParagraphElement>document.createElement("p");
         tomatoButton.appendChild(paragraphTomato);
         paragraphTomato.innerHTML = "Tomate:" + allInputElements[0].value;
         paragraphTomato.classList.add("ingredientsValue");
@@ -938,7 +929,7 @@ namespace Döner_Trainer {
         vegetables.push(salad);
 
         //Paragraph für Zutat wird erstellt
-        paragraphSalad= <HTMLParagraphElement>document.createElement("p");
+        paragraphSalad = <HTMLParagraphElement>document.createElement("p");
         saladButton.appendChild(paragraphSalad);
         paragraphSalad.innerHTML = "Salat:" + allInputElements[0].value;
         paragraphSalad.classList.add("ingredientsValue");
@@ -977,9 +968,6 @@ namespace Döner_Trainer {
             employeeArray.push(employee);
 
             customerValue = parseFloat(allSelectElements[2].value);
-
-            //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
-            // setInterval(createCustomer, customerValue);
         }
         //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
         setInterval(createCustomer, customerValue);
