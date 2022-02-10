@@ -16,7 +16,12 @@ namespace Döner_Trainer {
     //Deklariere Superklassen als array
     let humans: Human[] = [];
     let vegetables: Vegetable[] = [];
+
+    //Deklariere Subklasse als Array
     let employeeArray: Employee[] = [];
+
+    //Deklariere Brotarten in einem Array
+    let breadArray: string [] = ["döner", "yufka", "lahmacun"];
 
     //Deklariere Anzahl der Mitarbeiter und Kunden im Durschnitt/Zeit
     let employeeValue: number;
@@ -45,6 +50,11 @@ namespace Döner_Trainer {
     let saladResourceButton: HTMLButtonElement;
     let redsaladResourceButton: HTMLButtonElement;
     let tomatoResourceButton: HTMLButtonElement;
+
+    //Deklariere alle Button für die Brotarten
+    let dönerButton: HTMLButtonElement;
+    let yufkaButton: HTMLButtonElement;
+    let lahmacunButton: HTMLButtonElement;
 
     //Deklariere Button für Mitarbeiter Nummer 1 
     let employeeThekeButton: HTMLButtonElement;
@@ -83,6 +93,7 @@ namespace Döner_Trainer {
     let ingredientAmountRedsalad: number;
     let ingredientAmountTomato: number;
 
+    //Deklariere Brotart und Zutaten, die Mitarbeiter verwendet
     let employeeBread: string[] = [];
     let employeeIngredient: string[] = [];
 
@@ -100,9 +111,12 @@ namespace Döner_Trainer {
         let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
 
+        let body: HTMLBodyElement = <HTMLBodyElement> document.querySelector("body");
+
         //Wertzuweisung für Formelement und isHidden remove
         form = <HTMLFormElement>document.querySelector("form");
         form.classList.add("isHidden");
+        // body.removeChild(form);
         canvas.classList.remove("isHidden");
 
         //Wertzuweisung für Canvas und isHidden remove
@@ -114,15 +128,15 @@ namespace Döner_Trainer {
 
         //Wertzuweisung für Zutaten an der Theke und isHidden remove
         onionButton = <HTMLButtonElement>document.getElementById("onionButton");
-        onionButton.classList.remove("isHidden");
+        // onionButton.classList.remove("isHidden");
         cornButton = <HTMLButtonElement>document.getElementById("cornButton");
-        cornButton.classList.remove("isHidden");
+        // cornButton.classList.remove("isHidden");
         saladButton = <HTMLButtonElement>document.getElementById("saladButton");
-        saladButton.classList.remove("isHidden");
+        // saladButton.classList.remove("isHidden");
         redsaladButton = <HTMLButtonElement>document.getElementById("redsaladButton");
-        redsaladButton.classList.remove("isHidden");
+        // redsaladButton.classList.remove("isHidden");
         tomatoButton = <HTMLButtonElement>document.getElementById("tomatoButton");
-        tomatoButton.classList.remove("isHidden");
+        // tomatoButton.classList.remove("isHidden");
 
         //Wertzuweisung für Resourcen und isHidden remove
         onionResourceButton = <HTMLButtonElement>document.getElementById("onionResourcenButton");
@@ -135,6 +149,14 @@ namespace Döner_Trainer {
         redsaladResourceButton.classList.remove("isHidden");
         tomatoResourceButton = <HTMLButtonElement>document.getElementById("tomatoResourcenButton");
         tomatoResourceButton.classList.remove("isHidden");
+
+        //Wertzuweisung für Brotarten und isHidden remove
+        dönerButton = <HTMLButtonElement>document.getElementById("dönerButton");
+        dönerButton.classList.remove("isHidden");
+        yufkaButton = <HTMLButtonElement>document.getElementById("yufkaButton");
+        yufkaButton.classList.remove("isHidden");
+        lahmacunButton = <HTMLButtonElement>document.getElementById("lahmacunButton");
+        lahmacunButton.classList.remove("isHidden");
 
         //Wertzuweisung für Mitarbeiter und isHidden remove
         employeeThekeButton = <HTMLButtonElement>document.getElementById("employee1Theke");
@@ -150,6 +172,7 @@ namespace Döner_Trainer {
         employeePrepareResourceButton = <HTMLButtonElement>document.getElementById("employee1PrepareResource");
         employeePrepareResourceButton.classList.remove("isHidden");
 
+        //Steuerung für die Mitarbeiter
         employeeThekeButton.addEventListener("click", employeeTheke);
         employeeDönerButton.addEventListener("click", employeeDöner);
         employeeTelefonButton.addEventListener("click", employeeTelefon);
@@ -157,17 +180,24 @@ namespace Döner_Trainer {
         employeePauseButton.addEventListener("click", employeePause);
         employeePrepareResourceButton.addEventListener("click", employeePrepareResource);
 
+        //Zutat wird angeklickt und geleert
         onionButton.addEventListener("click", onionIngredient);
         cornButton.addEventListener("click", cornIngredient);
         saladButton.addEventListener("click", saladIngredient);
         redsaladButton.addEventListener("click", redsaladIngredient);
         tomatoButton.addEventListener("click", tomatoIngredient);
 
+        //Ressource wird angeklickt und Zutat aufgefüllt
         onionResourceButton.addEventListener("click", onionResource);
         tomatoResourceButton.addEventListener("click", tomatoResource);
         saladResourceButton.addEventListener("click", saladResource);
         redsaladResourceButton.addEventListener("click", redsaladResource);
         cornResourceButton.addEventListener("click", cornResource);
+
+        //Brotart wird angeklickt und hinzugefügt
+        dönerButton.addEventListener("click", addDöner);
+        yufkaButton.addEventListener("click", addYufka);
+        lahmacunButton.addEventListener("click", addLahmacun);
 
         //Zeichne Canvaselemente und kreiere die Objekte 
         drawKebabHouse();
@@ -191,12 +221,18 @@ namespace Döner_Trainer {
         switch (currentEmployee) {
             case 1:
                 employeeArray[0].takeOrder(450, 320);
+                employeeArray[0].motivation -= 5;
+                console.log(employeeArray[0].motivation);
                 break;
             case 2:
                 employeeArray[1].takeOrder(450, 320);
+                employeeArray[1].motivation -= 5;
+                console.log(employeeArray[1].motivation);
                 break;
             case 3:
                 employeeArray[2].takeOrder(450, 320);
+                employeeArray[2].motivation -= 5;
+                console.log(employeeArray[2].motivation);
                 break;
             default:
 
@@ -209,16 +245,23 @@ namespace Döner_Trainer {
         allSelectElements = document.querySelectorAll("select");
 
         currentEmployee = parseFloat(allSelectElements[0].value);
+        
 
         switch (currentEmployee) {
             case 1:
                 employeeArray[0].cutKebab(245, 225);
+                employeeArray[0].motivation -= 5;
+                console.log(employeeArray[0].motivation);
                 break;
             case 2:
                 employeeArray[1].cutKebab(245, 225);
+                employeeArray[1].motivation -= 5;
+                console.log(employeeArray[1].motivation);
                 break;
             case 3:
                 employeeArray[2].cutKebab(245, 225);
+                employeeArray[2].motivation -= 5;
+                console.log(employeeArray[2].motivation);
                 break;
             default:
             // console.log("Fehlgeschlagen");
@@ -236,12 +279,18 @@ namespace Döner_Trainer {
         switch (aktuellerMitarbeiter) {
             case 1:
                 employeeArray[0].buyResources(650, 315);
+                employeeArray[0].motivation -= 5;
+                console.log(employeeArray[0].motivation);
                 break;
             case 2:
                 employeeArray[1].buyResources(650, 315);
+                employeeArray[1].motivation -= 5;
+                console.log(employeeArray[1].motivation);
                 break;
             case 3:
                 employeeArray[2].buyResources(650, 315);
+                employeeArray[2].motivation -= 5;
+                console.log(employeeArray[2].motivation);
                 break;
             default:
             // console.log("Fehlgeschlagen");
@@ -259,12 +308,18 @@ namespace Döner_Trainer {
         switch (aktuellerMitarbeiter) {
             case 1:
                 employeeArray[0].fillResources(450, 140);
+                employeeArray[0].motivation -= 5;
+                console.log(employeeArray[0].motivation);
                 break;
             case 2:
                 employeeArray[1].fillResources(450, 140);
+                employeeArray[1].motivation -= 5;
+                console.log(employeeArray[1].motivation);
                 break;
             case 3:
                 employeeArray[2].fillResources(450, 140);
+                employeeArray[2].motivation -= 5;
+                console.log(employeeArray[2].motivation);
                 break;
             default:
             // console.log("Fehlgeschlagen");
@@ -282,6 +337,8 @@ namespace Döner_Trainer {
         switch (aktuellerMitarbeiter) {
             case 1:
                 employeeArray[0].takeNap(650, 140);
+
+                // setTimeout(fillMotivation, )
                 break;
             case 2:
                 employeeArray[1].takeNap(650, 140);
@@ -306,27 +363,73 @@ namespace Döner_Trainer {
         switch (aktuellerMitarbeiter) {
             case 1:
                 employeeArray[0].prepareResource(650, 225);
+                employeeArray[0].motivation -= 5;
+                console.log(employeeArray[0].motivation);
                 break;
             case 2:
                 employeeArray[1].prepareResource(650, 225);
+                employeeArray[1].motivation -= 5;
+                console.log(employeeArray[1].motivation);
                 break;
             case 3:
                 employeeArray[2].prepareResource(650, 225);
+                employeeArray[2].motivation -= 5;
+                console.log(employeeArray[2].motivation);
                 break;
             default:
             // console.log("Fehlgeschlagen");
         }
     }
 
+
+
+
+
+
+
+    function addDöner(_event: MouseEvent): void {
+
+        employeeBread.push(breadArray[0]);
+        
+        console.log(employeeBread);
+    }
+
+    function addYufka(_event: MouseEvent): void {
+
+        employeeBread.push(breadArray[1]);
+        
+        console.log(employeeBread);
+    }
+
+    function addLahmacun(_event: MouseEvent): void {
+
+        employeeBread.push(breadArray[2]);
+        
+        console.log(employeeBread);
+    }
+
+
+
+
+
+
+
+
     function onionIngredient(_event: MouseEvent): void {
 
         // console.log("clicked onionIngredient");
 
-        vegetables[0].ingredientsAmount -= 5;
+        if (vegetables[0].ingredientsAmount > 0) {
 
-        paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
+            vegetables[0].ingredientsAmount -= 5;
+            
+            paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
+        } else {
 
-        console.log(vegetables[0].ingredientsAmount);
+            console.log(vegetables[0].ingredientsAmount);
+
+            console.log("Keine Zwiebel Zutat mehr  verfügbar");
+        }
     }
 
     function onionResource(_event: MouseEvent): void {
@@ -337,6 +440,11 @@ namespace Döner_Trainer {
 
             setTimeout(fillOnion, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
+
+        } else {
+
+            console.log("Keine Zwiebel Resourcen mehr verfügbar");
+            
 
         }
     }
@@ -349,18 +457,34 @@ namespace Döner_Trainer {
 
         console.log(vegetables[0].ingredientsAmount);
 
-        paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
+        vegetables[0].resourceAmount -= 25;
+
+        paragraphOnionResource.innerHTML = "Zwiebel:" + vegetables[0].resourceAmount;
+
+        console.log(vegetables[0].resourceAmount);
+
+        paragraphOnion.innerHTML = "Zwiebel:" + vegetables[1].ingredientsAmount;
     }
+
+
+
+
 
     function cornIngredient(_event: MouseEvent): void {
 
         // console.log("clicked cornIngredient");
 
-        vegetables[1].ingredientsAmount -= 5;
+        if (vegetables[1].ingredientsAmount > 0) {
 
-        paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
+            vegetables[1].ingredientsAmount -= 5;
+            
+            paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
+        } else {
 
-        console.log(vegetables[1].ingredientsAmount);
+            console.log(vegetables[1].ingredientsAmount);
+
+            console.log("Keine Mais Zutat mehr  verfügbar");
+        }
     }
 
     function cornResource(_event: MouseEvent): void {
@@ -371,6 +495,11 @@ namespace Döner_Trainer {
 
             setTimeout(fillCorn, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
+        } else {
+
+            console.log("Keine Mais Resourcen mehr verfügbar");
+            
+
         }
     }
 
@@ -378,22 +507,38 @@ namespace Döner_Trainer {
 
         console.log("Fülle mich auf nach 10 Sekunden");
 
-        vegetables[1].ingredientsAmount = ingredientAmountOnion;
+        vegetables[1].ingredientsAmount = ingredientAmountCorn;
 
         console.log(vegetables[1].ingredientsAmount);
 
-        paragraphCorn.innerHTML = "" + vegetables[1].ingredientsAmount;
+        paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
+
+        vegetables[1].resourceAmount -= 25;
+
+        paragraphCornResource.innerHTML = "Mais:" + vegetables[1].resourceAmount;
+
+        console.log(vegetables[1].resourceAmount);
     }
+
+
+
+
 
     function saladIngredient(_event: MouseEvent): void {
 
         // console.log("clicked saladIngredient");
 
-        vegetables[2].ingredientsAmount -= 5;
+        if (vegetables[2].ingredientsAmount > 0) {
 
-        paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
+            vegetables[2].ingredientsAmount -= 5;
+            
+            paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
+        } else {
 
-        console.log(vegetables[2].ingredientsAmount);
+            console.log(vegetables[2].ingredientsAmount);
+
+            console.log("Keine Salat Zutat mehr  verfügbar");
+        }
     }
 
     function saladResource(_event: MouseEvent): void {
@@ -404,6 +549,11 @@ namespace Döner_Trainer {
 
             setTimeout(fillSalad, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
+
+        } else {
+
+            console.log("Keine Salat Resourcen mehr verfügbar");
+            
 
         }
     }
@@ -417,17 +567,34 @@ namespace Döner_Trainer {
         console.log(vegetables[2].ingredientsAmount);
 
         paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
+
+        vegetables[2].resourceAmount -= 25;
+
+        paragraphSaladResource.innerHTML = "Salat:" + vegetables[2].resourceAmount;
+
+        console.log(vegetables[2].resourceAmount);
     }
+
+
+
+
+
 
     function redsaladIngredient(_event: MouseEvent): void {
 
         // console.log("clicked redsaladIngredient");
 
-        vegetables[3].ingredientsAmount -= 5;
+        if (vegetables[3].ingredientsAmount > 0) {
 
-        paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
+            vegetables[3].ingredientsAmount -= 5;
+            
+            paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
+        } else {
 
-        console.log(vegetables[3].ingredientsAmount);
+            console.log(vegetables[3].ingredientsAmount);
+
+            console.log("Keine Rotkraut Zutat mehr  verfügbar");
+        }
     }
 
     function redsaladResource(_event: MouseEvent): void {
@@ -438,6 +605,11 @@ namespace Döner_Trainer {
 
             setTimeout(fillRedsalad, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
+
+        } else {
+
+            console.log("Keine Rotkraut Resourcen mehr verfügbar");
+            
 
         }
     }
@@ -451,17 +623,35 @@ namespace Döner_Trainer {
         console.log(vegetables[3].ingredientsAmount);
 
         paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
+
+        vegetables[3].resourceAmount -= 25;
+
+        paragraphRedsaladResource.innerHTML = "Rotkraut:" + vegetables[3].resourceAmount;
+
+        console.log(vegetables[3].resourceAmount);
     }
+
+
+
+
+
+
 
     function tomatoIngredient(_event: MouseEvent): void {
 
         // console.log("clicked tomatoIngredient");
 
-        vegetables[4].ingredientsAmount -= 5;
+        if (vegetables[4].ingredientsAmount > 0) {
 
-        console.log(vegetables[4].ingredientsAmount);
+            vegetables[4].ingredientsAmount -= 5;
 
-        paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
+            paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
+        } else {
+
+            console.log(vegetables[4].ingredientsAmount);
+
+            console.log("Keine Tomaten Zutat mehr  verfügbar");
+        }
     }
 
     function tomatoResource(_event: MouseEvent): void {
@@ -473,6 +663,13 @@ namespace Döner_Trainer {
             setTimeout(fillTomato, 10000);
             console.log("Wird nach 10 Sekunden aufgefüllt");
             
+        } else {
+
+            console.log(vegetables[4].resourceAmount);
+            
+            console.log("Keine Tomaten Resourcen mehr verfügbar");
+            
+
         }
     }
 
@@ -485,7 +682,22 @@ namespace Döner_Trainer {
         console.log(vegetables[4].ingredientsAmount);
 
         paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
+
+        vegetables[4].resourceAmount -= 25;
+
+        paragraphTomatoResource.innerHTML = "Tomate:" + vegetables[4].resourceAmount;
+
+        console.log(vegetables[4].resourceAmount);
     }
+
+
+
+
+
+
+
+
+
 
     //Kebabhaus wird durch Canvas gezeichnet
     function drawKebabHouse(): void {
@@ -610,6 +822,11 @@ namespace Döner_Trainer {
         imgDataKebabHouse = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
 
+
+
+
+
+
     //Onion Objekt wird kreiert
     function drawOnion(): void {
 
@@ -645,10 +862,17 @@ namespace Döner_Trainer {
 
         vegetables.push(corn);
 
+        //Paragraph für Zutat wird erstellt
         paragraphCorn = <HTMLParagraphElement>document.createElement("p");
         cornButton.appendChild(paragraphCorn);
         paragraphCorn.innerHTML = "Mais:" + allInputElements[0].value;
         paragraphCorn.classList.add("ingredientsValue");
+
+        //Paragraph für Resource wird erstellt
+        paragraphCornResource = <HTMLParagraphElement>document.createElement("p");
+        cornResourceButton.appendChild(paragraphCornResource);
+        paragraphCornResource.innerHTML = "Mais:" + allInputElements[0].value;
+        paragraphCornResource.classList.add("resourceValue");
 
         imgDataCorn = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
@@ -663,10 +887,17 @@ namespace Döner_Trainer {
 
         vegetables.push(redSalad);
 
+        //Paragraph für Zutat wird erstellt
         paragraphRedsalad= <HTMLParagraphElement>document.createElement("p");
         redsaladButton.appendChild(paragraphRedsalad);
         paragraphRedsalad.innerHTML = "Rotkraut:" + allInputElements[0].value;
         paragraphRedsalad.classList.add("ingredientsValue");
+
+        //Paragraph für Resource wird erstellt
+        paragraphRedsaladResource = <HTMLParagraphElement>document.createElement("p");
+        redsaladResourceButton.appendChild(paragraphRedsaladResource);
+        paragraphRedsaladResource.innerHTML = "Rotkraut:" + allInputElements[0].value;
+        paragraphRedsaladResource.classList.add("resourceValue");
 
         imgDataRedSalad = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
@@ -681,10 +912,17 @@ namespace Döner_Trainer {
 
         vegetables.push(tomato);
 
+        //Paragraph für Zutat wird erstellt
         paragraphTomato= <HTMLParagraphElement>document.createElement("p");
         tomatoButton.appendChild(paragraphTomato);
         paragraphTomato.innerHTML = "Tomate:" + allInputElements[0].value;
         paragraphTomato.classList.add("ingredientsValue");
+
+        //Paragraph für Resource wird erstellt
+        paragraphTomatoResource = <HTMLParagraphElement>document.createElement("p");
+        tomatoResourceButton.appendChild(paragraphTomatoResource);
+        paragraphTomatoResource.innerHTML = "Tomate:" + allInputElements[0].value;
+        paragraphTomatoResource.classList.add("resourceValue");
 
         imgDataTomato = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
@@ -699,13 +937,26 @@ namespace Döner_Trainer {
 
         vegetables.push(salad);
 
+        //Paragraph für Zutat wird erstellt
         paragraphSalad= <HTMLParagraphElement>document.createElement("p");
         saladButton.appendChild(paragraphSalad);
         paragraphSalad.innerHTML = "Salat:" + allInputElements[0].value;
         paragraphSalad.classList.add("ingredientsValue");
 
+        //Paragraph für Resource wird erstellt
+        paragraphSaladResource = <HTMLParagraphElement>document.createElement("p");
+        saladResourceButton.appendChild(paragraphSaladResource);
+        paragraphSaladResource.innerHTML = "Salat:" + allInputElements[0].value;
+        paragraphSaladResource.classList.add("resourceValue");
+
         imgDataSalad = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
+
+
+
+
+
+
 
     function createEmployee(): void {
 
@@ -742,6 +993,13 @@ namespace Döner_Trainer {
         let customer: Customer = new Customer();
         humans.push(customer);
     }
+
+
+
+
+
+
+
 
     function update(): void {
 

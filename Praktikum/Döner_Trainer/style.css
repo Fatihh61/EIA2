@@ -185,6 +185,44 @@ h2 {
     border: none; */
 }
 
+#dönerButton {
+
+    position: relative;
+    width: 35px;
+    height: 35px;
+    bottom: 340px;
+    left: -650px;
+    cursor: pointer;
+}
+
+#yufkaButton {
+
+    position: relative;
+    width: 35px;
+    height: 35px;
+    bottom: 340px;
+    left: -630px;
+    cursor: pointer;
+}
+
+#lahmacunButton {
+
+    position: relative;
+    width: 35px;
+    height: 35px;
+    bottom: 340px;
+    left: -610px;
+    cursor: pointer;
+}
+
+.breadParagraph {
+
+    font-size: 7pt;
+    margin-top: 35px;
+
+
+}
+
 #aktuellerMitarbeiter {
 
     position: relative;
@@ -254,6 +292,11 @@ h2 {
     border-width: 5px;
     bottom: 545px;
     margin-left: 850px;
+}
+
+.buttonNotAvailaible {
+
+    pointer-events: none;
 }
 
 #canvas {

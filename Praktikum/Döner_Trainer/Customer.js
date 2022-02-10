@@ -4,7 +4,7 @@ var Döner_Trainer;
     class Customer extends Döner_Trainer.Human {
         satisfaction;
         constructor() {
-            super(85, 555);
+            super(85, 555, 100);
         }
         draw() {
             super.draw();
