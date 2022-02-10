@@ -32,6 +32,7 @@ var Döner_Trainer;
         takeNap(_x, _y) {
             this.position.x = _x;
             this.position.y = _y;
+            this.motivation = 100;
         }
         cutKebab(_x, _y) {
             if (this.motivation > 0) {

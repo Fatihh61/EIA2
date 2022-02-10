@@ -49,6 +49,8 @@ namespace Döner_Trainer {
             this.position.x = _x;
             this.position.y = _y;
 
+            this.motivation = 100;
+
         }
 
         cutKebab(_x: number, _y: number): void {

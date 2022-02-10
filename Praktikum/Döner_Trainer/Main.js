@@ -5,6 +5,7 @@ var Döner_Trainer;
     //Deklariere Formelement
     let form;
     let orderDiv;
+    let totalMotivationDiv;
     //Deklariere div für canvas
     let canvasContainer;
     //Deklariere Superklassen als array
@@ -12,8 +13,10 @@ var Döner_Trainer;
     let vegetables = [];
     //Deklariere Subklasse als Array
     let employeeArray = [];
+    let customerArray = [];
     //Deklariere Brotarten in einem Array
     let breadArray = ["döner", "yufka", "lahmacun"];
+    let ingredientsArray = ["zwiebel", "tomate", "mais", "salat", "rotkraut"];
     //Deklariere Anzahl der Mitarbeiter und Kunden im Durschnitt/Zeit
     let employeeValue;
     let customerValue;
@@ -92,6 +95,7 @@ var Döner_Trainer;
         canvasContainer = document.getElementById("canvasContainer");
         canvasContainer.classList.remove("isHidden");
         orderDiv = document.getElementById("order");
+        totalMotivationDiv = document.getElementById("totalMotivation");
         //Wertzuweisung für Zutaten an der Theke und isHidden remove
         onionButton = document.getElementById("onionButton");
         cornButton = document.getElementById("cornButton");
@@ -148,149 +152,66 @@ var Döner_Trainer;
         createEmployee();
         window.setInterval(update, 20);
     }
+    function displayTotalMotivation() {
+        let totalMotivationAmount = 0;
+        for (let i = 0; i < humans.length; i++) {
+            totalMotivationAmount += humans[i].motivation;
+        }
+        totalMotivationAmount /= humans.length;
+        totalMotivationDiv.innerHTML = "" + Math.floor(totalMotivationAmount);
+        if (totalMotivationAmount < 20) {
+            alert("Game Over");
+        }
+    }
     //Mitarbeiter 1 Tastatur
     function employeeTheke(_event) {
         allSelectElements = document.querySelectorAll("select");
         currentEmployee = parseFloat(allSelectElements[0].value);
-        console.log(currentEmployee);
-        switch (currentEmployee) {
-            case 1:
-                employeeArray[0].takeOrder(450, 320);
-                employeeArray[0].motivation -= 5;
-                console.log(employeeArray[0].motivation);
-                break;
-            case 2:
-                employeeArray[1].takeOrder(450, 320);
-                employeeArray[1].motivation -= 5;
-                console.log(employeeArray[1].motivation);
-                break;
-            case 3:
-                employeeArray[2].takeOrder(450, 320);
-                employeeArray[2].motivation -= 5;
-                console.log(employeeArray[2].motivation);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
-        }
+        // console.log(currentEmployee);
+        employeeArray[currentEmployee].takeOrder(450, 320);
+        employeeArray[currentEmployee].motivation -= 5;
+        console.log(employeeArray[currentEmployee].motivation);
     }
     function employeeDöner(_event) {
         allSelectElements = document.querySelectorAll("select");
         currentEmployee = parseFloat(allSelectElements[0].value);
-        switch (currentEmployee) {
-            case 1:
-                employeeArray[0].cutKebab(245, 225);
-                employeeArray[0].motivation -= 5;
-                console.log(employeeArray[0].motivation);
-                break;
-            case 2:
-                employeeArray[1].cutKebab(245, 225);
-                employeeArray[1].motivation -= 5;
-                console.log(employeeArray[1].motivation);
-                break;
-            case 3:
-                employeeArray[2].cutKebab(245, 225);
-                employeeArray[2].motivation -= 5;
-                console.log(employeeArray[2].motivation);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
-        }
+        employeeArray[currentEmployee].cutKebab(245, 225);
+        employeeArray[currentEmployee].motivation -= 5;
+        // console.log(employeeArray[currentEmployee].motivation);
     }
     function employeeTelefon(_event) {
-        let aktuellerMitarbeiter;
         allSelectElements = document.querySelectorAll("select");
-        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
-        switch (aktuellerMitarbeiter) {
-            case 1:
-                employeeArray[0].buyResources(650, 315);
-                employeeArray[0].motivation -= 5;
-                console.log(employeeArray[0].motivation);
-                break;
-            case 2:
-                employeeArray[1].buyResources(650, 315);
-                employeeArray[1].motivation -= 5;
-                console.log(employeeArray[1].motivation);
-                break;
-            case 3:
-                employeeArray[2].buyResources(650, 315);
-                employeeArray[2].motivation -= 5;
-                console.log(employeeArray[2].motivation);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
-        }
+        currentEmployee = parseFloat(allSelectElements[0].value);
+        employeeArray[currentEmployee].buyResources(650, 315);
+        employeeArray[currentEmployee].motivation -= 5;
+        // console.log(employeeArray[currentEmployee].motivation);
     }
     function employeeResourcen(_event) {
-        let aktuellerMitarbeiter;
         allSelectElements = document.querySelectorAll("select");
-        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
-        switch (aktuellerMitarbeiter) {
-            case 1:
-                employeeArray[0].fillResources(450, 140);
-                employeeArray[0].motivation -= 5;
-                console.log(employeeArray[0].motivation);
-                break;
-            case 2:
-                employeeArray[1].fillResources(450, 140);
-                employeeArray[1].motivation -= 5;
-                console.log(employeeArray[1].motivation);
-                break;
-            case 3:
-                employeeArray[2].fillResources(450, 140);
-                employeeArray[2].motivation -= 5;
-                console.log(employeeArray[2].motivation);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
-        }
+        currentEmployee = parseFloat(allSelectElements[0].value);
+        employeeArray[currentEmployee].fillResources(450, 140);
+        employeeArray[currentEmployee].motivation -= 5;
+        // console.log(employeeArray[currentEmployee].motivation);
     }
     function employeePause(_event) {
-        let aktuellerMitarbeiter;
         allSelectElements = document.querySelectorAll("select");
-        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+        currentEmployee = parseFloat(allSelectElements[0].value);
         customerValue = parseFloat(allSelectElements[3].value);
-        switch (aktuellerMitarbeiter) {
-            case 1:
-                employeeArray[0].takeNap(650, 140);
-                setTimeout(fillMotivation, customerValue);
-                break;
-            case 2:
-                employeeArray[1].takeNap(650, 140);
-                break;
-            case 3:
-                employeeArray[2].takeNap(650, 140);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
+        // employeeArray[aktuellerMitarbeiter].position.x = 650;
+        // employeeArray[aktuellerMitarbeiter].position.y = 140;
+        setTimeout(fillMotivation, customerValue);
+        function fillMotivation() {
+            // console.log("Nach x Sekunden Motivation auffüllen");
+            employeeArray[currentEmployee].takeNap(650, 140);
+            // console.log(employeeArray[currentEmployee].motivation);
         }
-    }
-    function fillMotivation() {
-        console.log("Nach x Sekunden Motivation auffüllen");
-        employeeArray[0].takeNap(650, 140);
     }
     function employeePrepareResource(_event) {
-        let aktuellerMitarbeiter;
         allSelectElements = document.querySelectorAll("select");
-        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
-        switch (aktuellerMitarbeiter) {
-            case 1:
-                employeeArray[0].prepareResource(650, 225);
-                employeeArray[0].motivation -= 5;
-                console.log(employeeArray[0].motivation);
-                break;
-            case 2:
-                employeeArray[1].prepareResource(650, 225);
-                employeeArray[1].motivation -= 5;
-                console.log(employeeArray[1].motivation);
-                break;
-            case 3:
-                employeeArray[2].prepareResource(650, 225);
-                employeeArray[2].motivation -= 5;
-                console.log(employeeArray[2].motivation);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
-        }
+        currentEmployee = parseFloat(allSelectElements[0].value);
+        employeeArray[currentEmployee].prepareResource(650, 225);
+        employeeArray[currentEmployee].motivation -= 5;
+        // console.log(employeeArray[currentEmployee].motivation);
     }
     function addDöner(_event) {
         employeeBread.push(breadArray[0]);
@@ -308,6 +229,7 @@ var Döner_Trainer;
         // console.log("clicked onionIngredient");
         if (vegetables[0].ingredientsAmount > 0) {
             vegetables[0].ingredientsAmount -= 5;
+            console.log("Zwiebel -5");
             paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
         }
         else {
@@ -654,12 +576,14 @@ var Döner_Trainer;
         }
         //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
         setInterval(createCustomer, customerValue);
+        // displayTotalMotivation();
     }
     //Customer Objekt wird kreiert
     function createCustomer() {
         // console.log("Alle x Sekunden bitte ausloggen");
         let customer = new Döner_Trainer.Customer();
         humans.push(customer);
+        // displayTotalMotivation();
     }
     function update() {
         // console.log("Update wird immer aufgerufen");
@@ -675,6 +599,7 @@ var Döner_Trainer;
         for (let i = 0; i < vegetables.length; i++) {
             vegetables[i].draw();
         }
+        displayTotalMotivation();
     }
 })(Döner_Trainer || (Döner_Trainer = {}));
 //# sourceMappingURL=Main.js.map

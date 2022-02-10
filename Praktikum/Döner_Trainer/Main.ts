@@ -9,6 +9,7 @@ namespace Döner_Trainer {
     let form: HTMLFormElement;
 
     let orderDiv: HTMLDivElement;
+    let totalMotivationDiv: HTMLDivElement;
 
     //Deklariere div für canvas
     let canvasContainer: HTMLDivElement;
@@ -19,9 +20,11 @@ namespace Döner_Trainer {
 
     //Deklariere Subklasse als Array
     let employeeArray: Employee[] = [];
+    let customerArray: Customer[] = [];
 
     //Deklariere Brotarten in einem Array
     let breadArray: string[] = ["döner", "yufka", "lahmacun"];
+    let ingredientsArray: string[] = ["zwiebel", "tomate", "mais", "salat", "rotkraut"];
 
     //Deklariere Anzahl der Mitarbeiter und Kunden im Durschnitt/Zeit
     let employeeValue: number;
@@ -121,6 +124,7 @@ namespace Döner_Trainer {
         canvasContainer.classList.remove("isHidden");
 
         orderDiv = <HTMLDivElement>document.getElementById("order");
+        totalMotivationDiv = <HTMLDivElement> document.getElementById("totalMotivation");
 
         //Wertzuweisung für Zutaten an der Theke und isHidden remove
         onionButton = <HTMLButtonElement>document.getElementById("onionButton");
@@ -189,6 +193,24 @@ namespace Döner_Trainer {
         window.setInterval(update, 20);
     }
 
+    function displayTotalMotivation(): void {
+
+        let totalMotivationAmount: number = 0;
+       
+        for (let i: number = 0; i < humans.length; i++) {
+            totalMotivationAmount += humans[i].motivation;
+        }
+        totalMotivationAmount /= humans.length;
+        
+
+        totalMotivationDiv.innerHTML = "" + Math.floor(totalMotivationAmount);
+
+        if (totalMotivationAmount < 20) {
+
+            alert("Game Over");
+        }
+    }
+
     //Mitarbeiter 1 Tastatur
     function employeeTheke(_event: MouseEvent): void {
 
@@ -196,28 +218,11 @@ namespace Döner_Trainer {
 
         currentEmployee = parseFloat(allSelectElements[0].value);
 
-        console.log(currentEmployee);
+        // console.log(currentEmployee);
 
-        switch (currentEmployee) {
-            case 1:
-                employeeArray[0].takeOrder(450, 320);
-                employeeArray[0].motivation -= 5;
-                console.log(employeeArray[0].motivation);
-                break;
-            case 2:
-                employeeArray[1].takeOrder(450, 320);
-                employeeArray[1].motivation -= 5;
-                console.log(employeeArray[1].motivation);
-                break;
-            case 3:
-                employeeArray[2].takeOrder(450, 320);
-                employeeArray[2].motivation -= 5;
-                console.log(employeeArray[2].motivation);
-                break;
-            default:
-
-            // console.log("Fehlgeschlagen");
-        }
+        employeeArray[currentEmployee].takeOrder(450, 320);
+        employeeArray[currentEmployee].motivation -=5;
+        console.log(employeeArray[currentEmployee].motivation);
     }
 
     function employeeDöner(_event: MouseEvent): void {
@@ -226,150 +231,65 @@ namespace Döner_Trainer {
 
         currentEmployee = parseFloat(allSelectElements[0].value);
 
-
-        switch (currentEmployee) {
-            case 1:
-                employeeArray[0].cutKebab(245, 225);
-                employeeArray[0].motivation -= 5;
-                console.log(employeeArray[0].motivation);
-                break;
-            case 2:
-                employeeArray[1].cutKebab(245, 225);
-                employeeArray[1].motivation -= 5;
-                console.log(employeeArray[1].motivation);
-                break;
-            case 3:
-                employeeArray[2].cutKebab(245, 225);
-                employeeArray[2].motivation -= 5;
-                console.log(employeeArray[2].motivation);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
-        }
+        employeeArray[currentEmployee].cutKebab(245, 225);
+        employeeArray[currentEmployee].motivation -=5;
+        // console.log(employeeArray[currentEmployee].motivation);
     }
 
     function employeeTelefon(_event: MouseEvent): void {
 
-        let aktuellerMitarbeiter: number;
-
         allSelectElements = document.querySelectorAll("select");
 
-        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+        currentEmployee = parseFloat(allSelectElements[0].value);
 
-        switch (aktuellerMitarbeiter) {
-            case 1:
-                employeeArray[0].buyResources(650, 315);
-                employeeArray[0].motivation -= 5;
-                console.log(employeeArray[0].motivation);
-                break;
-            case 2:
-                employeeArray[1].buyResources(650, 315);
-                employeeArray[1].motivation -= 5;
-                console.log(employeeArray[1].motivation);
-                break;
-            case 3:
-                employeeArray[2].buyResources(650, 315);
-                employeeArray[2].motivation -= 5;
-                console.log(employeeArray[2].motivation);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
-        }
+        employeeArray[currentEmployee].buyResources(650, 315);
+        employeeArray[currentEmployee].motivation -=5;
+        // console.log(employeeArray[currentEmployee].motivation);
     }
 
     function employeeResourcen(_event: MouseEvent): void {
 
-        let aktuellerMitarbeiter: number;
-
         allSelectElements = document.querySelectorAll("select");
 
-        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+        currentEmployee = parseFloat(allSelectElements[0].value);
 
-        switch (aktuellerMitarbeiter) {
-            case 1:
-                employeeArray[0].fillResources(450, 140);
-                employeeArray[0].motivation -= 5;
-                console.log(employeeArray[0].motivation);
-                break;
-            case 2:
-                employeeArray[1].fillResources(450, 140);
-                employeeArray[1].motivation -= 5;
-                console.log(employeeArray[1].motivation);
-                break;
-            case 3:
-                employeeArray[2].fillResources(450, 140);
-                employeeArray[2].motivation -= 5;
-                console.log(employeeArray[2].motivation);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
-        }
+        employeeArray[currentEmployee].fillResources(450, 140);
+        employeeArray[currentEmployee].motivation -=5;
+        // console.log(employeeArray[currentEmployee].motivation);
     }
 
     function employeePause(_event: MouseEvent): void {
 
-        let aktuellerMitarbeiter: number;
-
         allSelectElements = document.querySelectorAll("select");
 
-        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+        currentEmployee = parseFloat(allSelectElements[0].value);
 
         customerValue = parseFloat(allSelectElements[3].value);
 
-        switch (aktuellerMitarbeiter) {
-            case 1:
-                employeeArray[0].takeNap(650, 140);
+        // employeeArray[aktuellerMitarbeiter].position.x = 650;
+        // employeeArray[aktuellerMitarbeiter].position.y = 140;
 
-                setTimeout(fillMotivation, customerValue);
-                break;
-            case 2:
-                employeeArray[1].takeNap(650, 140);
-                break;
-            case 3:
-                employeeArray[2].takeNap(650, 140);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
+        setTimeout(fillMotivation, customerValue);
+
+        function fillMotivation(): void {
+
+            // console.log("Nach x Sekunden Motivation auffüllen");
+            
+            employeeArray[currentEmployee].takeNap(650, 140);
+
+            // console.log(employeeArray[currentEmployee].motivation);
         }
-    }
-
-    function fillMotivation(): void {
-
-        console.log("Nach x Sekunden Motivation auffüllen");
-        
-        employeeArray[0].takeNap(650, 140);
-
-
     }
 
     function employeePrepareResource(_event: MouseEvent): void {
 
-        let aktuellerMitarbeiter: number;
-
         allSelectElements = document.querySelectorAll("select");
 
-        aktuellerMitarbeiter = parseFloat(allSelectElements[0].value);
+        currentEmployee = parseFloat(allSelectElements[0].value);
 
-
-        switch (aktuellerMitarbeiter) {
-            case 1:
-                employeeArray[0].prepareResource(650, 225);
-                employeeArray[0].motivation -= 5;
-                console.log(employeeArray[0].motivation);
-                break;
-            case 2:
-                employeeArray[1].prepareResource(650, 225);
-                employeeArray[1].motivation -= 5;
-                console.log(employeeArray[1].motivation);
-                break;
-            case 3:
-                employeeArray[2].prepareResource(650, 225);
-                employeeArray[2].motivation -= 5;
-                console.log(employeeArray[2].motivation);
-                break;
-            default:
-            // console.log("Fehlgeschlagen");
-        }
+        employeeArray[currentEmployee].prepareResource(650, 225);
+        employeeArray[currentEmployee].motivation -=5;
+        // console.log(employeeArray[currentEmployee].motivation);
     }
 
 
@@ -413,6 +333,9 @@ namespace Döner_Trainer {
         if (vegetables[0].ingredientsAmount > 0) {
 
             vegetables[0].ingredientsAmount -= 5;
+
+            console.log("Zwiebel -5");
+            
 
             paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
         } else {
@@ -971,6 +894,7 @@ namespace Döner_Trainer {
         }
         //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
         setInterval(createCustomer, customerValue);
+        // displayTotalMotivation();
     }
 
     //Customer Objekt wird kreiert
@@ -980,6 +904,8 @@ namespace Döner_Trainer {
 
         let customer: Customer = new Customer();
         humans.push(customer);
+        // displayTotalMotivation();
+        
     }
 
 
@@ -1008,5 +934,6 @@ namespace Döner_Trainer {
         for (let i: number = 0; i < vegetables.length; i++) {
             vegetables[i].draw();
         }
+        displayTotalMotivation();
     }
 }
