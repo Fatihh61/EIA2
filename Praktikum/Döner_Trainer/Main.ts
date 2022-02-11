@@ -9,7 +9,7 @@ namespace Döner_Trainer {
     let form: HTMLFormElement;
 
     let orderDiv: HTMLDivElement;
-    let totalMotivationDiv: HTMLDivElement;
+    let totalMoodDiv: HTMLDivElement;
     let currentOrder: HTMLDivElement;
 
     //Deklariere div für canvas
@@ -26,10 +26,13 @@ namespace Döner_Trainer {
     //Deklariere Brotarten in einem Array
     let breadArray: string[] = ["döner", "yufka", "lahmacun"];
     let ingredientsArray: string[] = ["zwiebel", "mais", "salat", "rotkraut", "tomate"];
+    let ingredientsArray2: string[] = ["zwiebel", "mais", "salat", "rotkraut", "tomate"];
 
     //Deklariere Brotart und Zutaten, die Mitarbeiter verwendet
     let employeeBread: string[] = [];
     let employeeIngredient: string[] = [];
+    let customerOrder: string[] = [];
+    let zwischenArray: string[] = [];
 
 
     //Deklariere Anzahl der Mitarbeiter und Kunden im Durschnitt/Zeit
@@ -82,6 +85,7 @@ namespace Döner_Trainer {
     let employeeResourceButton: HTMLButtonElement;
     let employeePauseButton: HTMLButtonElement;
     let employeePrepareResourceButton: HTMLButtonElement;
+    let employeePayButton: HTMLButtonElement;
 
     //Ingredients als Paragraphen
     let paragraphOnion: HTMLParagraphElement;
@@ -106,11 +110,11 @@ namespace Döner_Trainer {
     let imgDataTomato: ImageData;
 
     //Menge der Zutaten an der Theke
-    let ingredientAmountOnion: number;
-    let ingredientAmountCorn: number;
-    let ingredientAmountSalad: number;
-    let ingredientAmountRedsalad: number;
-    let ingredientAmountTomato: number;
+    let ingredientAndResourceAmountOnion: number;
+    let ingredientAndResourceAmountCorn: number;
+    let ingredientAndResourceAmountSalad: number;
+    let ingredientAndResourceAmountRedsalad: number;
+    let ingredientAndResourceAmountTomato: number;
 
     function handleLoad(_event: Event): void {
 
@@ -135,7 +139,7 @@ namespace Döner_Trainer {
         canvasContainer.classList.remove("isHidden");
 
         orderDiv = <HTMLDivElement>document.getElementById("order");
-        totalMotivationDiv = <HTMLDivElement>document.getElementById("totalMotivation");
+        totalMoodDiv = <HTMLDivElement>document.getElementById("totalMotivation");
         currentOrder = <HTMLDivElement>document.getElementById("currentOrder");
 
         //Wertzuweisung für Zutaten an der Theke und isHidden remove
@@ -164,7 +168,7 @@ namespace Döner_Trainer {
         employeeResourceButton = <HTMLButtonElement>document.getElementById("employee1Resourcen");
         employeePauseButton = <HTMLButtonElement>document.getElementById("employee1Pause");
         employeePrepareResourceButton = <HTMLButtonElement>document.getElementById("employee1PrepareResource");
-
+        employeePayButton = <HTMLButtonElement> document.getElementById("giveOrder");
 
         //Steuerung für die Mitarbeiter
         employeeThekeButton.addEventListener("click", employeeTheke);
@@ -173,6 +177,7 @@ namespace Döner_Trainer {
         employeeResourceButton.addEventListener("click", employeeResourcen);
         employeePauseButton.addEventListener("click", employeePause);
         employeePrepareResourceButton.addEventListener("click", employeePrepareResource);
+        employeePayButton.addEventListener("click", checkOrder);
 
         //Zutat wird angeklickt und geleert
         onionButton.addEventListener("click", onionIngredient);
@@ -180,11 +185,6 @@ namespace Döner_Trainer {
         saladButton.addEventListener("click", saladIngredient);
         redsaladButton.addEventListener("click", redsaladIngredient);
         tomatoButton.addEventListener("click", tomatoIngredient);
-
-        // onionButton.addEventListener("click", testZutat);
-
-
-
 
         // onionButton.addEventListener("click", function (): void {deleteIngredient(vegetables[0]); });
 
@@ -202,11 +202,11 @@ namespace Döner_Trainer {
 
         //Zeichne Canvaselemente und kreiere die Objekte 
         drawKebabHouse();
-        drawOnion();
-        drawCorn();
-        drawSalad();
-        drawRedSalad();
-        drawTomatoe();
+        createOnion();
+        createCorn();
+        createSalad();
+        createRedSalad();
+        createTomatoe();
         createEmployee();
 
         window.setInterval(update, 20);
@@ -216,26 +216,29 @@ namespace Döner_Trainer {
 
         console.log("Hier currentOrder Funktion");
 
-        paragraphCurrentOrder = <HTMLParagraphElement> document.createElement("p");
+        paragraphCurrentOrder = <HTMLParagraphElement>document.createElement("p");
         currentOrder.appendChild(paragraphCurrentOrder);
 
         paragraphCurrentOrder.innerHTML = "" + employeeIngredient;
 
+        console.log(employeeIngredient);
+        
+
     }
 
-    function displayTotalMotivation(): void {
+    function displayTotalMood(): void {
 
-        let totalMotivationAmount: number = 0;
+        let totalMoodAmount: number = 0;
 
         for (let i: number = 0; i < humans.length; i++) {
-            totalMotivationAmount += humans[i].mood;
+            totalMoodAmount += humans[i].mood;
         }
-        totalMotivationAmount /= humans.length;
+        totalMoodAmount /= humans.length;
 
 
-        totalMotivationDiv.innerHTML = "" + Math.floor(totalMotivationAmount);
+        totalMoodDiv.innerHTML = "" + Math.floor(totalMoodAmount);
 
-        if (totalMotivationAmount < 20) {
+        if (totalMoodAmount < 20) {
 
             alert("Game Over");
         }
@@ -252,9 +255,9 @@ namespace Döner_Trainer {
 
         employeeArray[currentEmployee].takeOrder(450, 320);
         employeeArray[currentEmployee].mood -= 5;
-        console.log(employeeArray[currentEmployee].mood);
+        // console.log(employeeArray[currentEmployee].mood);
 
-        console.log(currentEmployee);
+        // console.log(currentEmployee);
     }
 
     function employeeDöner(_event: MouseEvent): void {
@@ -266,7 +269,7 @@ namespace Döner_Trainer {
         employeeArray[currentEmployee].cutKebab(245, 225);
         employeeArray[currentEmployee].mood -= 5;
 
-        console.log(currentEmployee);
+        // console.log(currentEmployee);
 
 
         // console.log(employeeArray[currentEmployee].motivation);
@@ -418,7 +421,7 @@ namespace Döner_Trainer {
     // function testZutat(_event: MouseEvent): void {
 
     //     console.log(_event);
-        
+
 
 
     //     if (_vegetable.ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320) {
@@ -444,7 +447,7 @@ namespace Döner_Trainer {
 
 
 
-    
+
 
     // function deleteIngredient(_vegetable: Vegetable): void {
 
@@ -471,12 +474,8 @@ namespace Döner_Trainer {
 
     function onionIngredient(_event: MouseEvent): void {
 
-        // console.log("clicked onionIngredient");
-
-        
-
         let button = _event.target;
-        
+
         console.log(button);
 
         console.log(employeeArray[currentEmployee].position.x);
@@ -490,6 +489,8 @@ namespace Döner_Trainer {
 
             employeeIngredient.push(ingredientsArray[0]);
 
+            console.log(employeeIngredient);
+            
 
 
             paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
@@ -523,7 +524,7 @@ namespace Döner_Trainer {
 
         console.log("Fülle mich auf nach 10 Sekunden");
 
-        vegetables[0].ingredientsAmount = ingredientAmountOnion;
+        vegetables[0].ingredientsAmount = ingredientAndResourceAmountOnion;
 
         console.log(vegetables[0].ingredientsAmount);
 
@@ -549,6 +550,8 @@ namespace Döner_Trainer {
             vegetables[1].ingredientsAmount -= 5;
 
             employeeIngredient.push(ingredientsArray[1]);
+
+            console.log(employeeIngredient);
 
             paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
             displayCurrentOrder();
@@ -580,7 +583,7 @@ namespace Döner_Trainer {
 
         console.log("Fülle mich auf nach 10 Sekunden");
 
-        vegetables[1].ingredientsAmount = ingredientAmountCorn;
+        vegetables[1].ingredientsAmount = ingredientAndResourceAmountCorn;
 
         console.log(vegetables[1].ingredientsAmount);
 
@@ -606,6 +609,8 @@ namespace Döner_Trainer {
             vegetables[2].ingredientsAmount -= 5;
 
             employeeIngredient.push(ingredientsArray[2]);
+
+            console.log(employeeIngredient);
 
             paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
             displayCurrentOrder();
@@ -638,7 +643,7 @@ namespace Döner_Trainer {
 
         console.log("Fülle mich auf nach 10 Sekunden");
 
-        vegetables[2].ingredientsAmount = ingredientAmountOnion;
+        vegetables[2].ingredientsAmount = ingredientAndResourceAmountOnion;
 
         console.log(vegetables[2].ingredientsAmount);
 
@@ -665,6 +670,8 @@ namespace Döner_Trainer {
             vegetables[3].ingredientsAmount -= 5;
 
             employeeIngredient.push(ingredientsArray[3]);
+
+            console.log(employeeIngredient);
 
             paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
             displayCurrentOrder();
@@ -697,7 +704,7 @@ namespace Döner_Trainer {
 
         console.log("Fülle mich auf nach 10 Sekunden");
 
-        vegetables[3].ingredientsAmount = ingredientAmountOnion;
+        vegetables[3].ingredientsAmount = ingredientAndResourceAmountOnion;
 
         console.log(vegetables[3].ingredientsAmount);
 
@@ -725,6 +732,8 @@ namespace Döner_Trainer {
             vegetables[4].ingredientsAmount -= 5;
 
             employeeIngredient.push(ingredientsArray[4]);
+
+            console.log(employeeIngredient);
 
             paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
             displayCurrentOrder();
@@ -759,7 +768,7 @@ namespace Döner_Trainer {
 
         console.log("Fülle mich auf nach 10 Sekunden");
 
-        vegetables[4].ingredientsAmount = ingredientAmountOnion;
+        vegetables[4].ingredientsAmount = ingredientAndResourceAmountOnion;
 
         console.log(vegetables[4].ingredientsAmount);
 
@@ -910,12 +919,12 @@ namespace Döner_Trainer {
 
 
     //Onion Objekt wird kreiert
-    function drawOnion(): void {
+    function createOnion(): void {
 
         allInputElements = document.querySelectorAll("input");
-        ingredientAmountOnion = parseFloat(allInputElements[0].value);
+        ingredientAndResourceAmountOnion = parseFloat(allInputElements[0].value);
 
-        let onion: Onion = new Onion(ingredientAmountOnion, ingredientAmountOnion);
+        let onion: Onion = new Onion(ingredientAndResourceAmountOnion, ingredientAndResourceAmountOnion);
 
         vegetables.push(onion);
 
@@ -935,12 +944,12 @@ namespace Döner_Trainer {
     }
 
     //Corn Objekt wird kreiert
-    function drawCorn(): void {
+    function createCorn(): void {
 
         allInputElements = document.querySelectorAll("input");
-        ingredientAmountCorn = parseFloat(allInputElements[0].value);
+        ingredientAndResourceAmountCorn = parseFloat(allInputElements[0].value);
 
-        let corn: Corn = new Corn(ingredientAmountCorn, ingredientAmountCorn);
+        let corn: Corn = new Corn(ingredientAndResourceAmountCorn, ingredientAndResourceAmountCorn);
 
         vegetables.push(corn);
 
@@ -960,12 +969,12 @@ namespace Döner_Trainer {
     }
 
     //RedSalad Objekt wird kreiert
-    function drawRedSalad(): void {
+    function createRedSalad(): void {
 
         allInputElements = document.querySelectorAll("input");
-        ingredientAmountRedsalad = parseFloat(allInputElements[0].value);
+        ingredientAndResourceAmountRedsalad = parseFloat(allInputElements[0].value);
 
-        let redSalad: Redsalad = new Redsalad(ingredientAmountRedsalad, ingredientAmountRedsalad);
+        let redSalad: Redsalad = new Redsalad(ingredientAndResourceAmountRedsalad, ingredientAndResourceAmountRedsalad);
 
         vegetables.push(redSalad);
 
@@ -985,12 +994,12 @@ namespace Döner_Trainer {
     }
 
     //Tomato Objekt wird kreiert
-    function drawTomatoe(): void {
+    function createTomatoe(): void {
 
         allInputElements = document.querySelectorAll("input");
-        ingredientAmountTomato = parseFloat(allInputElements[0].value);
+        ingredientAndResourceAmountTomato = parseFloat(allInputElements[0].value);
 
-        let tomato: Tomato = new Tomato(ingredientAmountTomato, ingredientAmountTomato);
+        let tomato: Tomato = new Tomato(ingredientAndResourceAmountTomato, ingredientAndResourceAmountTomato);
 
         vegetables.push(tomato);
 
@@ -1010,12 +1019,12 @@ namespace Döner_Trainer {
     }
 
     //Salad Objekt wird kreiert
-    function drawSalad(): void {
+    function createSalad(): void {
 
         allInputElements = document.querySelectorAll("input");
-        ingredientAmountSalad = parseFloat(allInputElements[0].value);
+        ingredientAndResourceAmountSalad = parseFloat(allInputElements[0].value);
 
-        let salad: Salad = new Salad(ingredientAmountSalad, ingredientAmountSalad);
+        let salad: Salad = new Salad(ingredientAndResourceAmountSalad, ingredientAndResourceAmountSalad);
 
         vegetables.push(salad);
 
@@ -1042,14 +1051,12 @@ namespace Döner_Trainer {
 
     function createEmployee(): void {
 
-        //Wertzuweisung für FormData
-        formData = new FormData(document.forms[0]);
-
         //Alle Selectelemente werden deklariert
         allSelectElements = document.querySelectorAll("select");
 
         //Das erste Selectelement wird deklariert
         employeeValue = parseFloat(allSelectElements[1].value);
+        customerValue = parseFloat(allSelectElements[2].value);
 
         for (let i: number = 0; i < employeeValue; i++) {
 
@@ -1057,8 +1064,6 @@ namespace Döner_Trainer {
             let employee: Employee = new Employee();
             humans.push(employee);
             employeeArray.push(employee);
-
-            customerValue = parseFloat(allSelectElements[2].value);
         }
         //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
         setInterval(createCustomer, customerValue);
@@ -1069,12 +1074,92 @@ namespace Döner_Trainer {
 
         // console.log("Alle x Sekunden bitte ausloggen");
 
-        let customer: Customer = new Customer();
-        humans.push(customer);
-        customerArray.push(customer);
-        console.log(customer);
+        if (customerArray.length < 3) {
+
+            let customer: Customer = new Customer();
+            humans.push(customer);
+            customerArray.push(customer);
+            console.log(customer);
+
+            customer.orderMeal(customerOrder, breadArray, ingredientsArray2, zwischenArray);
+            console.log(customerOrder);
+            console.log(ingredientsArray2);
 
 
+            orderDiv.innerHTML = "Bestellung:" + customerOrder;
+
+            //An dieser Stelle: checkOrder() aufrufen und erst nach checkOrder() soll das mit concat geschehen
+
+
+
+
+            // let randomNumberForLoop: number = Math.floor(Math.random() * 5);
+            // console.log(randomNumberForLoop);
+
+            // customerOrder.push(breadArray[Math.floor(Math.random() * 3)]);
+
+            // for (let i: number = 0; i <= randomNumberForLoop; i++) {
+
+            //     let randomNumberForIngredients: number = Math.floor(Math.random() * 5);
+            //     console.log(randomNumberForIngredients);
+            //     if (ingredientsArray.length > randomNumberForIngredients) {
+            //         customerOrder.push(ingredientsArray[randomNumberForIngredients]);
+            //         ingredientsArray.splice(randomNumberForIngredients, 1);
+            //         console.log(customerOrder);
+            //     }
+            //     // customerOrder.push(ingredientsArray[randomNumberForIngredients]);
+            //     // ingredientsArray.splice(randomNumberForIngredients, 1);
+            //     // console.log(customerOrder);
+            // }
+            // console.log(customerOrder);
+        }
+    }
+
+    function checkOrder(): void {
+
+        console.log(customerOrder);
+        console.log(employeeIngredient);
+        
+
+        if (customerOrder.length == employeeIngredient.length) {
+
+            console.log(customerOrder);
+            console.log(employeeIngredient);
+            
+            
+
+            for (let i: number = 0; i <= customerOrder.length; i++) {
+
+                if (customerOrder[i] == employeeIngredient[i]) {
+
+                    customerArray[0].mood += 2;
+
+                    console.log("+ Mood für customer");
+                    
+                } else {
+
+                    customerArray[0].mood -= 5;
+
+                    console.log("- Mood für customer");
+                }
+            }
+            ingredientsArray2 = ingredientsArray2.concat(zwischenArray);
+            console.log(ingredientsArray2);
+            zwischenArray = [];
+            console.log(zwischenArray);
+            console.log(customerOrder);
+            console.log(ingredientsArray2);
+
+            console.log(humans);
+            console.log(employeeValue);
+            
+            
+            customerArray.splice(0, 1);
+            humans.splice(employeeValue, 1);
+            console.log(humans);
+            
+            console.log(customerArray);
+        }
     }
 
 
@@ -1103,6 +1188,7 @@ namespace Döner_Trainer {
         for (let i: number = 0; i < vegetables.length; i++) {
             vegetables[i].draw();
         }
-        displayTotalMotivation();
+        displayTotalMood();
+        // checkOrder();
     }
 }

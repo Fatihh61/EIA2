@@ -324,6 +324,14 @@ h2 {
     pointer-events: none;
 }
 
+#giveOrder {
+
+    position: relative;
+    margin-left: 900px;
+    bottom: 640px;
+    cursor: pointer;
+}
+
 #canvas {
     position: relative;
 }
