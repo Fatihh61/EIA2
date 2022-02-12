@@ -3,9 +3,9 @@ namespace Döner_Trainer {
     export class Customer extends Human {
 
         satisfaction: string;
-        customerOrderUlan: string [] = [];
-        ingredientsArrayUlan: string [] = ["zwiebel", "mais", "salat", "rotkraut", "tomate"];
-        breadArrayUlan: string[] = ["döner", "yufka", "lahmacun"];
+        customerSubclassOrder: string [] = [];
+        ingredientsSubclassArray: string [] = ["zwiebel", "mais", "salat", "rotkraut", "tomate"];
+        breadSubclassArray: string[] = ["döner", "yufka", "lahmacun"];
 
         constructor() {
 
@@ -25,18 +25,18 @@ namespace Döner_Trainer {
             let randomNumberForLoop: number = Math.floor(Math.random() * 5);
             console.log(randomNumberForLoop);
 
-            this.customerOrderUlan.push(this.breadArrayUlan[Math.floor(Math.random() * 3)]);
+            this.customerSubclassOrder.push(this.breadSubclassArray[Math.floor(Math.random() * 3)]);
 
             for (let i: number = 0; i <= randomNumberForLoop; i++) {
 
                 let randomNumberForIngredients: number = Math.floor(Math.random() * 5);
                 console.log(randomNumberForIngredients);
-                if (this.ingredientsArrayUlan.length > randomNumberForIngredients) {
-                    this.customerOrderUlan.push(this.ingredientsArrayUlan[randomNumberForIngredients]);
+                if (this.ingredientsSubclassArray.length > randomNumberForIngredients) {
+                    this.customerSubclassOrder.push(this.ingredientsSubclassArray[randomNumberForIngredients]);
                     // _zwischenArray.push(_ingredientsArray[randomNumberForIngredients]);
-                    this.ingredientsArrayUlan.splice(randomNumberForIngredients, 1);
-                    console.log(this.customerOrderUlan);
-                    console.log(this.ingredientsArrayUlan);
+                    this.ingredientsSubclassArray.splice(randomNumberForIngredients, 1);
+                    console.log(this.customerSubclassOrder);
+                    console.log(this.ingredientsSubclassArray);
                     
                 }   
             }
