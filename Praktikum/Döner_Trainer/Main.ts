@@ -197,6 +197,12 @@ namespace Döner_Trainer {
         redsaladButton.addEventListener("click", redsaladIngredient);
         tomatoButton.addEventListener("click", tomatoIngredient);
 
+        onionButton.addEventListener("click", ingredient);
+        cornButton.addEventListener("click", ingredient);
+        saladButton.addEventListener("click", ingredient);
+        redsaladButton.addEventListener("click", ingredient);
+        tomatoButton.addEventListener("click", ingredient);
+
         // onionButton.addEventListener("click", function (): void {deleteIngredient(vegetables[0]); });
 
         //Ressource wird angeklickt und Zutat aufgefüllt
@@ -222,6 +228,47 @@ namespace Döner_Trainer {
 
         window.setInterval(update, 20);
     }
+
+    function ingredient(_event: MouseEvent): void {
+
+        
+
+        let target: HTMLButtonElement = <HTMLButtonElement> _event.target;
+
+        let targetId: string = <string> target.id;
+
+        
+        switch (targetId) {
+
+            case "onionButton":
+                console.log("Onion");
+                break;
+            case "cornButton":
+                console.log("corn");
+                break;
+            case "saladButton":
+                console.log("corn");
+                break;
+            case "redsaladButton":
+                console.log("corn");
+                break;
+            case "tomatoButton":
+                console.log("corn");
+                break;
+
+
+
+
+        }
+    }
+
+
+
+
+
+
+
+
 
     function displayCurrentOrder(): void {
 
@@ -523,12 +570,6 @@ namespace Döner_Trainer {
 
     function onionIngredient(_event: MouseEvent): void {
 
-        let button = _event.target;
-
-        console.log(button);
-
-        console.log(employeeArray[currentEmployee].position.x);
-
 
         if (vegetables[0].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
 
@@ -592,7 +633,7 @@ namespace Döner_Trainer {
 
     function cornIngredient(_event: MouseEvent): void {
 
-        // console.log("clicked cornIngredient");
+
 
         if (vegetables[1].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
 
@@ -652,6 +693,8 @@ namespace Döner_Trainer {
     function saladIngredient(_event: MouseEvent): void {
 
         // console.log("clicked saladIngredient");
+
+        console.log(_event.AT_TARGET);
 
         if (vegetables[2].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
 
@@ -714,6 +757,8 @@ namespace Döner_Trainer {
 
         // console.log("clicked redsaladIngredient");
 
+        console.log(_event.AT_TARGET);
+
         if (vegetables[3].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
 
             vegetables[3].ingredientsAmount -= 5;
@@ -775,6 +820,8 @@ namespace Döner_Trainer {
     function tomatoIngredient(_event: MouseEvent): void {
 
         // console.log("clicked tomatoIngredient");
+
+        console.log(_event.AT_TARGET);
 
         if (vegetables[4].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
 
@@ -1116,7 +1163,7 @@ namespace Döner_Trainer {
         }
         //Alle x Sekunden erscheint ein Kunde, je nach ausgewählter Einstellung
         setInterval(createCustomer, customerValue);
-        // setInterval(updateMoodCustomer, 1000);
+        setInterval(updateMoodCustomer, 1000);
     }
 
     //Customer Objekt wird kreiert
@@ -1306,13 +1353,13 @@ namespace Döner_Trainer {
     // }
 
 
-    // function updateMoodCustomer(): void {
+    function updateMoodCustomer(): void {
 
-    //     for (let i: number = 0; i < customerArray.length; i++) {
-    //         customerArray[i].mood -= 1;
-    //         console.log(customerArray[i].mood);
-    //     }
-    // }
+        for (let i: number = 0; i < customerArray.length; i++) {
+            customerArray[i].mood -= 1;
+            // console.log(customerArray[i].mood);
+        }
+    }
 
 
 
