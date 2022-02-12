@@ -139,11 +139,6 @@ var Döner_Trainer;
         employeePrepareResourceButton.addEventListener("click", employeePrepareResource);
         employeePayButton.addEventListener("click", checkOrder);
         //Zutat wird angeklickt und geleert
-        onionButton.addEventListener("click", onionIngredient);
-        cornButton.addEventListener("click", cornIngredient);
-        saladButton.addEventListener("click", saladIngredient);
-        redsaladButton.addEventListener("click", redsaladIngredient);
-        tomatoButton.addEventListener("click", tomatoIngredient);
         onionButton.addEventListener("click", ingredient);
         cornButton.addEventListener("click", ingredient);
         saladButton.addEventListener("click", ingredient);
@@ -151,11 +146,16 @@ var Döner_Trainer;
         tomatoButton.addEventListener("click", ingredient);
         // onionButton.addEventListener("click", function (): void {deleteIngredient(vegetables[0]); });
         //Ressource wird angeklickt und Zutat aufgefüllt
-        onionResourceButton.addEventListener("click", onionResource);
-        tomatoResourceButton.addEventListener("click", tomatoResource);
-        saladResourceButton.addEventListener("click", saladResource);
-        redsaladResourceButton.addEventListener("click", redsaladResource);
-        cornResourceButton.addEventListener("click", cornResource);
+        // onionResourceButton.addEventListener("click", onionResource);
+        // tomatoResourceButton.addEventListener("click", tomatoResource);
+        // saladResourceButton.addEventListener("click", saladResource);
+        // redsaladResourceButton.addEventListener("click", redsaladResource);
+        // cornResourceButton.addEventListener("click", cornResource);
+        onionResourceButton.addEventListener("click", resource);
+        tomatoResourceButton.addEventListener("click", resource);
+        saladResourceButton.addEventListener("click", resource);
+        redsaladResourceButton.addEventListener("click", resource);
+        cornResourceButton.addEventListener("click", resource);
         //Brotart wird angeklickt und hinzugefügt
         dönerButton.addEventListener("click", addDöner);
         yufkaButton.addEventListener("click", addYufka);
@@ -176,20 +176,163 @@ var Döner_Trainer;
         switch (targetId) {
             case "onionButton":
                 console.log("Onion");
+                if (vegetables[0].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
+                    vegetables[0].ingredientsAmount -= 5;
+                    // console.log("Zwiebel -5");
+                    employeeIngredient.push(ingredientsArray[0]);
+                    // console.log(employeeIngredient);
+                    paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
+                    displayCurrentOrder();
+                }
+                else {
+                    console.log(vegetables[0].ingredientsAmount);
+                    console.log("Keine Zwiebel Zutat mehr  verfügbar");
+                }
                 break;
             case "cornButton":
                 console.log("corn");
+                if (vegetables[1].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
+                    vegetables[1].ingredientsAmount -= 5;
+                    employeeIngredient.push(ingredientsArray[1]);
+                    // console.log(employeeIngredient);
+                    paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
+                    displayCurrentOrder();
+                }
+                else {
+                    console.log(vegetables[1].ingredientsAmount);
+                    console.log("Keine Mais Zutat mehr  verfügbar");
+                }
                 break;
             case "saladButton":
-                console.log("corn");
+                console.log("Salad");
+                // console.log("clicked saladIngredient");
+                console.log(_event.AT_TARGET);
+                if (vegetables[2].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
+                    vegetables[2].ingredientsAmount -= 5;
+                    employeeIngredient.push(ingredientsArray[2]);
+                    // console.log(employeeIngredient);
+                    paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
+                    displayCurrentOrder();
+                }
+                else {
+                    console.log(vegetables[2].ingredientsAmount);
+                    console.log("Keine Salat Zutat mehr  verfügbar");
+                }
                 break;
             case "redsaladButton":
-                console.log("corn");
+                console.log("redsalad");
+                // console.log("clicked redsaladIngredient");
+                console.log(_event.AT_TARGET);
+                if (vegetables[3].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
+                    vegetables[3].ingredientsAmount -= 5;
+                    employeeIngredient.push(ingredientsArray[3]);
+                    // console.log(employeeIngredient);
+                    paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
+                    displayCurrentOrder();
+                }
+                else {
+                    console.log(vegetables[3].ingredientsAmount);
+                    console.log("Keine Rotkraut Zutat mehr  verfügbar");
+                }
                 break;
             case "tomatoButton":
-                console.log("corn");
+                console.log("tomato");
+                // console.log("clicked tomatoIngredient");
+                console.log(_event.AT_TARGET);
+                if (vegetables[4].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
+                    vegetables[4].ingredientsAmount -= 5;
+                    employeeIngredient.push(ingredientsArray[4]);
+                    // console.log(employeeIngredient);
+                    paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
+                    displayCurrentOrder();
+                }
+                else {
+                    console.log(vegetables[4].ingredientsAmount);
+                    console.log("Keine Tomaten Zutat mehr  verfügbar");
+                }
                 break;
         }
+    }
+    function resource(_event) {
+        let target = _event.target;
+        let targetId = target.id;
+        switch (targetId) {
+            case "onionResourcenButton":
+                console.log("onionResource");
+                if (vegetables[0].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
+                    setTimeout(function () {
+                        fillResource(0);
+                    }, 10000);
+                    console.log("Wird nach 10 Sekunden aufgefüllt");
+                }
+                else {
+                    console.log("Keine Zwiebel Resourcen mehr verfügbar");
+                }
+                break;
+            case "cornResourcenButton":
+                console.log("cornResource");
+                if (vegetables[1].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
+                    setTimeout(function () {
+                        fillResource(1);
+                    }, 10000);
+                    console.log("Wird nach 10 Sekunden aufgefüllt");
+                }
+                else {
+                    console.log("Keine Mais Resourcen mehr verfügbar");
+                }
+                break;
+            case "saladResourcenButton":
+                console.log("saladResource");
+                if (vegetables[2].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
+                    setTimeout(function () {
+                        fillResource(2);
+                    }, 10000);
+                    console.log("Wird nach 10 Sekunden aufgefüllt");
+                }
+                else {
+                    console.log("Keine Salat Resourcen mehr verfügbar");
+                }
+                break;
+            case "redsaladResourcenButton":
+                console.log("redsaladResource");
+                if (vegetables[3].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
+                    setTimeout(function () {
+                        fillResource(3);
+                    }, 10000);
+                    console.log("Wird nach 10 Sekunden aufgefüllt");
+                }
+                else {
+                    console.log("Keine Rotkraut Resourcen mehr verfügbar");
+                }
+                break;
+            case "tomatoResourcenButton":
+                console.log("tomatoResource");
+                if (vegetables[4].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
+                    setTimeout(function () {
+                        fillResource(4);
+                    }, 10000);
+                    console.log("Wird nach 10 Sekunden aufgefüllt");
+                }
+                else {
+                    console.log(vegetables[4].resourceAmount);
+                    console.log("Keine Tomaten Resourcen mehr verfügbar");
+                }
+        }
+    }
+    function fillResource(_vegetablesNumber) {
+        console.log("Resource x wurde aufgefüllt");
+        vegetables[_vegetablesNumber].ingredientsAmount = ingredientAndResourceAmountOnion;
+        vegetables[_vegetablesNumber].resourceAmount -= 25;
+        paragraphOnionResource.innerHTML = "Zwiebel:" + vegetables[0].resourceAmount;
+        paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
+        paragraphCornResource.innerHTML = "Mais:" + vegetables[1].resourceAmount;
+        paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
+        paragraphSaladResource.innerHTML = "Salat:" + vegetables[2].resourceAmount;
+        paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
+        paragraphRedsaladResource.innerHTML = "Rotkraut:" + vegetables[3].resourceAmount;
+        paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
+        paragraphTomatoResource.innerHTML = "Tomate:" + vegetables[4].resourceAmount;
+        paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
     }
     function displayCurrentOrder() {
         // console.log("Hier currentOrder Funktion");
@@ -336,199 +479,42 @@ var Döner_Trainer;
             displayCurrentOrder();
         }
     }
-    // function testZutat(_event: MouseEvent): void {
-    //     console.log(_event);
-    //     if (_vegetable.ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320) {
-    //         _vegetable.ingredientsAmount -= 5;
-    //         console.log("Zwiebel -5");
-    //         employeeIngredient.push(ingredientsArray[0]);
-    //         paragraphOnion.innerHTML = "Zwiebel:" + _vegetable.ingredientsAmount;
-    //         displayCurrentOrder();
-    //     } else {
-    //         console.log(_vegetable.ingredientsAmount);
-    //         console.log("Keine Zwiebel Zutat mehr  verfügbar");
-    //     }
+    // function fillCorn(): void {
+    //     console.log("Fülle mich auf nach 10 Sekunden");
+    //     vegetables[1].ingredientsAmount = ingredientAndResourceAmountCorn;
+    //     console.log(vegetables[1].ingredientsAmount);
+    //     paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
+    //     vegetables[1].resourceAmount -= 25;
+    //     paragraphCornResource.innerHTML = "Mais:" + vegetables[1].resourceAmount;
+    //     console.log(vegetables[1].resourceAmount);
     // }
-    // function deleteIngredient(_vegetable: Vegetable): void {
-    //     if (_vegetable.ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320) {
-    //         _vegetable.ingredientsAmount -= 5;
-    //         console.log("Zwiebel -5");
-    //         employeeIngredient.push(ingredientsArray[0]);
-    //         paragraphOnion.innerHTML = "Zwiebel:" + _vegetable.ingredientsAmount;
-    //         displayCurrentOrder();
-    //     } else {
-    //         console.log(_vegetable.ingredientsAmount);
-    //         console.log("Keine Zwiebel Zutat mehr  verfügbar");
-    //     }
+    // function fillSalad(): void {
+    //     console.log("Fülle mich auf nach 10 Sekunden");
+    //     vegetables[2].ingredientsAmount = ingredientAndResourceAmountOnion;
+    //     console.log(vegetables[2].ingredientsAmount);
+    //     paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
+    //     vegetables[2].resourceAmount -= 25;
+    //     paragraphSaladResource.innerHTML = "Salat:" + vegetables[2].resourceAmount;
+    //     console.log(vegetables[2].resourceAmount);
     // }
-    function onionIngredient(_event) {
-        if (vegetables[0].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
-            vegetables[0].ingredientsAmount -= 5;
-            // console.log("Zwiebel -5");
-            employeeIngredient.push(ingredientsArray[0]);
-            // console.log(employeeIngredient);
-            paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
-            displayCurrentOrder();
-        }
-        else {
-            console.log(vegetables[0].ingredientsAmount);
-            console.log("Keine Zwiebel Zutat mehr  verfügbar");
-        }
-    }
-    function onionResource(_event) {
-        // console.log("clicked onionResource");
-        if (vegetables[0].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
-            setTimeout(fillOnion, 10000);
-            console.log("Wird nach 10 Sekunden aufgefüllt");
-        }
-        else {
-            console.log("Keine Zwiebel Resourcen mehr verfügbar");
-        }
-    }
-    function fillOnion() {
-        console.log("Fülle mich auf nach 10 Sekunden");
-        vegetables[0].ingredientsAmount = ingredientAndResourceAmountOnion;
-        console.log(vegetables[0].ingredientsAmount);
-        vegetables[0].resourceAmount -= 25;
-        paragraphOnionResource.innerHTML = "Zwiebel:" + vegetables[0].resourceAmount;
-        console.log(vegetables[0].resourceAmount);
-        paragraphOnion.innerHTML = "Zwiebel:" + vegetables[1].ingredientsAmount;
-    }
-    function cornIngredient(_event) {
-        if (vegetables[1].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
-            vegetables[1].ingredientsAmount -= 5;
-            employeeIngredient.push(ingredientsArray[1]);
-            // console.log(employeeIngredient);
-            paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
-            displayCurrentOrder();
-        }
-        else {
-            console.log(vegetables[1].ingredientsAmount);
-            console.log("Keine Mais Zutat mehr  verfügbar");
-        }
-    }
-    function cornResource(_event) {
-        // console.log("clicked onionResource");
-        if (vegetables[1].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
-            setTimeout(fillCorn, 10000);
-            console.log("Wird nach 10 Sekunden aufgefüllt");
-        }
-        else {
-            console.log("Keine Mais Resourcen mehr verfügbar");
-        }
-    }
-    function fillCorn() {
-        console.log("Fülle mich auf nach 10 Sekunden");
-        vegetables[1].ingredientsAmount = ingredientAndResourceAmountCorn;
-        console.log(vegetables[1].ingredientsAmount);
-        paragraphCorn.innerHTML = "Mais:" + vegetables[1].ingredientsAmount;
-        vegetables[1].resourceAmount -= 25;
-        paragraphCornResource.innerHTML = "Mais:" + vegetables[1].resourceAmount;
-        console.log(vegetables[1].resourceAmount);
-    }
-    function saladIngredient(_event) {
-        // console.log("clicked saladIngredient");
-        console.log(_event.AT_TARGET);
-        if (vegetables[2].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
-            vegetables[2].ingredientsAmount -= 5;
-            employeeIngredient.push(ingredientsArray[2]);
-            // console.log(employeeIngredient);
-            paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
-            displayCurrentOrder();
-        }
-        else {
-            console.log(vegetables[2].ingredientsAmount);
-            console.log("Keine Salat Zutat mehr  verfügbar");
-        }
-    }
-    function saladResource(_event) {
-        // console.log("clicked onionResource");
-        if (vegetables[2].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
-            setTimeout(fillSalad, 10000);
-            console.log("Wird nach 10 Sekunden aufgefüllt");
-        }
-        else {
-            console.log("Keine Salat Resourcen mehr verfügbar");
-        }
-    }
-    function fillSalad() {
-        console.log("Fülle mich auf nach 10 Sekunden");
-        vegetables[2].ingredientsAmount = ingredientAndResourceAmountOnion;
-        console.log(vegetables[2].ingredientsAmount);
-        paragraphSalad.innerHTML = "Salat:" + vegetables[2].ingredientsAmount;
-        vegetables[2].resourceAmount -= 25;
-        paragraphSaladResource.innerHTML = "Salat:" + vegetables[2].resourceAmount;
-        console.log(vegetables[2].resourceAmount);
-    }
-    function redsaladIngredient(_event) {
-        // console.log("clicked redsaladIngredient");
-        console.log(_event.AT_TARGET);
-        if (vegetables[3].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
-            vegetables[3].ingredientsAmount -= 5;
-            employeeIngredient.push(ingredientsArray[3]);
-            // console.log(employeeIngredient);
-            paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
-            displayCurrentOrder();
-        }
-        else {
-            console.log(vegetables[3].ingredientsAmount);
-            console.log("Keine Rotkraut Zutat mehr  verfügbar");
-        }
-    }
-    function redsaladResource(_event) {
-        // console.log("clicked onionResource");
-        if (vegetables[3].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
-            setTimeout(fillRedsalad, 10000);
-            console.log("Wird nach 10 Sekunden aufgefüllt");
-        }
-        else {
-            console.log("Keine Rotkraut Resourcen mehr verfügbar");
-        }
-    }
-    function fillRedsalad() {
-        console.log("Fülle mich auf nach 10 Sekunden");
-        vegetables[3].ingredientsAmount = ingredientAndResourceAmountOnion;
-        console.log(vegetables[3].ingredientsAmount);
-        paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
-        vegetables[3].resourceAmount -= 25;
-        paragraphRedsaladResource.innerHTML = "Rotkraut:" + vegetables[3].resourceAmount;
-        console.log(vegetables[3].resourceAmount);
-    }
-    function tomatoIngredient(_event) {
-        // console.log("clicked tomatoIngredient");
-        console.log(_event.AT_TARGET);
-        if (vegetables[4].ingredientsAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerOrderUlan.length > employeeIngredient.length) {
-            vegetables[4].ingredientsAmount -= 5;
-            employeeIngredient.push(ingredientsArray[4]);
-            // console.log(employeeIngredient);
-            paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
-            displayCurrentOrder();
-        }
-        else {
-            console.log(vegetables[4].ingredientsAmount);
-            console.log("Keine Tomaten Zutat mehr  verfügbar");
-        }
-    }
-    function tomatoResource(_event) {
-        // console.log("clicked onionResource");
-        if (vegetables[4].resourceAmount > 0 && employeeArray[currentEmployee].position.x == 450 && employeeArray[currentEmployee].position.y == 140) {
-            setTimeout(fillTomato, 10000);
-            console.log("Wird nach 10 Sekunden aufgefüllt");
-        }
-        else {
-            console.log(vegetables[4].resourceAmount);
-            console.log("Keine Tomaten Resourcen mehr verfügbar");
-        }
-    }
-    function fillTomato() {
-        console.log("Fülle mich auf nach 10 Sekunden");
-        vegetables[4].ingredientsAmount = ingredientAndResourceAmountOnion;
-        console.log(vegetables[4].ingredientsAmount);
-        paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
-        vegetables[4].resourceAmount -= 25;
-        paragraphTomatoResource.innerHTML = "Tomate:" + vegetables[4].resourceAmount;
-        // console.log(vegetables[4].resourceAmount);
-    }
+    // function fillRedsalad(): void {
+    //     console.log("Fülle mich auf nach 10 Sekunden");
+    //     vegetables[3].ingredientsAmount = ingredientAndResourceAmountOnion;
+    //     console.log(vegetables[3].ingredientsAmount);
+    //     paragraphRedsalad.innerHTML = "Rotkraut:" + vegetables[3].ingredientsAmount;
+    //     vegetables[3].resourceAmount -= 25;
+    //     paragraphRedsaladResource.innerHTML = "Rotkraut:" + vegetables[3].resourceAmount;
+    //     console.log(vegetables[3].resourceAmount);
+    // }
+    // function fillTomato(): void {
+    //     console.log("Fülle mich auf nach 10 Sekunden");
+    //     vegetables[4].ingredientsAmount = ingredientAndResourceAmountOnion;
+    //     console.log(vegetables[4].ingredientsAmount);
+    //     paragraphTomato.innerHTML = "Tomate:" + vegetables[4].ingredientsAmount;
+    //     vegetables[4].resourceAmount -= 25;
+    //     paragraphTomatoResource.innerHTML = "Tomate:" + vegetables[4].resourceAmount;
+    //     // console.log(vegetables[4].resourceAmount);
+    // }
     //Kebabhaus wird durch Canvas gezeichnet
     function drawKebabHouse() {
         //Äußeren Wände der Küche
