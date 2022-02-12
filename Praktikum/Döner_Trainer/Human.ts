@@ -26,7 +26,7 @@ namespace Döner_Trainer {
             crc2.lineWidth = 3;
             crc2.fillStyle = "#ffd90f";
             crc2.strokeStyle = "black";
-            crc2.arc(this.position.x, this.position.y, 20, 0, Math.PI * 2)
+            crc2.arc(this.position.x, this.position.y, 20, 0, Math.PI * 2);
             crc2.fill();
             crc2.stroke();
             crc2.closePath();
@@ -39,7 +39,7 @@ namespace Döner_Trainer {
 
             crc2.beginPath();
             crc2.fillStyle = "black";
-            crc2.arc(this.position.x - 8, this.position.y - 8, 5, 0, Math.PI * 2)
+            crc2.arc(this.position.x - 8, this.position.y - 8, 5, 0, Math.PI * 2);
             crc2.fill();
             crc2.closePath();
 
@@ -50,7 +50,7 @@ namespace Döner_Trainer {
 
             crc2.beginPath();
             crc2.fillStyle = "black";
-            crc2.arc(this.position.x + 8, this.position.y - 8, 5, 0, Math.PI * 2)
+            crc2.arc(this.position.x + 8, this.position.y - 8, 5, 0, Math.PI * 2);
             crc2.fill();
             crc2.closePath();
 
@@ -65,10 +65,10 @@ namespace Döner_Trainer {
 
             crc2.beginPath();
             crc2.fillStyle = "black";
-            crc2.moveTo(this.position.x - 12, this.position.y -12);
-            crc2.lineTo(this.position.x - 7, this.position.y - 7)
+            crc2.moveTo(this.position.x - 12, this.position.y - 12);
+            crc2.lineTo(this.position.x - 7, this.position.y - 7);
             crc2.moveTo(this.position.x - 12, this.position.y - 7);
-            crc2.lineTo(this.position.x - 7, this.position.y - 12)
+            crc2.lineTo(this.position.x - 7, this.position.y - 12);
             // crc2.arc(this.position.x - 8, this.position.y - 8, 5, 0, Math.PI * 2)
             crc2.stroke();
             crc2.closePath();
@@ -81,9 +81,9 @@ namespace Döner_Trainer {
             crc2.beginPath();
             crc2.fillStyle = "black";
             crc2.moveTo(this.position.x + 12, this.position.y - 12);
-            crc2.lineTo(this.position.x + 7, this.position.y - 7)
+            crc2.lineTo(this.position.x + 7, this.position.y - 7);
             crc2.moveTo(this.position.x + 12, this.position.y - 7);
-            crc2.lineTo(this.position.x + 7, this.position.y - 12)
+            crc2.lineTo(this.position.x + 7, this.position.y - 12);
             // crc2.arc(this.position.x + 8, this.position.y - 8, 5, 0, Math.PI * 2)
             crc2.stroke();
             crc2.closePath();
@@ -133,6 +133,35 @@ namespace Döner_Trainer {
             }
 
             
+
+            
         }
+
+        // move(_timeslice: number): void {
+
+        //     let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
+        //     offset.scale(_timeslice);
+        //     this.position.add(offset);
+
+        //     if (this.position.x < 0) {
+
+        //         this.position.x += crc2.canvas.width;
+        //     }
+
+        //     if (this.position.y < 0) {
+
+        //         this.position.y += crc2.canvas.height;
+        //     }
+
+        //     if (this.position.x > crc2.canvas.width) {
+
+        //         this.position.x -= crc2.canvas.width;
+        //     }
+
+        //     if (this.position.y > crc2.canvas.height) {
+
+        //         this.position.y -= crc2.canvas.height;
+        //     }
+        // }
     }
 }

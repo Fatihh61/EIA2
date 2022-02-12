@@ -3,32 +3,31 @@ var Döner_Trainer;
 (function (Döner_Trainer) {
     class Customer extends Döner_Trainer.Human {
         satisfaction;
+        customerOrderUlan = [];
+        ingredientsArrayUlan = ["zwiebel", "mais", "salat", "rotkraut", "tomate"];
+        breadArrayUlan = ["döner", "yufka", "lahmacun"];
         constructor() {
             super(Math.random() * 400 + 200, 555, 100);
         }
         draw() {
             super.draw();
         }
-        orderMeal(_customerOrder, _breadArray, _ingredientsArray, _zwischenArray) {
+        orderMeal() {
             console.log("orderMeal in Customer");
             let randomNumberForLoop = Math.floor(Math.random() * 5);
             console.log(randomNumberForLoop);
-            _customerOrder.push(_breadArray[Math.floor(Math.random() * 3)]);
+            this.customerOrderUlan.push(this.breadArrayUlan[Math.floor(Math.random() * 3)]);
             for (let i = 0; i <= randomNumberForLoop; i++) {
                 let randomNumberForIngredients = Math.floor(Math.random() * 5);
                 console.log(randomNumberForIngredients);
-                if (_ingredientsArray.length > randomNumberForIngredients) {
-                    _customerOrder.push(_ingredientsArray[randomNumberForIngredients]);
-                    _zwischenArray.push(_ingredientsArray[randomNumberForIngredients]);
-                    _ingredientsArray.splice(randomNumberForIngredients, 1);
-                    console.log(_customerOrder);
+                if (this.ingredientsArrayUlan.length > randomNumberForIngredients) {
+                    this.customerOrderUlan.push(this.ingredientsArrayUlan[randomNumberForIngredients]);
+                    // _zwischenArray.push(_ingredientsArray[randomNumberForIngredients]);
+                    this.ingredientsArrayUlan.splice(randomNumberForIngredients, 1);
+                    console.log(this.customerOrderUlan);
+                    console.log(this.ingredientsArrayUlan);
                 }
             }
-            // console.log(_customerOrder);
-            // _ingredientsArray = _ingredientsArray.concat(zwischenArray);
-            // console.log(_ingredientsArray);
-            // zwischenArray = [];
-            // console.log(zwischenArray);
         }
     }
     Döner_Trainer.Customer = Customer;
