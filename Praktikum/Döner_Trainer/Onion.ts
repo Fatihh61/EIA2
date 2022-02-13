@@ -4,7 +4,7 @@ namespace Döner_Trainer {
 
         constructor(_ingredientsamount: number, _resourceAmount: number) {
 
-            super()
+            super();
 
             this.ingredientsAmount = _ingredientsamount;
             this.resourceAmount = _resourceAmount;

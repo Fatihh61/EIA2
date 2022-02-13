@@ -2,7 +2,6 @@
 var Döner_Trainer;
 (function (Döner_Trainer) {
     class Customer extends Döner_Trainer.Human {
-        satisfaction;
         customerSubclassOrder = [];
         ingredientsSubclassArray = ["zwiebel", "mais", "salat", "rotkraut", "tomate"];
         breadSubclassArray = ["döner", "yufka", "lahmacun"];
@@ -13,7 +12,6 @@ var Döner_Trainer;
             super.draw();
         }
         orderMeal() {
-            console.log("orderMeal in Customer");
             let randomNumberForLoop = Math.floor(Math.random() * 5);
             console.log(randomNumberForLoop);
             this.customerSubclassOrder.push(this.breadSubclassArray[Math.floor(Math.random() * 3)]);
@@ -22,7 +20,6 @@ var Döner_Trainer;
                 console.log(randomNumberForIngredients);
                 if (this.ingredientsSubclassArray.length > randomNumberForIngredients) {
                     this.customerSubclassOrder.push(this.ingredientsSubclassArray[randomNumberForIngredients]);
-                    // _zwischenArray.push(_ingredientsArray[randomNumberForIngredients]);
                     this.ingredientsSubclassArray.splice(randomNumberForIngredients, 1);
                     console.log(this.customerSubclassOrder);
                     console.log(this.ingredientsSubclassArray);

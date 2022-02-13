@@ -6,6 +6,8 @@ var Döner_Trainer;
         resourceAmount;
         constructor() {
         }
+        subtractVegetable() {
+        }
     }
     Döner_Trainer.Vegetable = Vegetable;
 })(Döner_Trainer || (Döner_Trainer = {}));

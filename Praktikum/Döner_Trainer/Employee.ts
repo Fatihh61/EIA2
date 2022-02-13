@@ -2,23 +2,12 @@ namespace Döner_Trainer {
 
     export class Employee extends Human {
 
-        currentActivity: string;
-
         constructor() {
-
             super(Math.random() * 150 + 400, Math.random() * 135 + 125, 100);
-            // this.mood = _mood;
-
-
-
-
-
         }
 
         draw(): void {
-
             super.draw();
-
         }
 
 
@@ -49,9 +38,6 @@ namespace Döner_Trainer {
             this.position.y = _y;
 
             this.mood = 100;
-
-            
-
         }
 
         cutKebab(_x: number, _y: number): void {
@@ -84,12 +70,4 @@ namespace Döner_Trainer {
             }
         }
     }
-
-
-
-
-
-
-
-
 }

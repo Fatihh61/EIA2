@@ -2,10 +2,8 @@
 var Döner_Trainer;
 (function (Döner_Trainer) {
     class Employee extends Döner_Trainer.Human {
-        currentActivity;
         constructor() {
             super(Math.random() * 150 + 400, Math.random() * 135 + 125, 100);
-            // this.mood = _mood;
         }
         draw() {
             super.draw();

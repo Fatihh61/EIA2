@@ -216,15 +216,11 @@ h2 {
 }
 
 .breadParagraph {
-
     font-size: 7pt;
     margin-top: 35px;
-
-
 }
 
 #aktuellerMitarbeiter {
-
     position: relative;
     width: 65px;
     height: 50px;
@@ -235,7 +231,6 @@ h2 {
 }
 
 #employee1Theke {
-
     position: relative;
     margin-left: 900px;
     bottom: 700px;
@@ -243,7 +238,6 @@ h2 {
 }
 
 #employee1Döner {
-
     position: relative;
     margin-left: 900px;
     bottom: 690px;
@@ -251,7 +245,6 @@ h2 {
 }
 
 #employee1Telefon {
-
     position: relative;
     margin-left: 900px;
     bottom: 680px;
@@ -259,7 +252,6 @@ h2 {
 }
 
 #employee1Resourcen {
-
     position: relative;
     margin-left: 900px;
     bottom: 670px;
@@ -267,7 +259,6 @@ h2 {
 }
 
 #employee1Pause {
-
     position: relative;
     margin-left: 900px;
     bottom: 660px;
@@ -275,7 +266,6 @@ h2 {
 }
 
 #employee1PrepareResource {
-
     position: relative;
     margin-left: 900px;
     bottom: 650px;
@@ -283,7 +273,6 @@ h2 {
 }
 
 #order {
-
     position: relative;
     width: 450px;
     height: 200px;
@@ -297,7 +286,6 @@ h2 {
 }
 
 #totalMotivation {
-
     position: relative;
     width: 150px;
     height: 75px;
@@ -308,8 +296,18 @@ h2 {
     margin-left: 20px;
 }
 
-#currentOrder {
+#soldBread {
+    position: relative;
+    width: 150px;
+    height: 120px;
+    border-color: black;
+    border-style: solid;
+    border-width: 5px;
+    bottom: 1500px;
+    margin-left: 20px;
+}
 
+#currentOrder {
     position: relative;
     width: 330px;
     height: 300px;
@@ -320,16 +318,13 @@ h2 {
     margin-left: 1000px;
     overflow-y: scroll;
     overflow-wrap: break-word;
-
 }
 
 .buttonNotAvailaible {
-
     pointer-events: none;
 }
 
 #giveOrder {
-
     position: relative;
     margin-left: 900px;
     bottom: 640px;
