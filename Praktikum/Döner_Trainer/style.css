@@ -9,6 +9,22 @@
     display: flex;
 }
 
+#anleitung {
+
+    font-size: 12pt;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}
+
+#anleitungContainer
+
+{
+
+    background-color: black;
+    opacity: 0.9;
+
+}
+
 #form {
     width: 800px;
     height: 490px;
@@ -16,7 +32,7 @@
     border-style: solid;
     border-width: 5px;
     margin-top: 30px;
-    margin-left: 275px;
+    margin-left: 10px;
 }
 
 .isHidden {
@@ -30,11 +46,9 @@
     margin-top: 65px;
     font-size: 10pt;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-
 }
 
 .resourceValue {
-
     position: absolute;
     margin-top: 28px;
     font-size: 10pt;
@@ -63,6 +77,15 @@ h2 {
 #startButton {
     margin-left: 375px;
     cursor: pointer;
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    background-color: red;
+    bottom: 700px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 12pt;
 }
 
 #onionButton {
@@ -73,8 +96,8 @@ h2 {
     bottom: 251px;
     left: 599px;
     cursor: pointer;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #cornButton {
@@ -85,8 +108,8 @@ h2 {
     bottom: 251px;
     left: 418px;
     cursor: pointer;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #saladButton {
@@ -97,8 +120,8 @@ h2 {
     bottom: 251px;
     left: 156px;
     cursor: pointer;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #redsaladButton {
@@ -109,8 +132,8 @@ h2 {
     bottom: 251px;
     left: -25px;
     cursor: pointer;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #tomatoButton {
@@ -121,8 +144,8 @@ h2 {
     bottom: 251px;
     left: 37px;
     cursor: pointer;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #onionResourcenButton {
@@ -133,8 +156,8 @@ h2 {
     bottom: 614px;
     left: 220px;
     cursor: pointer;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #cornResourcenButton {
@@ -145,8 +168,8 @@ h2 {
     bottom: 614px;
     left: 66px;
     cursor: pointer;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #saladResourcenButton {
@@ -157,8 +180,8 @@ h2 {
     bottom: 614px;
     left: -142px;
     cursor: pointer;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #redsaladResourcenButton {
@@ -169,8 +192,8 @@ h2 {
     bottom: 614px;
     left: -296px;
     cursor: pointer;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #tomatoResourcenButton {
@@ -181,8 +204,8 @@ h2 {
     bottom: 614px;
     left: -288px;
     cursor: pointer;
-    /* background: none;
-    border: none; */
+    background: none;
+    border: none;
 }
 
 #dönerButton {
@@ -193,6 +216,8 @@ h2 {
     bottom: 340px;
     left: -650px;
     cursor: pointer;
+    /* background: none;
+    border: none; */
 }
 
 #yufkaButton {
@@ -203,6 +228,8 @@ h2 {
     bottom: 340px;
     left: -630px;
     cursor: pointer;
+    /* background: none;
+    border: none; */
 }
 
 #lahmacunButton {
@@ -213,6 +240,8 @@ h2 {
     bottom: 340px;
     left: -610px;
     cursor: pointer;
+    /* background: none;
+    border: none; */
 }
 
 .breadParagraph {
@@ -226,8 +255,14 @@ h2 {
     height: 50px;
     border-color: black;
     border-style: solid;
+    cursor: pointer;
     margin-left: 825px;
     bottom: 700px;
+    border: none;
+    background-color: lightslategrey;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 12pt;
 }
 
 #employee1Theke {
@@ -235,6 +270,11 @@ h2 {
     margin-left: 900px;
     bottom: 700px;
     cursor: pointer;
+    background-color: #2596be;
+    border: none;
+    font-size: 12pt;
+    padding: 10px 22px;
+    border-radius: 8px;
 }
 
 #employee1Döner {
@@ -242,6 +282,11 @@ h2 {
     margin-left: 900px;
     bottom: 690px;
     cursor: pointer;
+    background-color: #F4A460;
+    border: none;
+    font-size: 12pt;
+    padding: 10px 22px;
+    border-radius: 8px;
 }
 
 #employee1Telefon {
@@ -249,6 +294,11 @@ h2 {
     margin-left: 900px;
     bottom: 680px;
     cursor: pointer;
+    background-color: #468641;
+    border: none;
+    font-size: 12pt;
+    padding: 10px 22px;
+    border-radius: 8px;
 }
 
 #employee1Resourcen {
@@ -256,6 +306,11 @@ h2 {
     margin-left: 900px;
     bottom: 670px;
     cursor: pointer;
+    background-color: #8A2BE2;
+    border: none;
+    font-size: 12pt;
+    padding: 10px 14px;
+    border-radius: 8px;
 }
 
 #employee1Pause {
@@ -263,13 +318,11 @@ h2 {
     margin-left: 900px;
     bottom: 660px;
     cursor: pointer;
-}
-
-#employee1PrepareResource {
-    position: relative;
-    margin-left: 900px;
-    bottom: 650px;
-    cursor: pointer;
+    background-color: #ffd700;
+    border: none;
+    font-size: 12pt;
+    padding: 10px 22px;
+    border-radius: 8px;
 }
 
 #order {
@@ -279,7 +332,7 @@ h2 {
     border-color: black;
     border-style: solid;
     border-width: 5px;
-    bottom: 550px;
+    bottom: 600px;
     margin-left: 850px;
     overflow-y: scroll;
     overflow-wrap: break-word;
@@ -292,7 +345,7 @@ h2 {
     border-color: black;
     border-style: solid;
     border-width: 5px;
-    bottom: 770px;
+    bottom: 840px;
     margin-left: 20px;
 }
 
@@ -303,7 +356,7 @@ h2 {
     border-color: black;
     border-style: solid;
     border-width: 5px;
-    bottom: 1500px;
+    bottom: 1575px;
     margin-left: 20px;
 }
 
@@ -314,7 +367,7 @@ h2 {
     border-color: black;
     border-style: solid;
     border-width: 5px;
-    bottom: 1215px;
+    bottom: 1270px;
     margin-left: 1000px;
     overflow-y: scroll;
     overflow-wrap: break-word;
@@ -327,8 +380,13 @@ h2 {
 #giveOrder {
     position: relative;
     margin-left: 900px;
-    bottom: 640px;
+    bottom: 650px;
     cursor: pointer;
+    background-color: #D22B2B;
+    border: none;
+    font-size: 12pt;
+    padding: 10px 22px;
+    border-radius: 8px;
 }
 
 #canvas {

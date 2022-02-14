@@ -5,8 +5,15 @@ var Döner_Trainer;
         customerSubclassOrder = [];
         ingredientsSubclassArray = ["zwiebel", "mais", "salat", "rotkraut", "tomate"];
         breadSubclassArray = ["döner", "yufka", "lahmacun"];
-        constructor() {
-            super(Math.random() * 400 + 200, 555, 100);
+        constructor(_x, _y) {
+            super(100);
+            this.position = new Döner_Trainer.Vector(_x, _y);
+            this.velocity = new Döner_Trainer.Vector(0, 0);
+            this.velocity.set(25, 0);
+            // this.velocity.random(100, 200);
+            // this.position = new Vector(_x, _y);
+            // this.velocity = new Vector(0, 0);
+            // this.velocity.random(100, 200);
         }
         draw() {
             super.draw();
@@ -24,6 +31,21 @@ var Döner_Trainer;
                     console.log(this.customerSubclassOrder);
                     console.log(this.ingredientsSubclassArray);
                 }
+            }
+        }
+        move(_timeslice) {
+            let offset = new Döner_Trainer.Vector(this.velocity.x, this.velocity.y);
+            offset.scale(_timeslice);
+            this.position.add(offset);
+            if (this.position.x < 100) {
+                this.position.x += 10;
+                this.velocity.set(10, 0);
+                this.velocity.scale(5);
+            }
+            if (this.position.x > 700) {
+                this.position.x -= 10;
+                this.velocity.set(-10, 0);
+                this.velocity.scale(5);
             }
         }
     }

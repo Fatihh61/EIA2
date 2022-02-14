@@ -37,34 +37,40 @@
         <button id="saladResourcenButton"></button>
         <button id="redsaladResourcenButton"></button>
 
-        <button id="dönerButton"><p class="breadParagraph">Döner</p></button>
-        <button id="yufkaButton"><p class="breadParagraph">Yufka</p></button>
-        <button id="lahmacunButton"><p class="breadParagraph">Lahmacun</p></button>
+        <button id="dönerButton">
+            <p class="breadParagraph">Döner</p>
+        </button>
+        <button id="yufkaButton">
+            <p class="breadParagraph">Yufka</p>
+        </button>
+        <button id="lahmacunButton">
+            <p class="breadParagraph">Lahmacun</p>
+        </button>
 
 
-        
+
         <select name="aktuellerMitarbeiter" id="aktuellerMitarbeiter">
             <option value="0">Jack</option>
             <option value="1">Sam</option>
             <option value="2">Mario</option>
         </select>
 
-        
+
         <button id="employee1Theke">Theke</button>
         <button id="employee1Döner">Döner</button>
         <button id="employee1Telefon">Telefon</button>
         <button id="employee1Resourcen">Resourcen</button>
         <button id="employee1Pause">Pause</button>
-        <button id="employee1PrepareResource">Zubereiten</button>
-
-        <button id="giveOrder">Pay</button>
+        <button id="giveOrder">Kasse</button>
 
 
 
 
         <div id="order"></div>
         <div id="totalMotivation"></div>
-        <div id="currentOrder"><p id="currentOrderParagraph"></p></div>
+        <div id="currentOrder">
+            <p id="currentOrderParagraph"></p>
+        </div>
         <div id="soldBread">
             <p id="soldDöner">Döner:</p>
             <p id="soldYufka">Yufka:</p>
@@ -73,9 +79,47 @@
     </div>
 
 
+
+
     <form>
         <h1>Startseite</h1>
         <div id="container">
+            <div id="anleitungContainer">
+                <p id="anleitung">Einführung: <br><br> Im Döner-Simulator musst du den Kunden die richtigen Zutaten <br>
+                    in der richtigen Reihenfolge servieren, um die Motivation oben zu halten. Um eine Zutat auszuwählen,
+                    <br>
+                    wähle den jeweiligen farbigen Behälter aus. Für jede falsche Zutat und falsche Reihenfolge,
+                    <br>
+                    verliert der Kunde/Arbeiter Motivation. Oben links siehst du deine an die Kunden servierten Brotarten <br>
+                    Wähle vor dem Spielstart deine Einstellungen und starte das Spiel.
+                    <br><br>Anleitung:<br><br>
+                    1. Du kannst im Auswahlmenü oben rechts den Arbeiter auswählen, den du Steuern möchtest. <br><br>
+                    2. Die Positionen werden unter der Spielerauswahl dargestellt. Jeder Button steht für eine
+                    Position.<br><br>
+                    3. Kommt ein Kunde, wird seine Bestellung unten rechts angezeigt. <br><br>
+                    4. Bewege den Spieler auf die Position "Döner", um zunächst das gewünschte Brot auszuwählen.<br><br>
+                    5. Als nächstes schnell zur Theke und die richtigen Zutaten in der richtigen Reihenfolge
+                    auswählen!<br><br>
+                    6. Deine ausgewählten Zutaten werden dir oben rechts angezeigt<br><br>
+                    7. Zum Schluss noch auf Kasse drücken und du servierst dem Kunden die Bestellung.<br><br>
+                    8. Der nächste Kunde hat eine neue Bestellung. Wählst du neue Zutaten oder Brot aus, wird deine zuletzt<br>
+                    servierte Bestellung gelöscht.<br><br>
+                    9. Gehen dir deine Zutaten leer, kannst du diese hinten an der Resource auffüllen.<br><br>
+                    10. Benötigen deine Arbeiter erneut Motivation, verwende den Pause Button!<br><br>
+                    Beachte:<br><br>
+                    1. Für jeden Positionswechsel verlieren die Arbeiter Motivation.<br><br>
+                    2. Für jede falsche Zutat und falsche Reihenfolge verlieren Arbeiter und Kunden Motivation.<br><br>
+                    3. Die Kunden verlieren mit der Zeit Motivation, also beeil dich!<br><br>
+                    4. Du kannst die Motivation der Kunden und Arbeiter anhand ihres Gesichtsausdrucks erkennen.<br><br>
+                    5. Hat ein Arbeiter 0 Motivation, kann dieser nichts mehr machen und benötigt eine Pause.<br><br>
+                    6. Fällt die Gesamtmotivation auf unter 40, verlierst du das Spiel!<br><br>
+                    7. Gehen dir die Zutaten aus, kannst du sie hinten bei den Resourcen nachfüllen<br><br>
+                    8. Pause und Resourcen Button benötigen eine entsprechende Zeit, damit die Aktion ausgeführt wird.<br><br>
+                    9. Zutaten, Brot und Resourcen sind nur auswählbar, wenn an der jeweiligen Position ein Mitarbeiter steht!<br><br>
+                    10. Wechselst du einen Mitarbeiter, muss IMMER zunächst eine Position ausgewählt werden, ansonsten ist keine Aktion möglich!
+                    </p>
+            </div>
+
             <div id="form">
                 <h2>Auswähle bidde</h1>
 

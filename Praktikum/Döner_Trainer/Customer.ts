@@ -2,19 +2,30 @@ namespace Döner_Trainer {
 
     export class Customer extends Human {
 
-        customerSubclassOrder: string [] = [];
-        ingredientsSubclassArray: string [] = ["zwiebel", "mais", "salat", "rotkraut", "tomate"];
-        breadSubclassArray: string[] = ["döner", "yufka", "lahmacun"];
+        public customerSubclassOrder: string[] = [];
+        private ingredientsSubclassArray: string[] = ["zwiebel", "mais", "salat", "rotkraut", "tomate"];
+        private breadSubclassArray: string[] = ["döner", "yufka", "lahmacun"];
 
-        constructor() {
-            super(Math.random() * 400 + 200, 555, 100);
+        constructor(_x: number, _y: number) {
+            super(100);
+
+            this.position = new Vector(_x, _y);
+            this.velocity = new Vector(0, 0);
+            this.velocity.set(25, 0);
+            // this.velocity.random(100, 200);
+
+
+            // this.position = new Vector(_x, _y);
+            // this.velocity = new Vector(0, 0);
+            // this.velocity.random(100, 200);
+
         }
 
-        draw(): void {
+        public draw(): void {
             super.draw();
         }
 
-        orderMeal(): void {
+        public orderMeal(): void {
 
             let randomNumberForLoop: number = Math.floor(Math.random() * 5);
             console.log(randomNumberForLoop);
@@ -30,10 +41,32 @@ namespace Döner_Trainer {
                     this.ingredientsSubclassArray.splice(randomNumberForIngredients, 1);
                     console.log(this.customerSubclassOrder);
                     console.log(this.ingredientsSubclassArray);
-                    
-                }   
+                }
             }
-            
+
         }
+
+        public move(_timeslice: number): void {
+
+            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
+            offset.scale(_timeslice);
+            this.position.add(offset);
+
+            if (this.position.x < 100) {
+
+                this.position.x += 10;
+                this.velocity.set(10, 0);
+                this.velocity.scale(5);
+            }
+
+            if (this.position.x > 700) {
+
+
+                this.position.x -= 10;
+                this.velocity.set(-10, 0);
+                this.velocity.scale(5);
+            }
+        }
+
     }
 }

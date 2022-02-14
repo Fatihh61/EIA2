@@ -2,25 +2,20 @@
 var Döner_Trainer;
 (function (Döner_Trainer) {
     class Employee extends Döner_Trainer.Human {
-        constructor() {
-            super(Math.random() * 150 + 400, Math.random() * 135 + 125, 100);
+        constructor(_x, _y) {
+            super(100);
+            this.position = new Döner_Trainer.Vector(_x, _y);
+            this.velocity = new Döner_Trainer.Vector(0, 0);
+            this.velocity.set(100, 0);
         }
         draw() {
             super.draw();
         }
-        takeOrder(_x, _y) {
+        takePosition(_x, _y) {
             if (this.mood > 0) {
                 this.position.x = _x;
                 this.position.y = _y;
-            }
-            else {
-                console.log("Keine Energie mehr");
-            }
-        }
-        buyResources(_x, _y) {
-            if (this.mood > 0) {
-                this.position.x = _x;
-                this.position.y = _y;
+                this.mood -= 5;
             }
             else {
                 console.log("Keine Energie mehr");
@@ -31,32 +26,10 @@ var Döner_Trainer;
             this.position.y = _y;
             this.mood = 100;
         }
-        cutKebab(_x, _y) {
-            if (this.mood > 0) {
-                this.position.x = _x;
-                this.position.y = _y;
-            }
-            else {
-                console.log("Keine Energie mehr");
-            }
-        }
-        fillResources(_x, _y) {
-            if (this.mood > 0) {
-                this.position.x = _x;
-                this.position.y = _y;
-            }
-            else {
-                console.log("Keine Energie mehr");
-            }
-        }
-        prepareResource(_x, _y) {
-            if (this.mood > 0) {
-                this.position.x = _x;
-                this.position.y = _y;
-            }
-            else {
-                console.log("Keine Energie mehr");
-            }
+        move(_timeslice) {
+            let offset = new Döner_Trainer.Vector(this.velocity.x, this.velocity.y);
+            offset.scale(_timeslice);
+            this.position.add(offset);
         }
     }
     Döner_Trainer.Employee = Employee;

@@ -11,7 +11,7 @@ var Döner_Trainer;
             Döner_Trainer.crc2.save();
             Döner_Trainer.crc2.beginPath();
             Döner_Trainer.crc2.lineWidth = 2;
-            Döner_Trainer.crc2.fillStyle = "violet";
+            Döner_Trainer.crc2.fillStyle = "#a476cf";
             Döner_Trainer.crc2.strokeStyle = "black";
             Döner_Trainer.crc2.strokeRect(600, 353, 75, 119);
             Döner_Trainer.crc2.fillRect(600, 353, 75, 119);

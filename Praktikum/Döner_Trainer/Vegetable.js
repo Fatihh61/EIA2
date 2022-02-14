@@ -5,8 +5,14 @@ var Döner_Trainer;
         ingredientsAmount;
         resourceAmount;
         constructor() {
+            // console.log("Constructor");
         }
-        subtractVegetable() {
+        subtractVegetable(_vegetable) {
+            _vegetable.ingredientsAmount -= 5;
+        }
+        fillVegetable(_vegetable, _ingredientAndResourceAmount) {
+            _vegetable.ingredientsAmount = _ingredientAndResourceAmount;
+            _vegetable.resourceAmount -= 25;
         }
     }
     Döner_Trainer.Vegetable = Vegetable;

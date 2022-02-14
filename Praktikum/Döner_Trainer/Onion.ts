@@ -10,14 +10,14 @@ namespace Döner_Trainer {
             this.resourceAmount = _resourceAmount;
         }
 
-        draw(): void {
+        public draw(): void {
 
  
             crc2.save();
 
             crc2.beginPath();
             crc2.lineWidth = 2;
-            crc2.fillStyle = "violet";
+            crc2.fillStyle = "#a476cf";
             crc2.strokeStyle = "black";
             crc2.strokeRect(600, 353, 75, 119);
             crc2.fillRect(600, 353, 75, 119);
@@ -26,5 +26,6 @@ namespace Döner_Trainer {
 
             crc2.restore();
         }
+        
     }
 }

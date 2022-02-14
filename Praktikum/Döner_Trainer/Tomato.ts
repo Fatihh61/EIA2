@@ -4,13 +4,13 @@ namespace Döner_Trainer {
 
         constructor(_ingredientsamount: number, _resourceAmount: number) {
 
-            super()
+            super();
 
             this.ingredientsAmount = _ingredientsamount;
             this.resourceAmount = _resourceAmount;
         }
 
-        draw(): void {  
+        public draw(): void {  
 
             crc2.save();
 
