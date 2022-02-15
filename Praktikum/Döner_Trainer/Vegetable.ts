@@ -17,9 +17,9 @@ namespace Döner_Trainer {
             _vegetable.ingredientsAmount -= 5;
         }
 
-        public fillVegetable(_vegetable: Vegetable, _ingredientAndResourceAmount: number): void {
+        public fillVegetable(_vegetable: Vegetable, _ingredientAmount: number): void {
 
-            _vegetable.ingredientsAmount = _ingredientAndResourceAmount;
+            _vegetable.ingredientsAmount = _ingredientAmount;
 
             _vegetable.resourceAmount -= 25;
 

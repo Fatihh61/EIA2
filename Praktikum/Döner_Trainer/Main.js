@@ -9,6 +9,8 @@ var Döner_Trainer;
     let totalMoodDiv;
     let currentOrder;
     let soldBread;
+    let target;
+    let targetId;
     //Anzahl verkaufter Brotarten
     let counterDöner = 0;
     let counterYufka = 0;
@@ -84,11 +86,11 @@ var Döner_Trainer;
     let imgDataSalad;
     let imgDataTomato;
     //Menge der Zutaten an der Theke
-    let ingredientAndResourceAmountOnion;
-    let ingredientAndResourceAmountCorn;
-    let ingredientAndResourceAmountSalad;
-    let ingredientAndResourceAmountRedsalad;
-    let ingredientAndResourceAmountTomato;
+    let ingredientAmountOnion;
+    let ingredientAmountCorn;
+    let ingredientAmountSalad;
+    let ingredientAmountRedsalad;
+    let ingredientAmountTomato;
     function handleLoad(_event) {
         //Start Button von Startseite wird deklariert und listener drauf installiert
         let startButton = document.querySelector("#startButton");
@@ -110,23 +112,23 @@ var Döner_Trainer;
         totalMoodDiv = document.getElementById("totalMotivation");
         currentOrder = document.getElementById("currentOrder");
         soldBread = document.getElementById("soldBread");
-        //Wertzuweisung für Zutaten an der Theke und isHidden remove
+        //Wertzuweisung für Zutaten an der Theke
         onionButton = document.getElementById("onionButton");
         cornButton = document.getElementById("cornButton");
         saladButton = document.getElementById("saladButton");
         redsaladButton = document.getElementById("redsaladButton");
         tomatoButton = document.getElementById("tomatoButton");
-        //Wertzuweisung für Resourcen und isHidden remove
+        //Wertzuweisung für Resourcen
         onionResourceButton = document.getElementById("onionResourcenButton");
         cornResourceButton = document.getElementById("cornResourcenButton");
         saladResourceButton = document.getElementById("saladResourcenButton");
         redsaladResourceButton = document.getElementById("redsaladResourcenButton");
         tomatoResourceButton = document.getElementById("tomatoResourcenButton");
-        //Wertzuweisung für Brotarten und isHidden remove
+        //Wertzuweisung für Brotarten
         dönerButton = document.getElementById("dönerButton");
         yufkaButton = document.getElementById("yufkaButton");
         lahmacunButton = document.getElementById("lahmacunButton");
-        //Wertzuweisung für Mitarbeiter und isHidden remove
+        //Wertzuweisung für Mitarbeiter
         employeeThekeButton = document.getElementById("employee1Theke");
         employeeDönerButton = document.getElementById("employee1Döner");
         employeeTelefonButton = document.getElementById("employee1Telefon");
@@ -139,7 +141,6 @@ var Döner_Trainer;
         employeeTelefonButton.addEventListener("click", employeePosition);
         employeeResourceButton.addEventListener("click", employeePosition);
         employeePauseButton.addEventListener("click", employeePosition);
-        // employeePrepareResourceButton.addEventListener("click", employeePosition);
         employeePayButton.addEventListener("click", checkOrder);
         //Zutat wird angeklickt und geleert
         onionButton.addEventListener("click", ingredient);
@@ -168,8 +169,8 @@ var Döner_Trainer;
         window.setInterval(update, 20);
     }
     function ingredient(_event) {
-        let target = _event.target;
-        let targetId = target.id;
+        target = _event.target;
+        targetId = target.id;
         switch (targetId) {
             case "onionButton":
                 if (vegetables[0].ingredientsAmount > 0 && employeeArray[currentEmployee].position.y == 320 && customerArray[0].customerSubclassOrder.length > employeeIngredient.length && employeeArray[currentEmployee].mood > 0) {
@@ -214,8 +215,8 @@ var Döner_Trainer;
         }
     }
     function resource(_event) {
-        let target = _event.target;
-        let targetId = target.id;
+        target = _event.target;
+        targetId = target.id;
         switch (targetId) {
             case "onionResourcenButton":
                 if (vegetables[0].resourceAmount > 0 && employeeArray[currentEmployee].position.y == 140 && employeeArray[currentEmployee].mood > 0) {
@@ -254,7 +255,7 @@ var Döner_Trainer;
         }
     }
     function fillResource(_vegetablesNumber) {
-        vegetables[_vegetablesNumber].fillVegetable(vegetables[_vegetablesNumber], ingredientAndResourceAmountOnion);
+        vegetables[_vegetablesNumber].fillVegetable(vegetables[_vegetablesNumber], ingredientAmountOnion);
         paragraphOnionResource.innerHTML = "Zwiebel:" + vegetables[0].resourceAmount;
         paragraphOnion.innerHTML = "Zwiebel:" + vegetables[0].ingredientsAmount;
         paragraphCornResource.innerHTML = "Mais:" + vegetables[1].resourceAmount;
@@ -301,8 +302,8 @@ var Döner_Trainer;
         }
     }
     function employeePosition(_event) {
-        let target = _event.target;
-        let targetId = target.id;
+        target = _event.target;
+        targetId = target.id;
         allSelectElements = document.querySelectorAll("select");
         currentEmployee = parseFloat(allSelectElements[0].value);
         // resourceAmount = parseFloat(allInputElements[0].value);
@@ -315,14 +316,6 @@ var Döner_Trainer;
                 break;
             case "employee1Telefon":
                 employeeArray[currentEmployee].takePosition(650, 315);
-                // employeeThekeButton.classList.add("buttonNotAvailaible");
-                // employeeDönerButton.classList.add("buttonNotAvailaible");
-                // employeeTelefonButton.classList.add("buttonNotAvailaible");
-                // employeePauseButton.classList.add("buttonNotAvailaible");
-                // employeePrepareResourceButton.classList.add("buttonNotAvailaible");
-                // employeeResourceButton.classList.add("buttonNotAvailaible");
-                // employeePayButton.classList.add("buttonNotAvailaible");
-                console.log("TELEFON");
                 setTimeout(fillResourcesByTelephone, 10000);
                 break;
             case "employee1Resourcen":
@@ -342,58 +335,39 @@ var Döner_Trainer;
                 // employeeResourceButton.classList.add("buttonNotAvailaible");
                 // employeePayButton.classList.add("buttonNotAvailaible");
                 setTimeout(function () {
-                    fillMotivation(currentNumber);
+                    fillMood(currentNumber);
                 }, customerValue);
         }
     }
     function fillResourcesByTelephone() {
         for (let i = 0; i < vegetables.length; i++) {
             vegetables[i].resourceAmount = resourceAmount;
-            console.log(vegetables[i].resourceAmount);
         }
         paragraphTomatoResource.innerHTML = "Tomate:" + allInputElements[0].value;
         paragraphOnionResource.innerHTML = "Zwiebel:" + allInputElements[0].value;
         paragraphSaladResource.innerHTML = "Salat:" + allInputElements[0].value;
         paragraphRedsaladResource.innerHTML = "Rotkraut:" + allInputElements[0].value;
         paragraphCornResource.innerHTML = "Mais:" + allInputElements[0].value;
-        // employeeThekeButton.classList.remove("buttonNotAvailaible");
-        // employeeDönerButton.classList.remove("buttonNotAvailaible");
-        // employeeTelefonButton.classList.remove("buttonNotAvailaible");
-        // employeePauseButton.classList.remove("buttonNotAvailaible");
-        // employeePrepareResourceButton.classList.remove("buttonNotAvailaible");
-        // employeeResourceButton.classList.remove("buttonNotAvailaible");
-        // employeePayButton.classList.remove("buttonNotAvailaible");
     }
-    function fillMotivation(_currentEmployee) {
-        console.log("Nach x Sekunden Motivation auffüllen");
+    function fillMood(_currentEmployee) {
         employeeArray[_currentEmployee].takeNap(650, 150);
-        // employeeThekeButton.classList.remove("buttonNotAvailaible");
-        // employeeDönerButton.classList.remove("buttonNotAvailaible");
-        // employeeTelefonButton.classList.remove("buttonNotAvailaible");
-        // employeePauseButton.classList.remove("buttonNotAvailaible");
-        // employeePrepareResourceButton.classList.remove("buttonNotAvailaible");
-        // employeeResourceButton.classList.remove("buttonNotAvailaible");
-        // employeePayButton.classList.remove("buttonNotAvailaible");
     }
     function addBread(_event) {
-        let target = _event.target;
-        let targetId = target.id;
+        target = _event.target;
+        targetId = target.id;
         if (employeeArray[currentEmployee].position.x == 245 && employeeArray[currentEmployee].position.y == 225 && customerArray[0].customerSubclassOrder.length > employeeIngredient.length) {
             switch (targetId) {
                 case "dönerButton":
-                    console.log("dönerButton");
                     employeeBread.push(breadArray[0]);
                     employeeIngredient.push(breadArray[0]);
                     displayCurrentOrder();
                     break;
                 case "yufkaButton":
-                    console.log("yufkaButton");
                     employeeBread.push(breadArray[1]);
                     employeeIngredient.push(breadArray[1]);
                     displayCurrentOrder();
                     break;
                 case "lahmacunButton":
-                    console.log("lahmacunButton");
                     employeeBread.push(breadArray[2]);
                     employeeIngredient.push(breadArray[2]);
                     displayCurrentOrder();
@@ -467,8 +441,8 @@ var Döner_Trainer;
         Döner_Trainer.crc2.closePath();
         Döner_Trainer.crc2.restore();
         //Behälter für Ersatzzutaten
-        let positionOfErsatzbehälter = 0;
-        let numberAdditionErsatzbehälter = 100;
+        let positionErsatzbehälter = 0;
+        let numberAddition = 100;
         let colorArray = ["red", "#420075", "green", "#fffc49", "#a476cf"];
         for (let i = 0; i <= 4; i++) {
             Döner_Trainer.crc2.save();
@@ -476,9 +450,9 @@ var Döner_Trainer;
             Döner_Trainer.crc2.lineWidth = 2;
             Döner_Trainer.crc2.fillStyle = colorArray[i];
             Döner_Trainer.crc2.strokeStyle = "black";
-            Döner_Trainer.crc2.fillRect(225 + positionOfErsatzbehälter, 25, 50, 50);
-            Döner_Trainer.crc2.strokeRect(225 + positionOfErsatzbehälter, 25, 50, 50);
-            positionOfErsatzbehälter += numberAdditionErsatzbehälter;
+            Döner_Trainer.crc2.fillRect(225 + positionErsatzbehälter, 25, 50, 50);
+            Döner_Trainer.crc2.strokeRect(225 + positionErsatzbehälter, 25, 50, 50);
+            positionErsatzbehälter += numberAddition;
             Döner_Trainer.crc2.closePath();
             Döner_Trainer.crc2.restore();
         }
@@ -501,8 +475,8 @@ var Döner_Trainer;
     //Onion Objekt wird kreiert
     function createOnion() {
         allInputElements = document.querySelectorAll("input");
-        ingredientAndResourceAmountOnion = parseFloat(allInputElements[0].value);
-        let onion = new Döner_Trainer.Onion(ingredientAndResourceAmountOnion, ingredientAndResourceAmountOnion);
+        ingredientAmountOnion = parseFloat(allInputElements[0].value);
+        let onion = new Döner_Trainer.Onion(ingredientAmountOnion, ingredientAmountOnion);
         vegetables.push(onion);
         //Paragraph für Zutat wird erstellt
         paragraphOnion = document.createElement("p");
@@ -519,8 +493,8 @@ var Döner_Trainer;
     //Corn Objekt wird kreiert
     function createCorn() {
         allInputElements = document.querySelectorAll("input");
-        ingredientAndResourceAmountCorn = parseFloat(allInputElements[0].value);
-        let corn = new Döner_Trainer.Corn(ingredientAndResourceAmountCorn, ingredientAndResourceAmountCorn);
+        ingredientAmountCorn = parseFloat(allInputElements[0].value);
+        let corn = new Döner_Trainer.Corn(ingredientAmountCorn, ingredientAmountCorn);
         vegetables.push(corn);
         //Paragraph für Zutat wird erstellt
         paragraphCorn = document.createElement("p");
@@ -537,8 +511,8 @@ var Döner_Trainer;
     //RedSalad Objekt wird kreiert
     function createRedSalad() {
         allInputElements = document.querySelectorAll("input");
-        ingredientAndResourceAmountRedsalad = parseFloat(allInputElements[0].value);
-        let redSalad = new Döner_Trainer.Redsalad(ingredientAndResourceAmountRedsalad, ingredientAndResourceAmountRedsalad);
+        ingredientAmountRedsalad = parseFloat(allInputElements[0].value);
+        let redSalad = new Döner_Trainer.Redsalad(ingredientAmountRedsalad, ingredientAmountRedsalad);
         vegetables.push(redSalad);
         //Paragraph für Zutat wird erstellt
         paragraphRedsalad = document.createElement("p");
@@ -555,8 +529,8 @@ var Döner_Trainer;
     //Tomato Objekt wird kreiert
     function createTomatoe() {
         allInputElements = document.querySelectorAll("input");
-        ingredientAndResourceAmountTomato = parseFloat(allInputElements[0].value);
-        let tomato = new Döner_Trainer.Tomato(ingredientAndResourceAmountTomato, ingredientAndResourceAmountTomato);
+        ingredientAmountTomato = parseFloat(allInputElements[0].value);
+        let tomato = new Döner_Trainer.Tomato(ingredientAmountTomato, ingredientAmountTomato);
         vegetables.push(tomato);
         //Paragraph für Zutat wird erstellt
         paragraphTomato = document.createElement("p");
@@ -573,8 +547,8 @@ var Döner_Trainer;
     //Salad Objekt wird kreiert
     function createSalad() {
         allInputElements = document.querySelectorAll("input");
-        ingredientAndResourceAmountSalad = parseFloat(allInputElements[0].value);
-        let salad = new Döner_Trainer.Salad(ingredientAndResourceAmountSalad, ingredientAndResourceAmountSalad);
+        ingredientAmountSalad = parseFloat(allInputElements[0].value);
+        let salad = new Döner_Trainer.Salad(ingredientAmountSalad, ingredientAmountSalad);
         vegetables.push(salad);
         //Paragraph für Zutat wird erstellt
         paragraphSalad = document.createElement("p");
@@ -611,7 +585,6 @@ var Döner_Trainer;
             humans.push(customer);
             customerArray.push(customer);
             customer.orderMeal();
-            // console.log(customerArray[0].customerSubclassOrder);
             orderDiv.innerHTML = "Bestellung:" + customerArray[0].customerSubclassOrder;
         }
     }
@@ -624,7 +597,6 @@ var Döner_Trainer;
             else {
                 customerArray[0].mood -= 10;
                 employeeArray[currentEmployee].mood -= 5;
-                // console.log(employeeArray[currentEmployee].mood);
             }
         }
         displaySoldBread();
@@ -637,7 +609,6 @@ var Döner_Trainer;
     function updateMoodCustomer() {
         for (let i = 0; i < customerArray.length; i++) {
             customerArray[i].mood -= 3;
-            // console.log(customerArray[i].mood);
         }
     }
     function update() {

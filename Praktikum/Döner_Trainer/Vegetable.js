@@ -10,8 +10,8 @@ var Döner_Trainer;
         subtractVegetable(_vegetable) {
             _vegetable.ingredientsAmount -= 5;
         }
-        fillVegetable(_vegetable, _ingredientAndResourceAmount) {
-            _vegetable.ingredientsAmount = _ingredientAndResourceAmount;
+        fillVegetable(_vegetable, _ingredientAmount) {
+            _vegetable.ingredientsAmount = _ingredientAmount;
             _vegetable.resourceAmount -= 25;
         }
     }

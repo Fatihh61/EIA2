@@ -17,19 +17,11 @@ var Döner_Trainer;
                 this.position.y = _y;
                 this.mood -= 5;
             }
-            else {
-                console.log("Keine Energie mehr");
-            }
         }
         takeNap(_x, _y) {
             this.position.x = _x;
             this.position.y = _y;
             this.mood = 100;
-        }
-        move(_timeslice) {
-            let offset = new Döner_Trainer.Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
-            this.position.add(offset);
         }
     }
     Döner_Trainer.Employee = Employee;
